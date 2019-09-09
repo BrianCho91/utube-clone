@@ -31,7 +31,7 @@ header {
   align-items: center;
   padding-left: 26px;
 
-  min-width: 200px;
+  min-width: 180px;
   // border: 1px white dotted;
 }
 
@@ -71,6 +71,8 @@ img#logo {
   width: 10%;
   height: 30px;
   border: 1px white solid;
+  background-color: #383838;
+  overflow: clip;
 }
 
 .user-icons-container {
@@ -80,6 +82,19 @@ img#logo {
   align-items: center;
   height: 30px;
   width: 200px;
+  padding-right: 35px;
+  padding-left: 30px;
+
+  // border: 1px white dotted;
+}
+
+.user-icons-container-login {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  height: 30px;
+  width: 230px;
   padding-right: 30px;
   padding-left: 30px;
 
@@ -187,12 +202,11 @@ i#folder {
 // }
 
 #sideDrawer.sideDrawer-hide {
-  transform: translateX(-230px);
-  transition: transform 4s ease-out;
+  display: none;
 } 
 
 #sideDrawer.sideDrawer-show {
-  // top: 60px;
+  top: 60px;
   left: 0;
   position: absolute;
   flex-direction: column;
@@ -253,8 +267,24 @@ i, img:hover {
   cursor: pointer;
 }
 
+.user-profile-icon-signin {
+  display: flex;
+  align-items: center;
+  font-size: 15px;
+  padding-right: 5px;
+}
+
+.user-profile-icon {
+  display: flex;
+  align-items: center;
+  font-size: 15px;
+  padding-right: 10px;
+}
+
 .faIcons {
   font-size: 20px;
+  padding-left: -15px;
+  padding-right: -10px;
 }
 
 .drawer-faIcons {
@@ -289,4 +319,8 @@ i, img:hover {
 
 #faFire-icon {
   padding-right: 34px;
+}
+
+.faSearch {
+  font-size: 15px;
 }
