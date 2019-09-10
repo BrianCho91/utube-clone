@@ -1,0 +1,53 @@
+.video-show-index {
+  display: flex;
+  top: 25px;
+  position: relative;
+}
+
+.video-container {
+  display: flex;
+  flex-direction: column;
+
+  margin-left: 25px;
+  width: 60vw;
+  height: 1200px;
+
+  border: 1px green dotted;
+
+}
+
+.video-clip-container {
+  width: 100%;
+  height: 450px;
+
+  border: 1px red dotted;
+}
+
+.video-description-container {
+  margin-top: 25px;
+  height: 250px;
+
+  border: 1px yellow dotted;
+}
+
+.comments-container {
+  margin-top: 25px;
+  height: 600px;
+
+  border: 1px blue dotted
+}
+
+.comments-form {
+  // height: 
+}
+
+.next-video-index-container {
+  width: 400px;
+  height: 800px;
+  margin-left: 25px;
+
+
+  border: 1px pink dotted;
+
+}
+

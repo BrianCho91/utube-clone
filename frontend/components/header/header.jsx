@@ -100,12 +100,14 @@ class Header extends React.Component {
             <button>
               <FontAwesomeIcon className="faIcons" id="faBars" icon={faBars} onClick={this.sideDrawerClickHandler}/>
             </button>
-            <button>
-              <div className="uTube-icon">
-                <FontAwesomeIcon className="faYoutube" icon={faYoutube} />
-                <span className="uTube-icon-letters">uTube</span>
-              </div>
-            </button>
+            <Link to={`/`} >
+              <button>
+                <div className="uTube-icon">
+                  <FontAwesomeIcon className="faYoutube" icon={faYoutube} />
+                  <span className="uTube-icon-letters">uTube</span>
+                </div>
+              </button>
+            </Link>
             {/* <img id="logo" src="https://i.ytimg.com/vi/216xvaj_OAA/maxresdefault.jpg" alt=""/> */}
           </div>
 

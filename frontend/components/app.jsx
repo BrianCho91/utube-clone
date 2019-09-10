@@ -1,13 +1,15 @@
 import React from "react";
-import { Route } from 'react-router-dom';
+import { Route, Switch } from 'react-router-dom';
 import HeaderContainer from './header/header_container';
 import SideDrawer from './header/side_drawer';
 import Sidebar from './header/sidebar';
 import SessionForm from './session/session_form';
 import SignupFormContainer from './session/signup_form_container';
 import LoginFormContainer from './session/login_form_container';
-import VideoIndexContainer from './video_index/video_index_container';
+import VideoIndexContainer from './videos/videos_index_container';
+import VideoShowContainer from './videos/video_show_container';
 import { AuthRoute } from '../util/route_util';
+import TestComponent from '../components/test_component';
 
 
 class App extends React.Component {
@@ -47,23 +49,26 @@ class App extends React.Component {
   // }
 
 
-  
   componentDidMount() {
     document.body.classList.add("background-black");
   }
 
   render() {
     return(  
-      <div className="main">
-        <AuthRoute path="/login" component={LoginFormContainer} />
-        <AuthRoute path="/signup" component={SignupFormContainer} />
-        {/* <Route exact path='/' component={Header} sideDrawerClickHandler={this.sideDrawerClickHandler}/> */}
-        <Route exact path='/' component={HeaderContainer}  />
-        {/* {this.sideDrawerToggle()} */}
-        <Route exact path='/' component={Sidebar} />
-        <Route exact path='/' component={VideoIndexContainer} />
-        <main>
-        </main>
+      <div>
+        <Switch>       
+          <AuthRoute path="/login" component={LoginFormContainer} />
+          <AuthRoute path="/signup" component={SignupFormContainer} />
+          {/* <Route exact path='/' component={Header} sideDrawerClickHandler={this.sideDrawerClickHandler}/> */}
+          {/* {this.sideDrawerToggle()} */}
+          
+          {/* <Route exact path="/videos/:videoId" component={VideoShowContainer} /> */}
+          <Route exact path="/test" component={TestComponent}  />      
+          <Route path='/' component={HeaderContainer}  />
+        </Switch>
+          <Route exact path="/watch/:videoId" component={VideoShowContainer}  />   
+          <Route exact path='/' component={Sidebar} />
+          <Route exact path='/' component={VideoIndexContainer} />
       </div>
     )
   }

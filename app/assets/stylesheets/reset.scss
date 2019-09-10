@@ -1,6 +1,7 @@
 @import url('https://fonts.googleapis.com/css?family=Roboto&display=swap');
 
 html, body, header {
+  width: 100vw;
   height: 100%;
 }
 
@@ -48,3 +49,10 @@ input[type="submit"] {
   cursor: pointer;
 }
 
+
+.testing { 
+  width: 200px;
+  height: 200px;
+  background-color: green;
+
+}
