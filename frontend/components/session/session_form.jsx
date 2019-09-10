@@ -86,49 +86,51 @@ class SessionForm extends React.Component {
 
   render() {
     return (
-      <div className="session-form-container">
-        <div className="session-form">
-          <h1 className="login-text">{this.formText()}! or&nbsp; {this.props.navLink}</h1>
-          <br/><br/>
-          <form>
-            {this.returnErrors("Invalid Credentials")}
-            <label className="login-label">Username
-              <br/>
-              <input 
-                type="text"
-                onChange={this.handleInput('username')} 
-                value={this.state.username}
-              /><br/>
-              {this.returnErrors("Username can't be blank")}
-            </label><br/><br/>
-
-            {this.renderEmail()}
-
-            {/* <label>Email:
-              <br/>
-              <input 
-                type="text" 
-                onChange={this.handleInput('email')} 
-                value={this.state.email}
-              />
-            </label><br/> */}
+      <div className="session-form-main">
+        <div className="session-form-container">
+          <div className="session-form">
+            <h1 className="login-text">{this.formText()}! or&nbsp; {this.props.navLink}</h1>
             <br/><br/>
-            <label className="login-label">Password
-              <br/>
-              <input 
-                type="password" 
-                onChange={this.handleInput('password')} 
-                value={this.state.password} 
-              /><br/>
-              {this.returnErrors("Password is too short (minimum is 6 characters)")}
-            </label><br/><br/>
-            <button className="login-submit" onClick={this.handleSubmit}> {this.formText()} </button>
-            <button className="login-submit" id="demo" onClick={this.demoClickHandler}> Demo </button>
-          </form>
+            <form>
+              {this.returnErrors("Invalid Credentials")}
+              <label className="login-label">Username
+                <br/>
+                <input 
+                  type="text"
+                  onChange={this.handleInput('username')} 
+                  value={this.state.username}
+                /><br/>
+                {this.returnErrors("Username can't be blank")}
+              </label><br/><br/>
+
+              {this.renderEmail()}
+
+              {/* <label>Email:
+                <br/>
+                <input 
+                  type="text" 
+                  onChange={this.handleInput('email')} 
+                  value={this.state.email}
+                />
+              </label><br/> */}
+              <br/><br/>
+              <label className="login-label">Password
+                <br/>
+                <input 
+                  type="password" 
+                  onChange={this.handleInput('password')} 
+                  value={this.state.password} 
+                /><br/>
+                {this.returnErrors("Password is too short (minimum is 6 characters)")}
+              </label><br/><br/>
+              <button className="login-submit" onClick={this.handleSubmit}> {this.formText()} </button>
+              <button className="login-submit" id="demo" onClick={this.demoClickHandler}> Demo </button>
+            </form>
+          </div>
+          <Link to="/" className="return-home">
+            Go Home
+          </Link>
         </div>
-        <Link to="/" className="return-home">
-          Go Home
-        </Link>
       </div>
     )
   }

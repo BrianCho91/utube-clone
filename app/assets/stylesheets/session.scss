@@ -1,10 +1,19 @@
+.session-form-main {
+  display: flex;
+  justify-content: center;
+  position: relative;
+  align-items: center;
+  width: 100vw;
+  height: 100vh;
+}
+
 .session-form-container {
   display: flex;
-  position: fixed;
+  // position: fixed;
   width: 400px;
   height: 450px;
-  top: 50%;
-  left: 50%;
+  // top: 50%;
+  // left: 50%;
   margin-left: -225px;
   margin-top: -250px;
   background-color: #272727;
@@ -24,7 +33,7 @@ input, textarea {
 .session-form {
   display: flex;
   flex-direction: column;
-  position: absolute;
+  // position: absolute;
   top: 80px;
   align-items: center;
   justify-content: center;
