@@ -6,11 +6,11 @@ import { Link } from 'react-router-dom';
 
 
 const mapStateToProps = ( { errors }, ownProps) => {
-  return {
+  return ({
     errors: errors.session,
     formType: 'signup',
     navLink: <Link to="/login">Log In</Link>
-  }
+  })
 }
 
 const mapDispatchToProps = (dispatch) => ({

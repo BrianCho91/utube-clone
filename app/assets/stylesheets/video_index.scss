@@ -1,0 +1,35 @@
+.video-index-page {
+  position: relative;
+  display: flex;
+  top: 60px;
+  left: 150px;
+  right: 30px;
+  width: 80%;
+
+  height: 500px;
+  border: 1px white dotted;
+}
+
+.recommended-bar {
+  position: absolute;
+  height: 20px;
+  width: 100%;
+  border: 1px white dotted;
+}
+
+.recommended-videos {
+  position: absolute;
+
+  top: 30px;
+  height: 400px;
+  width: 100%;
+
+  border: 1px white dotted;
+}
+
+.tr, th {
+  width: 20%;
+  height: 50%;
+  table-layout: fixed;
+  border: 1px white dotted;
+}

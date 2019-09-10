@@ -72,6 +72,8 @@ img#logo {
   height: 30px;
   border: 1px white solid;
   background-color: #383838;
+  cursor: pointer;
+
   overflow: clip;
 }
 
@@ -124,7 +126,7 @@ i#person {
 .sidebar {
   background-color: #1c1c1c;
   display: flex;
-  position: absolute;
+  position: fixed;
   flex-direction: column;
   justify-content: space-between;
   align-items: center;
@@ -201,12 +203,13 @@ i#folder {
 //   transition: transform 4s ease-in-out;
 // }
 
-#sideDrawer.sideDrawer-hide {
+#sideDrawer-hide {
   display: none;
 } 
 
 #sideDrawer.sideDrawer-show {
   top: 60px;
+  overflow: hidden;
   left: 0;
   position: absolute;
   flex-direction: column;
@@ -221,7 +224,6 @@ i#folder {
   transform: translateX(0);
   transition: transform 4s ease-in;
 } 
-
 
 .menu-sidebar-HTS { 
   display: flex;
@@ -263,7 +265,7 @@ i#folder {
   background-color: #444444;
 }
 
-i, img:hover {
+img:hover {
   cursor: pointer;
 }
 
@@ -282,6 +284,7 @@ i, img:hover {
 }
 
 .faIcons {
+  cursor: pointer;
   font-size: 20px;
   padding-left: -15px;
   padding-right: -10px;
@@ -321,6 +324,7 @@ i, img:hover {
   padding-right: 34px;
 }
 
-.faSearch {
+#faSearch {
   font-size: 15px;
 }
+

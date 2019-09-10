@@ -6,50 +6,78 @@ import { faYoutube } from '@fortawesome/free-brands-svg-icons';
 // import Icon from '@material-ui/core/Icon'
 // import {search} from '@material-ui/icons';
 import SideDrawer from '../header/side_drawer';
+import UserMenu from '../header/user_menu';
 
 class Header extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      sideDrawerOpen: false
-    }
-    this.sideDrawerClickHandler = this.sideDrawerClickHandler.bind(this)
-    this.signupLoginLink = this.signupLoginLink.bind(this)
-  }
+      sideDrawerOpen: false,
+      userMenuOpen: false
+    };
+    this.sideDrawerClickHandler = this.sideDrawerClickHandler.bind(this);
+    this.signupLoginLink = this.signupLoginLink.bind(this);
+    this.userMenuClickHandler = this.userMenuClickHandler.bind(this);
+  };
 
   sideDrawerClickHandler() {
     this.setState((prevState) => {
-    return {sideDrawerOpen: !prevState.sideDrawerOpen}
+    return {sideDrawerOpen: !prevState.sideDrawerOpen};
     });
-  }
+  };
 
   sideDrawerToggle() {
     let sideDrawer;
     // let modal;
-    console.log("toggled")
-    console.log(this.state.sideDrawerOpen)
+    // console.log("toggled")
+    // console.log(this.state.sideDrawerOpen)
     if (this.state.sideDrawerOpen) {
       return sideDrawer = <SideDrawer
                             show={this.state.sideDrawerOpen} 
                             sideDrawerClickHandler={this.sideDrawerClickHandler}
                           />;
-    }
-  }
+    };
+  };
 
+  userMenuClickHandler() {
+    // console.log("clicked")    
+    console.log(this.state.userMenuOpen)
+    this.setState((prevState) => {
+      return {userMenuOpen: !prevState.userMenuOpen};
+    });
+  };
+
+  userMenuToggle() {
+    let userMenu;
+    // console.log("toggled")    
+    // console.log(this.state.userMenuOpen)
+    if (this.state.userMenuOpen) {
+      return userMenu = <UserMenu
+                          show={this.state.userMenuOpen}
+                          userMenuClickHandler={this.userMenuClickHandler}
+                          user={this.props.user}
+                          logout={this.props.logout}
+                        />;
+    };
+  };
 
   signupLoginLink() {
     if (this.props.currentUser) {
+      // console.log("im here")
       return (
-        <div className="user-profile-icon" onClick={this.props.logout}>
-          <FontAwesomeIcon className="faIcons" icon={faUserCircle} />
+        <div className="user-profile-icon" 
+          // onClick={this.props.logout}
+          >
+          {this.userMenuToggle()}
+          <FontAwesomeIcon className="faIcons" icon={faUserCircle} onClick={this.userMenuClickHandler}/>
         </div>
       )
     } else {
       return (
-      <Link to='/login' className="user-profile-icon-signin">
-        <FontAwesomeIcon className="faIcons" icon={faUserCircle} />
-        &nbsp;<span>Sign In</span>
-      </Link>
+        <Link to='/login' className="user-profile-icon-signin">
+          <FontAwesomeIcon className="faIcons" icon={faUserCircle} />
+          &nbsp;&nbsp;<span>Sign In</span>
+        </Link>
       )
     }
   }
@@ -84,7 +112,7 @@ class Header extends React.Component {
           <div className="header-search-container">
             <div className="header-search-bar">Search</div>
             <div className="header-search-button">
-            <FontAwesomeIcon className="faSearch" icon={faSearch} />
+            <FontAwesomeIcon className="faIcons" id="faSearch" icon={faSearch} />
               {/* <i id="search" className="large material-icons">search</i> */}
             </div>
           </div>

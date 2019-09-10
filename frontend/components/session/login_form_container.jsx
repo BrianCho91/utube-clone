@@ -5,12 +5,12 @@ import React from "react";
 import { Link } from 'react-router-dom';
 
 
-const mapStateToProps = ( { errors }, ownProps) => {
-  return {
+const mapStateToProps = ( { errors } ) => {
+  return ({
     errors: errors.session,
     formType: 'login',
     navLink: <Link to="/signup">Sign Up</Link>
-  }
+  })
 }
 
 const mapDispatchToProps = (dispatch) => ({

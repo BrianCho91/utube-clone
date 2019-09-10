@@ -18,7 +18,6 @@ class SideDrawer extends React.Component {
 
     return(
       <div id="sideDrawer" className={this.sideDrawerClass()}>
-      
         <div className="menu-sidebar-HTS">
           <div className="menu-sidebar-sidebar-icon-container">
             <div className="menu-sidebar-icon-container-containers">

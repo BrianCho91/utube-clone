@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css?family=Roboto&display=swap');
+
 .background-black {
   background-color: #121212;
 }
@@ -5,6 +7,7 @@
 html, body {
   height: 100%;
 }
+
 
 html, body, header, nav, h1, a,
 ul, li, strong, main, button, i,
@@ -15,7 +18,7 @@ span, article, footer, time, small, h2 {
   padding: 0;
   border: 0;
   outline: 0;
-  font: inherit;
+  font-family: 'Roboto', sans-serif;
   color: inherit;
   text-align: inherit;
   text-decoration: inherit;
@@ -49,3 +52,4 @@ button,
 input[type="submit"] {
   cursor: pointer;
 }
+

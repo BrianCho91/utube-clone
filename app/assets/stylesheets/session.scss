@@ -16,7 +16,9 @@
 
 input, textarea {
   background-color : #d1d1d1;
-  color: black
+  color: black;
+  height: 20px;
+  width: 200px;
 }
 
 .session-form {
@@ -26,6 +28,7 @@ input, textarea {
   top: 80px;
   align-items: center;
   justify-content: center;
+  max-height: 230px;
 }
 
 .login-text {
@@ -42,6 +45,7 @@ input, textarea {
 
 .login-label {
   font-size: 20px;
+  max-height: 30px;
 }
 
 .login-submit {
@@ -54,4 +58,13 @@ input, textarea {
   color: #121212;
   padding: 5px 10px;
   font-size: 20px;
+}
+
+.error-messages {
+  font-size: 12px;
+  padding-bottom: -50px;
+}
+
+button#demo {
+  top: 330px;
 }

@@ -1,0 +1,110 @@
+.user-menu-container {
+  display: flex;
+  top: 65px;
+  // right: 80px;
+  right: 5px;
+  position: absolute;
+  flex-direction: column;
+  align-items: center;
+  width: 250px;
+  height: 500px;
+  overflow: clip; 
+  // width: 230px;
+  background-color: #282828;
+  color: white;
+  z-index: 1000;
+  // border: 1px black solid;
+  transform: translateX(0);
+  transition: transform 4s ease-in;
+}
+
+.user-details-container {
+  display: flex;
+  border-bottom: 1px white solid;
+  height: 80px;
+}
+
+.user-menu-user-pic {
+  position: relative;
+  display: flex;
+  min-width: 50px;
+  height: 80px;
+  top: -5px;
+  left: 10px;
+  // border: 1px white dotted
+}
+
+.user-details {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  display: flex;
+  min-width: 200px;
+  height: 70px;
+  padding-top: 10px;
+  left: 20px;
+  font-size: 1px;
+  // border: 1px white dotted
+}
+
+p#username {
+  font-weight: 900;
+  font-size: 18px;
+  padding-bottom: 5px;
+}
+
+p#email {
+  font-size: 14px;
+}
+
+.user-menu-additional {
+  display: flex;
+  position: relative;
+  flex-direction: column;
+  min-width: 250px;
+  height: 100px;
+  // border: 1px white dotted
+}
+
+#faUserCircle {
+  font-size: 40px;
+  padding-top: 20px;
+}
+
+.user-menu-buttons {
+  display: flex;
+  flex-direction: column;
+  height: 80px;
+  width: 100%;
+  // border: 1px white dotted;
+}
+
+.signout-button {
+  display: flex;
+  height: 40px;
+  flex-direction: row;
+  align-items: center;
+}
+
+.channel-button {
+  display: flex;
+  height: 40px;
+  flex-direction: row;
+  align-items: center;
+}
+
+.signout-button:hover {
+  cursor: pointer;
+  background-color: #444444;
+}
+
+.channel-button:hover {
+  cursor: pointer;
+  background-color: #444444;
+}
+
+.faUserMenuIcons {
+  font-size: 20px;
+  padding-left: 15px;
+  padding-right: 15px;
+}
