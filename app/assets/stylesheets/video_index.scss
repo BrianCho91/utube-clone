@@ -1,35 +1,89 @@
 .video-index-page {
-  position: relative;
   display: flex;
-  top: 60px;
-  left: 150px;
-  right: 30px;
+  flex-direction: column;
+  justify-content: center;
+  position: relative;
+  top: 20px;
+  left: 25%;
+  right: 15px;
+  // border: 1px green dotted;
   width: 80%;
-
-  height: 500px;
-  border: 1px white dotted;
+  max-width: 1240px;
+  margin-right: 100px;
 }
 
 .recommended-bar {
-  position: absolute;
-  height: 20px;
+  padding-bottom: 10px;
+  // border: 1px white dotted;
   width: 100%;
-  border: 1px white dotted;
+  font-size: 18px;
 }
 
 .recommended-videos {
-  position: absolute;
-
-  top: 30px;
-  height: 400px;
+  display: flex;
+  // border: 1px orange dotted;
   width: 100%;
-
-  border: 1px white dotted;
+  flex-wrap: wrap;
+  max-width: 1240px;
 }
 
-.tr, th {
-  width: 20%;
-  height: 50%;
-  table-layout: fixed;
-  border: 1px white dotted;
+.video-item-container {
+  display: flex;
+  flex-direction: column;
+  // border: 1px white dotted;
+}
+
+img.thumbnails {
+  max-width: 240px;
+  padding-right: 5px;
+  width: 100%;
+}
+
+.index-view-container {
+  display: flex;
+  flex-direction: row;
+  font-size: 12px;
+  padding-top: 2px;
+  padding-bottom: 15px;
+}
+
+.index-video-title {
+  padding-top: 8px;
+
+}
+
+.index-video-author {
+  color: rgb(139, 139, 139);
+  font-size: 14px;
+  padding-top: 2px;
+
+}
+
+.index-video-views {
+  color: rgb(139, 139, 139);
+  padding-right: 10px;
+
+}
+
+.index-video-upload-date {
+  color: rgb(139, 139, 139);
+
+}
+
+.index-video-title:hover {
+  cursor: pointer;
+  color: rgb(199, 199, 199);
+}
+
+.index-video-author:hover {
+  cursor: pointer;
+  color: rgb(199, 199, 199);  
+}
+
+.index-video-views:hover {
+  // cursor: pointer;
+}
+
+.index-video-upload-date:hover {
+  // cursor: pointer;
 }

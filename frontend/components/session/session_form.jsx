@@ -10,50 +10,38 @@ class SessionForm extends React.Component {
       password: ''
     };
     this.handleSubmit = this.handleSubmit.bind(this);
-    this.handleDemo = this.handleDemo.bind(this);
+    this.demoClickHandler = this.demoClickHandler.bind(this);
     this.setUsername = this.setUsername.bind(this);
     this.setPassword = this.setPassword.bind(this);
   };
 
-  handleDemo(e) {
+  demoClickHandler(e) {
     e.preventDefault()
-  
-    let newUsername = this.setUsername();
-    let newPassword = this.setPassword();
-
-    setInterval( this.setState({
-        username: newUsername,
-        password: newPassword
-      }), 101)
-    setTimeout(this.props.processForm(this.state), 900)
+    this.setUsername();
   }
 
-  demoClickHandler() {
+  setUsername(demoUsername) {
+    demoUsername = demoUsername || "briancho".split('');
+    
+    setTimeout( () => {
+      this.setState({
+        username: this.state.username + demoUsername.shift()
+      });
+      demoUsername.length > 0 ? this.setUsername(demoUsername) : this.setPassword()
+    }, 100)
 
   }
 
-  setUsername() {
-    let demoUsername = ['b','r','i','a','n','c','h','o'];
-    let newUsername = "";
+  setPassword(demoPassword) {
+    demoPassword = demoPassword || "123123".split('');
 
-    while (demoUsername.length > 0) {
-      setInterval( () => {
-        newUsername += demoUsername.shift()
-      }, 100)
-    }
-    return newUsername;
-  }
+    setTimeout(() => {
+      this.setState({
+        password: this.state.password + demoPassword.shift()
+      });
+      demoPassword.length > 0 ? this.setPassword(demoPassword) : this.props.processForm(this.state)
+    }, 100)
 
-  setPassword() {
-    let demoPassword = [1,2,3,1,2,3];
-    let newPassword = "";
-
-     while (demoPassword.length > 0) {
-      setInterval( () => {
-        newPassword += demoPassword.shift()
-      }, 100)
-    }
-    return newPassword;
   }
 
   handleInput(type) {
@@ -135,7 +123,7 @@ class SessionForm extends React.Component {
               {this.returnErrors("Password is too short (minimum is 6 characters)")}
             </label><br/><br/>
             <button className="login-submit" onClick={this.handleSubmit}> {this.formText()} </button>
-            <button className="login-submit" id="demo" onClick={this.handleDemo}> Demo </button>
+            <button className="login-submit" id="demo" onClick={this.demoClickHandler}> Demo </button>
           </form>
         </div>
         <Link to="/" className="return-home">
