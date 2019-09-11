@@ -14,59 +14,61 @@
   height: 450px;
   // top: 50%;
   // left: 50%;
-  margin-left: -225px;
-  margin-top: -250px;
+  // margin-left: -225px;
+  // margin-top: -250px;
   background-color: #272727;
   padding: 50px;
   flex-direction: column;
   align-items: center;
-  border-radius: 2%;
-}
-
-input, textarea {
-  background-color : #d1d1d1;
-  color: black;
-  height: 20px;
-  width: 200px;
+  border-radius: 1%;
 }
 
 .session-form {
   display: flex;
   flex-direction: column;
   // position: absolute;
-  top: 80px;
+  // top: 80px;
   align-items: center;
   justify-content: center;
-  max-height: 230px;
+  width: 100%;
+}
+input, textarea {
+  background-color : #d1d1d1;
+  color: black;
+  height: 40px;
+  width: 100%;
+  border-radius: 3px;
 }
 
 .login-text {
-  display: flex;
   font-size: 30px;
 }
 
 .return-home {
-  display: flex;
-  position: absolute;
-  left: 40px;
-  bottom: 40px;
+
 }
 
 .login-label {
-  font-size: 20px;
-  max-height: 30px;
+  font-size: 15px;
+  width: 100%;
+  margin-left: 10px;
+  // transform: translateY(200px);
+  // height: 100%;
 }
 
 .login-submit {
-  position: absolute;
-  left: 70px;
-  margin-top: 20px;
+  // display: flex;
+  // position: absolute;
+  // left: 70px;
+  // margin-top: 20px;
   background-color: white;
   border: 1px solid #121212;
   border-radius: 5px;
   color: #121212;
   padding: 5px 10px;
-  font-size: 20px;
+  font-size: 16px;
+  width: 50px;
+  margin-bottom: 10px;
 }
 
 .error-messages {
@@ -74,6 +76,53 @@ input, textarea {
   padding-bottom: -50px;
 }
 
-button#demo {
-  top: 330px;
+.login-pretext {
+  font-size: 24px;
+  padding-bottom: 10px;
+  padding-top: 5px;
+}
+
+.login-subtext {
+  font-size: 16px;
+  margin: 8px;
+}
+
+.login-button-containers {
+  display: flex;
+  flex-direction: column;
+  margin-right: 20px;
+}
+
+.login-form {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  transform: translateY(-30px);
+}
+
+.login-button-items {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+}
+
+.login-input-text {
+  width: min-content;
+  margin-left: 5px;
+  padding: 1px 5px;
+  transform: translateY(10px);
+  border: 1px green dotted
+}
+
+.login-label#password {
+  transform: translateY(-20px);
+}
+
+.login-label#username {
+  transform: translateY(20px);
+}
+
+.login-submit#sign-in-button {
+  transform: translateY(-7px);
+  margin-bottom: 5px;
 }

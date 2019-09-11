@@ -57,15 +57,15 @@ class SessionForm extends React.Component {
 
   formText() {
     let formType = this.props.formType;
-    return formType === "login" ? "Log In" : "Sign Up"
+    return formType === "login" ? "Sign In" : "Sign Up"
   }
 
   renderEmail() {
     let formType = this.props.formType;
     if (formType === "signup") {
       return (
-        <label className="login-label">Email
-          <br/>
+        <label className="login-label">
+          <p className="login-input-text">Email</p>
           <input 
             type="text" 
             onChange={this.handleInput('email')} 
@@ -83,18 +83,27 @@ class SessionForm extends React.Component {
         return <div className="error-messages">{this.props.errors[errorIdx]}</div>
       }
   }
+  
+  renderDemo() {
+    if (this.props.formType === "login") {
+      return <button className="login-submit" id="demo-button" onClick={this.demoClickHandler}> Demo </button>
+    }
+  }
 
   render() {
+    // ! or&nbsp; {this.props.navLink}
     return (
       <div className="session-form-main">
         <div className="session-form-container">
           <div className="session-form">
-            <h1 className="login-text">{this.formText()}! or&nbsp; {this.props.navLink}</h1>
+            <h1 className="login-pretext">uTube</h1>
+            <h2 className="login-text">{this.formText()}</h2>
+            <h3 className="login-subtext">to continue to uTube</h3>
             <br/><br/>
-            <form>
+            <form className="login-form" onSubmit={this.handleSubmit}>
               {this.returnErrors("Invalid Credentials")}
-              <label className="login-label">Username
-                <br/>
+              <label className="login-label" id="username">
+                <p className="login-input-text">Username</p>
                 <input 
                   type="text"
                   onChange={this.handleInput('username')} 
@@ -106,7 +115,6 @@ class SessionForm extends React.Component {
               {this.renderEmail()}
 
               {/* <label>Email:
-                <br/>
                 <input 
                   type="text" 
                   onChange={this.handleInput('email')} 
@@ -114,17 +122,24 @@ class SessionForm extends React.Component {
                 />
               </label><br/> */}
               <br/><br/>
-              <label className="login-label">Password
-                <br/>
+              <label className="login-label" id="password">
+                <p className="login-input-text">Password</p>
                 <input 
                   type="password" 
                   onChange={this.handleInput('password')} 
                   value={this.state.password} 
                 /><br/>
                 {this.returnErrors("Password is too short (minimum is 6 characters)")}
-              </label><br/><br/>
-              <button className="login-submit" onClick={this.handleSubmit}> {this.formText()} </button>
-              <button className="login-submit" id="demo" onClick={this.demoClickHandler}> Demo </button>
+              </label><br/>
+              <div className="login-buttons-containers">
+                <div className="login-button-items">
+                  <button className="login-submit" id="sign-in-button" onClick={this.handleSubmit}> {this.formText()} </button>
+                  {this.renderDemo()}
+                </div>
+                <div className="redirect-signup-container">
+                  <Link to="/signup">Create account</Link>
+                </div>
+              </div>
             </form>
           </div>
           <Link to="/" className="return-home">

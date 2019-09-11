@@ -17,7 +17,7 @@ class VideoShow extends React.Component {
       <div className="video-show-index">
         <div className="video-container">
           <div className="video-clip-container"></div>
-            <img className="thumbnails" src={video.test_url}/>
+            {/* <img className="thumbnails" src={video.test_url}/> */}
           <div className="video-description-container"></div>
           <div className="comments-container">
             <div className="comment-form-container"></div>
