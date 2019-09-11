@@ -10,6 +10,7 @@ ActiveRecord::Base.transaction do
 
   User.destroy_all
   Video.destroy_all
+  Comment.destroy_all
   
   User.connection.execute('ALTER SEQUENCE users_id_seq RESTART WITH 1')
   demo_user1 = User.create(username: "briancho", email: "briancho@gmail.com", password: "123123")
@@ -35,5 +36,7 @@ ActiveRecord::Base.transaction do
   video9 = Video.create(title: 'Boba is life', description: 'This if the 9 video!!', test_url: "https://i.ytimg.com/vi/-bXCv-BF9I4/maxresdefault.jpg", views: 623, user_id: 6)
   video10 = Video.create(title: 'Tenderize the steak', description: 'This if the 10 video!!', test_url: "https://i.ytimg.com/vi/eWExOPF0bp4/maxresdefault.jpg", views: 4, user_id: 2)
 
-
+  Comment.connection.execute('ALTER SEQUENCE comments_id_seq RESTART WITH 1')
+  comment1 = Comment.create(body: "This is my first comment. Hopefully it works!", user_id: 1, video_id: 1)
+  
 end
