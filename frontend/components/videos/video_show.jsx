@@ -63,7 +63,9 @@ class VideoShow extends React.Component {
                 <div className="show-video-author-container">
                   <div className="show-video-author-container-items">
                     <p className="show-video-author">
-                      {video ? video.author.username : ""}
+                      <Link to={`/channel/${video ? video.id : ""}`} >
+                        {video ? video.author.username : ""}
+                      </Link>
                     </p>
                     <p className="show-video-published">
                       {video ? video.created_at : ""}
