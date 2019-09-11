@@ -17,6 +17,11 @@ class SessionForm extends React.Component {
 
   demoClickHandler(e) {
     e.preventDefault()
+    this.setState({
+      username: '',
+      email: '',
+      password: ''
+    })
     this.setUsername();
   }
 
@@ -83,10 +88,30 @@ class SessionForm extends React.Component {
         return <div className="error-messages">{this.props.errors[errorIdx]}</div>
       }
   }
+
+  // resetErrors(type) {
+  //   setTimeout(() => this.returnErrors(type), 1000)
+  // } 
   
   renderDemo() {
     if (this.props.formType === "login") {
       return <button className="login-submit" id="demo-button" onClick={this.demoClickHandler}> Demo </button>
+    }
+  }
+
+  renderCreateAccount() {
+    if (this.props.formType === "login") {
+      return (
+        <div className="session-form-redirect-signup">
+          <Link to="/signup">Create account</Link>
+        </div>
+        )
+    } else {
+      return (
+        <div className="session-form-redirect-login">
+          <Link to="/login">Sign in</Link>
+        </div>
+      )
     }
   }
 
@@ -96,7 +121,9 @@ class SessionForm extends React.Component {
       <div className="session-form-main">
         <div className="session-form-container">
           <div className="session-form">
-            <h1 className="login-pretext">uTube</h1>
+            <Link to="/" >
+              <h1 className="login-pretext">uTube</h1>
+            </Link>
             <h2 className="login-text">{this.formText()}</h2>
             <h3 className="login-subtext">to continue to uTube</h3>
             <br/><br/>
@@ -136,15 +163,10 @@ class SessionForm extends React.Component {
                   <button className="login-submit" id="sign-in-button" onClick={this.handleSubmit}> {this.formText()} </button>
                   {this.renderDemo()}
                 </div>
-                <div className="redirect-signup-container">
-                  <Link to="/signup">Create account</Link>
-                </div>
+                {this.renderCreateAccount()}
               </div>
             </form>
           </div>
-          <Link to="/" className="return-home">
-            Go Home
-          </Link>
         </div>
       </div>
     )

@@ -66,9 +66,9 @@ class App extends React.Component {
           <Route exact path="/test" component={TestComponent} />      
           <Route path='/' component={HeaderContainer} />
         </Switch>
-          <Route exact path="/watch/:videoId" component={VideoShowContainer} />   
-          <Route exact path='/' component={Sidebar} />
-          <Route exact path='/' component={VideoIndexContainer} />
+        <Route exact path="/watch/:videoId" component={VideoShowContainer} />   
+        <Route exact path='/' component={Sidebar} />
+        <Route exact path='/' component={VideoIndexContainer} />
       </div>
     )
   }

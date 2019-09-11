@@ -56,6 +56,7 @@
   // flex-grow: 1;
   flex-shrink: 1;
   min-width: 180px;
+  max-width: 220px;
   // min-width: 20%;
   // max-width: 210px;
   padding-right: 5px;
@@ -79,7 +80,11 @@ img.thumbnails {
   padding-top: 8px;
 }
 
-.index-video-author {
+.index-video-title-text {
+
+}
+
+.index-video-author-text {
   color: rgb(139, 139, 139);
   font-size: 14px;
   padding-top: 2px;

@@ -20,7 +20,7 @@
   padding: 50px;
   flex-direction: column;
   align-items: center;
-  border-radius: 1%;
+  border-radius: 10px;
 }
 
 .session-form {
@@ -38,6 +38,8 @@ input, textarea {
   height: 40px;
   width: 100%;
   border-radius: 3px;
+  border: white 2px solid;
+  font-size: 20px;
 }
 
 .login-text {
@@ -51,7 +53,7 @@ input, textarea {
 .login-label {
   font-size: 15px;
   width: 100%;
-  margin-left: 10px;
+  // margin-left: 10px;
   // transform: translateY(200px);
   // height: 100%;
 }
@@ -67,13 +69,21 @@ input, textarea {
   color: #121212;
   padding: 5px 10px;
   font-size: 16px;
-  width: 50px;
+  width: 70px;
   margin-bottom: 10px;
+  transform: translateX(4px);
+  display: flex;
+  justify-content: center;
 }
 
 .error-messages {
   font-size: 12px;
-  padding-bottom: -50px;
+  transform: translateY(-5px);
+  margin-left: 5px;
+  padding: 1px 5px;
+  // border: 1px green dotted;
+  background-color: #272727;
+  border-radius: 5px;
 }
 
 .login-pretext {
@@ -111,7 +121,9 @@ input, textarea {
   margin-left: 5px;
   padding: 1px 5px;
   transform: translateY(10px);
-  border: 1px green dotted
+  // border: 1px green dotted;
+  background-color: #272727;
+  border-radius: 5px;
 }
 
 .login-label#password {
@@ -123,6 +135,15 @@ input, textarea {
 }
 
 .login-submit#sign-in-button {
-  transform: translateY(-7px);
-  margin-bottom: 5px;
+  margin-bottom: 10px;
+  
+}
+
+.session-form-redirect-signup {
+  // padding-left: 10px;
+  transform: translateY(-60px);
+}
+
+.session-form-redirect-login {
+  transform: translateY(-40px);
 }
