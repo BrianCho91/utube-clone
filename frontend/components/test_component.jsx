@@ -9,7 +9,7 @@ class TestComponent extends React.Component {
 
   render() {
     // debugger;
-    console.log('working')
+    // console.log('working')
     return (
       <div>
         <div className="testing">

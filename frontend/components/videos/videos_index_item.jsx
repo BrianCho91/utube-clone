@@ -34,13 +34,13 @@ class VideoIndexItem extends React.Component {
 
   childOfVideosShow() {
     if (!this.props.indexPage) {
-      console.log('hi')
+      // console.log('hi')
       return (
         <div className="show-video-item-container">
           <Link to={`/watch/${this.props.video.id}`} >
             <img className="show-thumbnails" src={this.props.video.test_url} />
           </Link>
-          {console.log(this.props.video.test_url)}
+          {/* {console.log(this.props.video.test_url)} */}
           <div className="show-index-video-description">
             <p className="index-video-title">
               <Link to={`/watch/${this.props.video.id}`} className="index-video-title-text">{this.props.video.title}</Link>

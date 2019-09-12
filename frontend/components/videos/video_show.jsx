@@ -24,7 +24,7 @@ class VideoShow extends React.Component {
       let j = Math.floor(Math.random() * (i + 1));
       [videos[i], videos[j]] = [videos[j], videos[i]]
     }
-    console.log('bye')
+    // console.log('bye')
     return videos
   }
 

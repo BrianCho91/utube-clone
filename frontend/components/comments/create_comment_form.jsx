@@ -24,6 +24,9 @@ class CreateCommentForm extends React.Component {
       video_id: this.props.video.id,
       user_id: this.props.currentUser.id
     })
+    this.setState(() => ({
+      body: ""
+    }))
   };
 
   handleInput(type) {

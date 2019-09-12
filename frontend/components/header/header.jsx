@@ -41,7 +41,7 @@ class Header extends React.Component {
 
   userMenuClickHandler() {
     // console.log("clicked")    
-    console.log(this.state.userMenuOpen)
+    // console.log(this.state.userMenuOpen)
     this.setState((prevState) => {
       return {userMenuOpen: !prevState.userMenuOpen};
     });

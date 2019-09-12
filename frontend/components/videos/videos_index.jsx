@@ -17,7 +17,7 @@ class VideoIndex extends React.Component {
   menuClickHandler() {
     const menu = document.getElementById('faBars')
     menu.addEventListener('click', () => {
-      console.log('clicked')
+      // console.log('clicked')
     })
   }
 
@@ -31,10 +31,9 @@ class VideoIndex extends React.Component {
 
 
   render() {
-
       let videos = this.props.videos;
       let shuffledVids = this.shuffleVideos(videos).map(video => {
-        console.log(video)
+        // console.log(video)
         return (
           <VideoIndexItem video={video} key={video.id} indexPage={true} />
         )
