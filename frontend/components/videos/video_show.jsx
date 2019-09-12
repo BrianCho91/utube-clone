@@ -13,7 +13,7 @@ class VideoShow extends React.Component {
     this.shuffleVideos = this.shuffleVideos.bind(this)
   };
 
-  componentWillMount() {
+  componentDidMount() {
     let videoId = this.props.match.params.videoId;
     this.props.fetchVideo(videoId);
     this.props.fetchVideos();

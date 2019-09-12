@@ -15,7 +15,7 @@ const CommentIndexItem = props => {
     </div>
     <div className="comments-index-item-body-container">
       <div className="comments-item-name-container">
-        <p className="comments-item-name">{props.comment.author}</p>
+        <p className="comments-item-name">{props.comment.author.username}</p>
         <p className="comments-item-time">hours ago</p>
       </div>
       <p className="comments-item-body">{props.comment.body}</p>
