@@ -16,8 +16,16 @@ class ApplicationController < ActionController::Base
     @current_user ||= User.find_by(session_token: session[:session_token])
   end
 
+  def current_video_author
+    @current_video_author ||= User.find_by()
+  end
+
   def logged_in?
     !!current_user
+  end
+
+  def require_logged_in
+    render json: ["Must be logged in to comment"], status: 403 if !(logged_in?)
   end
 
 end

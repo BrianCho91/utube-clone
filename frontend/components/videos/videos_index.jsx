@@ -7,7 +7,6 @@ import VideoIndexItem from './videos_index_item';
 class VideoIndex extends React.Component {
   constructor(props) {
     super(props);
-    
   }
 
   componentDidMount() {
@@ -22,14 +21,24 @@ class VideoIndex extends React.Component {
     })
   }
 
+  shuffleVideos(videos) {
+    for (let i = videos.length - 1; i > 0; i--) {
+      let j = Math.floor(Math.random() * (i + 1));
+      [videos[i], videos[j]] = [videos[j], videos[i]]
+    }
+    return videos
+  }
+
 
   render() {
 
-    let videos = this.props.videos.map(video => {
-      return(
-        <VideoIndexItem video={video} key={video.id} />
-      )
-    })
+      let videos = this.props.videos;
+      let shuffledVids = this.shuffleVideos(videos).map(video => {
+        console.log(video)
+        return (
+          <VideoIndexItem video={video} key={video.id} indexPage={true} />
+        )
+      })
 
     return(
       <div className="index-main-page">
@@ -38,7 +47,7 @@ class VideoIndex extends React.Component {
             <div className="recommended-bar">
               <p>Recommended</p>
             </div>
-            {videos}
+            {shuffledVids}
             {/* <div className="video-item-container">
               <img className="thumbnails" src="https://i.ytimg.com/vi/qnfEBjnX8GM/maxresdefault.jpg"/>
               <p className="index-video-title">

@@ -14,7 +14,7 @@ header {
 /* Header */
 
 .header {
-  position: relative;
+  position: fixed;
   // position: fixed; 
   width: 100vw;
   display: flex;
@@ -132,6 +132,7 @@ i#person {
   flex-direction: column;
   justify-content: space-between;
   align-items: center;
+  top: 60px;
   height: 100%;
   width: 80px;
   // border: 1px white dotted;
@@ -213,7 +214,7 @@ i#folder {
   top: 60px;
   overflow: hidden;
   left: 0;
-  position: absolute;
+  position: fixed;
   flex-direction: column;
   justify-content: space-between;
   align-items: center;

@@ -1,0 +1,152 @@
+.comment-form-container {
+  display: flex;
+  flex-direction: column;
+  border: 1px red dotted;
+  width: 100%;
+  height: 175px;
+}
+
+.comment-count-container {
+  display: flex;
+  border: 1px green dotted;
+  width: 100%;
+  height: 50px;
+}
+
+.comment-counter {
+  display: flex;
+  align-items: center;
+  border: 1px blue dotted;
+  width: 150px;
+  height: 100%;
+}
+
+.comment-sort-container {
+  border: 1px orange dotted;
+  width: 150px;
+  height: 100%;
+}
+
+.comment-form-container-items-container {
+  display: flex;
+  flex-direction: row;
+  height: 110px;
+  width: 100%;
+  margin-top: 10px;
+  border: 1px yellow dotted; 
+}
+
+.comment-form-icon-container {
+  border: 1px teal dotted;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 125px;
+  width: 70px;
+}
+
+.comment-form-item-container {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  width: 100%;
+  border: 1px rgb(7, 0, 112) dotted;
+}
+
+.comment-form-item {
+  height: 40%;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  border-bottom: 1px solid rgba(212, 212, 212, 0.7)
+
+  // border: 1px white dotted;
+  
+}
+
+.comment-form-input {
+  width: 100%;
+  font-size: 16px;
+}
+
+.comment-form-submit-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-end;
+}
+
+.comment-form-submit {
+  background-color: #4e4e4e;
+  color: #121212;
+
+  border-radius: 3px;
+  padding: 8px 15px;
+  font-size: 16px;
+  width: 70px;
+  // margin-bottom: 10px;
+  transform: translateY(10px);
+  display: flex;
+  justify-content: center;
+}
+
+.comment-form-submit:hover {
+  background-color: #707070;
+}
+
+.comment-index-container {
+  
+}
+
+.comments-index-item-container {
+  display: flex;
+  width: 100%;
+  height: 150px;
+  margin-top: 25px;
+  border: 1px teal dotted;
+}
+
+.comments-index-item-icon-container {
+  border: 1px orange dotted;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 150px;
+  width: 70px;
+  
+}
+
+.comment-author-faIcons {
+  padding-top: 10px;
+  font-size: 50px;
+}
+
+.comments-index-item-body-container {
+  display: flex;
+  flex-direction: column;
+
+  width: 90%;
+
+  border: 1px red dotted
+}
+
+.comments-item-name-container {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-end
+}
+
+.comments-item-name {
+  padding-right: 10px;
+  font-size: 15px;
+}
+
+.comments-item-time {
+  color: rgb(139, 139, 139);
+  font-size: 13px;
+}
+
+.comments-item-body {
+  padding-top: 10px;
+  font-size: 16px;
+}

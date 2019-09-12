@@ -18,7 +18,7 @@ class App extends React.Component {
       this.state = {
         sideDrawerOpen: false
       }
-    // this.state = {
+    // this.state = { 
     //   sideDrawerOpen: false
     // }
     // this.sideDrawerClickHandler = this.sideDrawerClickHandler.bind(this)
@@ -63,12 +63,12 @@ class App extends React.Component {
           {/* {this.sideDrawerToggle()} */}
           
           {/* <Route exact path="/videos/:videoId" component={VideoShowContainer} /> */}
-          <Route exact path="/test" component={TestComponent}  />      
-          <Route path='/' component={HeaderContainer}  />
+          <Route exact path="/test" component={TestComponent} />      
+          <Route path='/' component={HeaderContainer} />
         </Switch>
-          <Route exact path="/watch/:videoId" component={VideoShowContainer}  />   
-          <Route exact path='/' component={Sidebar} />
-          <Route exact path='/' component={VideoIndexContainer} />
+        <Route exact path="/watch/:videoId" component={VideoShowContainer} />   
+        <Route exact path='/' component={Sidebar} />
+        <Route exact path='/' component={VideoIndexContainer} />
       </div>
     )
   }

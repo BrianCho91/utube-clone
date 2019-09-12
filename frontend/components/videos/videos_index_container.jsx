@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 import { fetchVideos } from '../../actions/video_actions'
 
 
-const mapStateToProps = state => {
+const mapStateToProps = (state) => {
   let videos = Object.values(state.entities.videos);
   return ({
     videos
