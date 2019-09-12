@@ -9,7 +9,7 @@ const CommentIndexItem = props => {
   return(
     <div className="comments-index-item-container">
     <div className="comments-index-item-icon-container">
-      <Link to={`/channel/""}`} className="comment-author-icon">
+      <Link to={`/channel/${props.comment.author.id}}`} className="comment-author-icon">
         <FontAwesomeIcon className="comment-author-faIcons" icon={faUserCircle} />
       </Link>
     </div>
