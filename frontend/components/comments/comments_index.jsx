@@ -2,6 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faUserCircle } from '@fortawesome/free-solid-svg-icons'
+import CommentIndexItem from './comment_index_item';
 
 class CommentsIndex extends React.Component {
   constructor(props) {
@@ -12,15 +13,21 @@ class CommentsIndex extends React.Component {
   componentDidMount() {
     this.props.fetchComments()
   }
-
   
   render() {
 
-    let comments = Object.values(state.comments);
-
+      let video = this.props.video
+// debugger;
+    let comments = this.props.comments.reverse().map(comment => {
+      if (comment.video_id === video.id) {
+        return <CommentIndexItem key={comment.id} comment={comment} deleteComment={this.props.deleteComment} />
+      }
+    })
+      // debugger;
     return(
       <div className="comments-index-container">
-        <div className="comments-index-item-container">
+        {comments}
+        {/* <div className="comments-index-item-container">
           <div className="comments-index-item-icon-container">
             <Link to={`/channel/""}`} className="comment-author-icon">
               <FontAwesomeIcon className="comment-author-faIcons" icon={faUserCircle} />
@@ -35,7 +42,7 @@ class CommentsIndex extends React.Component {
             <div className="comments-item-likes"></div>
             <div className="comments-item-replies"></div>
           </div>
-        </div>
+        </div> */}
       </div>
     )
   }

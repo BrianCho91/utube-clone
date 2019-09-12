@@ -1,14 +1,18 @@
 import { connect } from 'react-redux';
 import CommentsIndex from './comments_index';
-import { fetchComments } from '../../actions/comment_actions';
+import { fetchComments, deleteComments } from '../../actions/comment_actions';
 
 const mapStateToProps = (state, ownProps) => {
+  // debugger;
   let video = ownProps.video;
   let currentUserId = state.session.id;
-  let comments;
-  if (state !== undefined ) {
-    comments = Object.values(state.comments);
-  }
+  // let comments;
+  // if (state !== undefined ) {
+  //   comments = Object.values(state.comments);
+  // }
+
+  let comments = Object.values(state.entities.comments)
+
   return({
     currentUser: state.entities.users[currentUserId],
     comments,
@@ -18,7 +22,8 @@ const mapStateToProps = (state, ownProps) => {
 
 const mapDispatchToProps = dispatch => {
   return({
-    fetchComments: () => dispatch(fetchComments)
+    fetchComments: () => dispatch(fetchComments()),
+    deleteComments: (id) => dispatch(deleteComments(id)),
   })
 };
 
