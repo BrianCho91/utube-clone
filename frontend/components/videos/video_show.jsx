@@ -37,7 +37,7 @@ class VideoShow extends React.Component {
       )
     })
 
-    const video = this.props.video;
+    let video = this.props.video;
 
     return (
       <div className="video-show-index">
@@ -83,10 +83,14 @@ class VideoShow extends React.Component {
             </div>
           </div>
 {/*  */}
-
-          <div className="comments-container">
-            <CreateCommentFormContainer video={video} />
-            <CommentsIndexContainer video={video} />
+      
+          {video ?
+            <div className="comments-container">
+              <CreateCommentFormContainer video={video} /> 
+              <CommentsIndexContainer video={video} />
+            </div>
+          : ""}
+      
             {/* <div className="comment-form-container">
               <div className="comment-count-container">
                 <p className="comment-counter">comment counter</p>
@@ -114,13 +118,8 @@ class VideoShow extends React.Component {
                   <div className="comments-item-likes"></div>
                   <div className="comments-item-replies"></div>
                 </div>
-              </div>
-            </div> */}
-          </div>
-
-
-
-{/*  */}
+              </div>  
+          </div> */}
         </div>
         <div className="next-video-index-container">
           <div className="next-video-container">
