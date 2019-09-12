@@ -6,12 +6,10 @@ const mapStateToProps = (state, ownProps) => {
   // debugger;
   let video = ownProps.video;
   let currentUserId = state.session.id;
-  // let comments;
-  // if (state !== undefined ) {
-  //   comments = Object.values(state.comments);
-  // }
-
-  let comments = Object.values(state.entities.comments)
+  let comments;
+  if (state !== undefined ) {
+    comments = Object.values(state.entities.comments);
+  }
 
   return({
     currentUser: state.entities.users[currentUserId],

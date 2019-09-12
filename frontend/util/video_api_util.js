@@ -16,6 +16,18 @@ export const fetchVideo = id => {
   );
 };
 
+export const createVideo = video => {
+  return(
+    $.ajax({
+      method: 'POST',
+      url: `api/videos/`,
+      data: { video },
+      contentType: false,
+      processData: false
+    })
+  );
+};
+
 export const deleteVideo = id => {
   return(
     $.ajax({

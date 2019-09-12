@@ -8,6 +8,18 @@ class Api::VideosController < ApplicationController
     @video = Video.find(params[:id])
   end
 
+  def create
+    @video = Video.new(video_params)
+    @video.user_id = current_user.id
+
+    if @video.save
+      render :show
+    else
+      render json: @video.errors.full_messages, status: 422
+    end
+
+  end
+
   def destroy
     @video = Video.find(params[:id])
 
@@ -18,5 +30,8 @@ class Api::VideosController < ApplicationController
     end
   end
 
+  def video_params
+    params.require(:video).permit(:title, :description, :views, :user_id, attached_video: [], thumbnail: [])
+  end
 
 end

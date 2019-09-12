@@ -29,6 +29,11 @@ export const fetchVideo = video => dispatch => (
     .then(video => dispatch(receiveVideo(video)))
 );
 
+export const createVideo = video => dispatch => (
+  VideoAPIUtil.createVideo(video)
+    .then( video => dispatch(receiveVideo(video)))
+)
+
 export const deleteVideo = videoId => dispatch => (
   VideoAPIUtil.deleteVideo(videoId)
     .then(video => dispatch(removeVideo(videoId)))

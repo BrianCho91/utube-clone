@@ -13,7 +13,7 @@ ActiveRecord::Base.transaction do
   Comment.destroy_all
   
   User.connection.execute('ALTER SEQUENCE users_id_seq RESTART WITH 1')
-  demo_user1 = User.create(username: "BrianCho", email: "briancho@gmail.com", password: "123123")
+  user1 = User.create(username: "BrianCho", email: "briancho@gmail.com", password: "123123")
   user2 = User.create(username: "Jason", email: "jason@gmail.com", password: "123123")
   user3 = User.create(username: "Andrew", email: "andrew@gmail.com", password: "123123")
   user4 = User.create(username: "ESPN", email: "espn@gmail.com", password: "123123")
@@ -32,11 +32,11 @@ ActiveRecord::Base.transaction do
   video5 = Video.create(title: 'Making milk tea', description: 'This if the fifth video!!', test_url: "https://i.ytimg.com/vi/HE4F7Pt3j1A/maxresdefault.jpg", views: 92000, user_id: user5.id)
   video6 = Video.create(title: 'Twice~', description: 'This if the 6th video!!', test_url: "https://i.ytimg.com/vi/3n9rDwpa6QA/maxresdefault.jpg", views: 40000000, user_id: user8.id)
   video7 = Video.create(title: 'Blackpink in your area', description: 'This if the 7 video!!', test_url: "https://ichef.bbci.co.uk/news/660/cpsprodpb/1602A/production/_106345109_5f83eed6-6c2b-495d-ade4-d102ef78803b.jpg", views: 900000, user_id: user7.id)
-  video8 = Video.create(title: 'Totalled. Rip. Goodbye.', description: 'This if the 8 video!!', test_url: "https://i.ytimg.com/vi/K6VUTSjBe6s/maxresdefault.jpg", views: 321, user_id: demo_user1.id)
+  video8 = Video.create(title: 'Totalled. Rip. Goodbye.', description: 'This if the 8 video!!', test_url: "https://i.ytimg.com/vi/K6VUTSjBe6s/maxresdefault.jpg", views: 321, user_id: user1.id)
   video9 = Video.create(title: 'Boba is life', description: 'This if the 9 video!!', test_url: "https://i.ytimg.com/vi/-bXCv-BF9I4/maxresdefault.jpg", views: 623, user_id: user6.id)
   video10 = Video.create(title: 'Tenderize the steak', description: 'This if the 10 video!!', test_url: "https://i.ytimg.com/vi/eWExOPF0bp4/maxresdefault.jpg", views: 4, user_id: user2.id)
 
   Comment.connection.execute('ALTER SEQUENCE comments_id_seq RESTART WITH 1')
-  comment1 = Comment.create(body: "This is my first comment. Hopefully it works!", user_id: demo_user1.id, video_id: video1.id)
+  comment1 = Comment.create(body: "This is my first comment. Hopefully it works!", user_id: user1.id, video_id: video1.id)
   
 end

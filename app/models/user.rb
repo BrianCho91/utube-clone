@@ -36,4 +36,6 @@ class User < ApplicationRecord
   has_many :videos
   has_many :comments
 
+  has_one_attached :photo
+
 end

@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faAddressCard } from '@fortawesome/free-solid-svg-icons'
 import VideoIndexItem from './videos_index_item';
+import VideoFormContainer from './video_form_container';
 
 class VideoIndex extends React.Component {
   constructor(props) {
@@ -32,9 +33,8 @@ class VideoIndex extends React.Component {
 
   render() {
 
-      let videos = this.props.videos;
+      let videos = this.props.videos.slice(0,10);
       let shuffledVids = this.shuffleVideos(videos).map(video => {
-        console.log(video)
         return (
           <VideoIndexItem video={video} key={video.id} indexPage={true} />
         )
@@ -46,6 +46,7 @@ class VideoIndex extends React.Component {
           <div className="recommended-videos">
             <div className="recommended-bar">
               <p>Recommended</p>
+              <VideoFormContainer />
             </div>
             {shuffledVids}
             {/* <div className="video-item-container">
