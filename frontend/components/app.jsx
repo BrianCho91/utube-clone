@@ -11,6 +11,7 @@ import VideoShowContainer from './videos/video_show_container';
 import { AuthRoute, UploadRoute } from '../util/route_util';
 import TestComponent from '../components/test_component';
 import VideoFormContainer from './videos/video_form_container';
+import VideoFormDetails from './videos/video_form_details';
 
 
 class App extends React.Component {
@@ -66,7 +67,9 @@ class App extends React.Component {
           <Route exact path="/test" component={TestComponent} />      
           <Route path='/' component={HeaderContainer} />
         </Switch>
-        <UploadRoute exact path="/upload" component={VideoFormContainer} />    
+        <UploadRoute exact path="/upload" component={VideoFormContainer} />   
+        {/* <UploadRoute exact path="/upload/details" component={VideoUpdateDetailsContainer} />  */}
+        <UploadRoute exact path="/upload/details" component={VideoFormDetails} /> 
         <Route exact path="/watch/:videoId" component={VideoShowContainer} />   
         <Route exact path='/' component={Sidebar} />
         <Route exact path='/' component={VideoIndexContainer} />
