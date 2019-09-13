@@ -7,7 +7,7 @@ import { createVideo } from '../../actions/video_actions'
 
 const mapStateToProps = (state) => {
   let currentUser = state.session.id
-  let video = { title: '', description: '', views: 0, user_id: state.session.id }
+  let video = { title: '', description: '' }
   return ({
     video,
     currentUser

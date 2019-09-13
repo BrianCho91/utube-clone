@@ -1,0 +1,64 @@
+.video-form-dropdown-container {
+  display: flex;
+  top: 65px;
+  // right: 80px;
+  right: 5px;
+  position: fixed;
+  flex-direction: column;
+  align-items: center;
+  width: 250px;
+  height: auto;
+  overflow: clip; 
+  padding-bottom: 10px;
+  // width: 230px;
+  background-color: #282828;
+  color: white;
+  z-index: 1000;
+  // border: 1px black solid;
+  transform: translateX(0);
+  transition: transform 4s ease-in;
+}
+
+.video-form-dropdown-item-containers {
+  display: flex;
+  position: relative;
+  flex-direction: column;
+  margin-top: 10px;
+  min-width: 250px;
+  // height: 100px;
+  // border: 1px green dotted
+}
+
+.video-form-dropdown-buttons {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  height: 40px;
+  width: 100%;
+  // border: 1px orange dotted;
+}
+
+.signout-button {
+  display: flex;
+  height: 40px;
+  flex-direction: row;
+  align-items: center;
+}
+
+.channel-button {
+  display: flex;
+  height: 40px;
+  flex-direction: row;
+  align-items: center;
+}
+
+.video-form-dropdown-buttons:hover {
+  cursor: pointer;
+  background-color: #444444;
+}
+
+.faPhotoVideoIcon {
+  font-size: 20px;
+  padding-left: 15px;
+  padding-right: 15px;
+}

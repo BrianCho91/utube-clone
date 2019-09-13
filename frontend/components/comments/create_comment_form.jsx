@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link } from 'react-router-dom'; 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faUserCircle } from '@fortawesome/free-solid-svg-icons'
 
@@ -39,16 +39,29 @@ class CreateCommentForm extends React.Component {
 
   renderCommentForm() {
     if (this.props.currentUser) {
-      return (<form action="" className="comment-form-item" onSubmit={this.handleSubmit}>
-        <input type="text"
-          className="comment-form-input"
-          onChange={this.handleInput('body')}
-          value={this.state.body}
-          placeholder={`Commenting publicly as ${this.props.currentUser.username}`}
-        />
-      </form>)
+      return (
+        <div className="comment-form-item-container">
+          <form action="" className="comment-form-item" onSubmit={this.handleSubmit}>
+            <input type="text" 
+              className="comment-form-input"
+              onChange={this.handleInput('body')}
+              value={this.state.body}
+              placeholder={`Commenting publicly as ${this.props.currentUser.username}`}
+            />
+          </form>
+          <div className="comment-form-submit-container">
+            <button className="comment-form-submit">COMMENT</button>
+          </div>
+        </div>
+        )
+      } else {
+        return(
+          <div className="comment-form-item-container-require-signin">
+            <p>Please sign in to comment</p>
+          </div>
+        )
+      }
     }
-  }
   
   render() {
     return(
@@ -63,20 +76,20 @@ class CreateCommentForm extends React.Component {
               <FontAwesomeIcon className="comment-author-faIcons" icon={faUserCircle} />
             </Link>
           </div>
-          <div className="comment-form-item-container">
-            {this.renderCommentForm()}
-            {/* <form action="" className="comment-form-item" onSubmit={this.handleSubmit}>
+          {this.renderCommentForm()}
+          {/* <div className="comment-form-item-container">
+            <form action="" className="comment-form-item" onSubmit={this.handleSubmit}>
               <input type="text" 
                 className="comment-form-input"
                 onChange={this.handleInput('body')}
                 value={this.state.body}
                 placeholder={`Commenting publicly as ${this.props.currentUser.username}`}
               />
-            </form> */}
+            </form>
             <div className="comment-form-submit-container">
               <button className="comment-form-submit">COMMENT</button>
             </div>
-          </div>
+          </div> */}
         </div>
       </div>
     )

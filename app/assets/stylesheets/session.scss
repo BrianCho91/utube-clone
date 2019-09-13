@@ -102,6 +102,10 @@
   padding-top: 5px;
 }
 
+.login-pretext:hover {
+  color: #a4a4a4;
+}
+
 .login-subtext {
   font-size: 16px;
   margin: 8px;
@@ -148,11 +152,19 @@
   margin-bottom: 15px;  
 }
 
-.session-form-redirect-signup {
+.login-submit:hover {
+  background-color : #a4a4a4;
+}
+
+.session-form-redirect#signup {
   // padding-left: 10px;
   transform: translateY(-75px);
 }
 
-.session-form-redirect-login {
+.session-form-redirect#login {
   transform: translateY(-40px);
+}
+
+.session-form-redirect-text:hover {
+  color: #a4a4a4;
 }

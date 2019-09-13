@@ -1,5 +1,8 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faCloudUploadAlt } from '@fortawesome/free-solid-svg-icons'
+
 
 class VideoForm extends React.Component {
   constructor(props) {
@@ -7,12 +10,9 @@ class VideoForm extends React.Component {
     this.state = {
       title: "",
       description: "",
-      views: 0,
-      user_id: this.props.currentUser.id,
-      photoFile: null,
-      photoUrl: null
+      videoFile: null,
+      thumbnail: null
     }
-
   };
 
   handleInput(e) {
@@ -23,12 +23,12 @@ class VideoForm extends React.Component {
     const reader = new FileReader();
     const file = e.currentTarget.files[0];
     reader.onloadend = () =>
-      this.setState({ imageUrl: reader.result, imageFile: file });
+      this.setState({ videoFile: file });
 
     if (file) {
       reader.readAsDataURL(file);
     } else {
-      this.setState({ imageUrl: "", imageFile: null });
+      this.setState({ videoFile: ""});
     }
   }
 
@@ -45,18 +45,25 @@ class VideoForm extends React.Component {
     const preview = this.state.photoUrl ? <img src={this.state.photoUrl} /> : null;
 
     return (
-      <div>
-        <form onSubmit={this.handleSubmit.bind(this)}>
-          <label htmlFor="video-body">Video body</label>
-          <input type="text"
-            className="video-submit-input"
-            value={this.state.title}
-            onChange={this.handleInput.bind(this)} />
-          <input className="video-submit-input" type="file" onChange={this.handleFile.bind(this)} />
-          <h3>Image preview </h3>
-          {preview}
-          <button className="video-submit-button">Upload a video(picture)</button>
-        </form>
+      <div className="video-form-main">
+        <div className="video-form-container">
+
+          <form onSubmit={this.handleSubmit.bind(this)}>
+
+            <div className="video-submit-button-container">
+              <FontAwesomeIcon className="faIcons-upload" id="" icon={faCloudUploadAlt}/>
+              <p className="video-form-header1">Select files to upload</p>
+              <p className="video-form-header2">or drag and drop video files</p>
+            </div>
+            <input className="video-submit-input" type="file" onChange={this.handleFile.bind(this)} /> 
+          </form>
+        </div>
+        <div className="video-form-help-container">
+          <p className="help-header">HELP AND SUGGESTIONS</p>
+          <p id="important-text" className="help-subtext">Please do not post videos that are longer in length, for my wallet's sake.</p>
+          <p className="help-subtext">By submitting your videos to uTube, you acknowledge that you agree to uTube's Terms of Services and Guidelines.</p>
+          <p className="help-subtext">Please be sure not to violate others' copyright or privacy rights.</p>
+        </div>
       </div>
     )
   }
@@ -64,3 +71,19 @@ class VideoForm extends React.Component {
 }
 
 export default VideoForm;
+
+
+
+            {/* <label className="video-form-body-label" >Video body</label>
+                  <input type="text"
+                    className="video-form-title-label"
+                    value={this.state.title}
+                    onChange={this.handleInput.bind(this)} />
+                  <input className="video-submit-input" type="file" onChange={this.handleFile.bind(this)} />
+                  <h3>Image preview </h3>
+                  {preview} */}
+                  {/* <button className="video-submit-button">
+                    <FontAwesomeIcon className="faIcons-upload" id="" icon={faCloudUploadAlt}/>
+                  
+              Upload a video(picture)
+              </button> */}
