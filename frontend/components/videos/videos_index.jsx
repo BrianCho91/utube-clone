@@ -59,8 +59,10 @@ class VideoIndex extends React.Component {
 
   render() {
 
-      let videos = this.props.videos.slice(0,10);
-      let shuffledVids = this.shuffleVideos(videos).map(video => {
+      let videos = this.props.videos;
+      // let shuffledVideos = this.shuffleVideos(videos).slice(0,10)
+      // shuffledVideos = shuffledVideos.map(video => {
+      let shuffledVideos = this.shuffleVideos(videos.slice(0,10)).map(video => {
         return (
           <VideoIndexItem video={video} key={video.id} indexPage={true} />
         )
@@ -75,7 +77,7 @@ class VideoIndex extends React.Component {
               {/* <VideoFormContainer /> */}
             </div>
             {/* {this.renderVideos()} */}
-            {shuffledVids}
+            {shuffledVideos}
 
           </div>
         </div>
