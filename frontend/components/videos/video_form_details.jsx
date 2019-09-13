@@ -1,10 +1,10 @@
 import React from 'react';
-import { Link, Redirect } from 'react-router-dom';
+import { Link, Redirect, withRouter } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCloudUploadAlt } from '@fortawesome/free-solid-svg-icons'
 
 
-class VideoForm extends React.Component {
+class VideoFormDetails extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -45,15 +45,18 @@ class VideoForm extends React.Component {
   // debugger;
     const reader = new FileReader();
     const file = e.currentTarget.files[0];
+    debugger;
     reader.onloadend = () =>
       this.setState({ videoFile: file });
 // debugger;
     if (file) {
       reader.readAsDataURL(file);
-      <Redirect to={{
-        pathname: '/upload/details',
-        state: {videoFile: this.state.videoFile}
-      }} push/>
+
+
+      // <Redirect to={{
+      //   pathname: '/upload/details',
+      //   state: {videoFile: this.state.videoFile}
+      // }} push/>
     } else {
       <Link to="/upload/errors" ></Link>
     }
@@ -114,7 +117,7 @@ class VideoForm extends React.Component {
   }
 }
 
-export default VideoForm;
+export default VideoFormDetails;
 
 
 

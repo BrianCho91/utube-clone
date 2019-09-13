@@ -29,8 +29,8 @@ export const fetchVideo = video => dispatch => (
     .then(video => dispatch(receiveVideo(video)))
 );
 
-export const createVideo = video => dispatch => (
-  VideoAPIUtil.createVideo(video)
+export const createVideo = formData => dispatch => (
+  VideoAPIUtil.createVideo(formData)
     .then( video => dispatch(receiveVideo(video)))
 )
 

@@ -16,7 +16,7 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = dispatch => {
   return ({
-    createVideo: (video) => dispatch(createVideo(video))
+    createVideo: (formData) => dispatch(createVideo(formData))
   })
 };
 

@@ -2,6 +2,7 @@ import React from 'react';
 import { Link, Redirect } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCloudUploadAlt } from '@fortawesome/free-solid-svg-icons'
+import VideoFormDetails from './video_form_details';
 
 
 class VideoForm extends React.Component {
@@ -11,9 +12,14 @@ class VideoForm extends React.Component {
       title: "",
       description: "",
       videoFile: null,
+      videoUrl: null,
       thumbnail: null,
-      newForm: false
+      thumbUrl: null,
     }
+    this.update = this.update.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this)
+    this.handlePictureFile = this.handlePictureFile.bind(this)
+    this.handleVideoFile = this.handleVideoFile.bind(this)
     // debugger;
   };
 
@@ -41,66 +47,143 @@ class VideoForm extends React.Component {
   //   formData.append('video[attached_video]', this.state.videoFile)
   // }
 
-  handleFile(e) {
-  // debugger;
-    const reader = new FileReader();
+  update(field) {
+    return e => this.setState({
+      [field]: e.currentTarget.value,
+    });
+  };
+
+  handleVideoFile(e) {
     const file = e.currentTarget.files[0];
-    reader.onloadend = () =>
-      this.setState({ videoFile: file });
-// debugger;
+    const fileReader = new FileReader();
+    // debugger;
+    fileReader.onloadend = () => {
+      this.setState({ 
+        videoFile: file, 
+        videoUrl: fileReader.result, 
+        title: file.name });
+    };
     if (file) {
-      reader.readAsDataURL(file);
-      <Redirect to={{
-        pathname: '/upload/details',
-        state: {videoFile: this.state.videoFile}
-      }} push/>
-    } else {
-      <Link to="/upload/errors" ></Link>
+      fileReader.readAsDataURL(file);
     }
   }
 
+  handlePictureFile(e) {
+    const file = e.currentTarget.files[0];
+    const fileReader = new FileReader();
+    fileReader.onloadend = () => {
+      // debugger
+      this.setState({ 
+        thumbnail: file, 
+        thumbUrl: fileReader.result });
+    };
+    if (file) {
+      fileReader.readAsDataURL(file);
+    }
+  }
 
-
-    // handleSubmit(e) {
-    //   e.preventDefault();
-    //   const formData = new FormData();
-    //   if (this.state.photoFile) {
-  
-    //     formData.append('post[photo]', this.state.photoFile);
+  handleSubmit(e) {
+    e.preventDefault();
+    const formData = new FormData();
+    formData.append('video[title]', this.state.title);
+    formData.append('video[description]', this.state.description);
+    debugger;
+    if (this.state.videoFile) {
+      formData.append('video[attached_video]', this.state.videoFile);
+      formData.append('video[thumbnail]', this.state.thumbnail);
+      // formData.append('video[videoUrl]', this.state.videoFile);
+      // formData.append('video[photoUrl]', this.state.thumbnail);
+    }
+    this.props.createVideo(formData).then( () => {
+      this.props.history.push('/')
+    })
+    // $.ajax({
+    //   url: '/api/videos',
+    //   method: 'POST',
+    //   data: formData,
+    //   contentType: false,
+    //   processData: false
+    // }).then(
+    //   (response) => console.log(response.message),
+    //   (response) => {
+    //     console.log(response.responseJSON)
     //   }
-    //   $.ajax({
-    //     url: '/api/posts',
-    //     method: 'POST',
-    //     data: formData,
-    //     contentType: false,
-    //     processData: false
-    //   }).then(
-    //     (response) => console.log(response.message),
-    //     (response) => {
-    //       console.log(response.responseJSON)
-    //     }
-    //   );
-
-
-
-  // }
+    // );
+  }
 
   render() {
-    const preview = this.state.photoUrl ? <img src={this.state.photoUrl} /> : null;
-    console.log(this.state.video)
+    
     return (
       <div className="video-form-main">
         <div className="video-form-container">
 
-          {/* <form onSubmit={this.handleSubmit.bind(this)}> */}
-          <form>
+          <form onSubmit={this.handleSubmit}>
+          {/* <form> */}
+            <div className={!this.state.videoFile ? "nonexist" : "new-form-container"} >
+              <div className="new-form-thumb-video-containers">
+                <div className={this.state.thumbnail ? "new-form-thumbnail-container-preview" : "new-form-thumbnail-container-input"}>
 
-            <div className="video-submit-button-container">
-              <FontAwesomeIcon className="faIcons-upload" id="" icon={faCloudUploadAlt}/>
-              <p className="video-form-header1">Select files to upload</p>
-              <p className="video-form-header2">or drag and drop video files</p>
+                  <div className="new-form-thumb-text-container">
+                    <img className={this.state.thumbnail ? "thumbnail-preview-item" : " nonexist "} src={this.state.thumbUrl} />
+
+
+                    <FontAwesomeIcon className={!this.state.thumbnail ? "new-form-thumb-icon" : " hide-in-corner "} icon={faCloudUploadAlt} />
+                    <p className={!this.state.thumbnail ? "new-form-thumb-text1" : " nonexist "}>Select thumbnail to upload</p>
+                    <p className={!this.state.thumbnail ? "new-form-thumb-text2" : " nonexist "}>or drag and drop picture</p>
+                  </div>
+                  <input className={!this.state.thumbnail ? "thumbnail-input" : " nonexist "} type="file" onChange={this.handlePictureFile} /> 
+               
+               
+                </div>
+                <div className="new-form-video-container">
+{/* // {console.log(this.state.videoUrl)} */}
+                  <video className="video-preview" width="100%" controls>
+                    <source
+                      src={this.state.videoURL}
+                      type="video/mp4" />
+                  </video>
+
+                  {/* <div className="new-form-video-container"> */}
+
+
+                    {/* <input className={!this.state.thumbnail ? "video-submit-input" : "hide-in-corner"} type="file" onChange={this.handlePictureFile.bind(this)} /> */}
+
+                    
+                  {/* </div> */}
+                  {/* <button className="new-form-submit">Submit</button> */}
+                </div>
+              </div>
+              
+              <div className="new-form-inputs-containers">
+                <p className="new-form-header">Enter video information:</p>
+                <label className="new-form-title">
+                  {/* <p className="new-form-title-text">Title:</p> */}
+                  <input type="text" 
+                    className="new-form-title-input"
+                    placeholder={this.state.name}
+                    onChange={this.update('title')}/>
+                </label>
+                <label className="new-form-description">
+                  {/* <p className="new-form-description-text"></p> */}
+                  <textarea cols="60" rows="40" 
+                    className="new-form-description-textarea"
+                    placeholder="Description"
+                    onChange={this.update('description')} >
+                  </textarea>
+                </label>
+                <div className="new-form-submit-container">
+                  {/* <input type="button" className="new-form-submit" value="Submit"/> */}
+                  <button className="new-form-submit">Submit</button>
+                </div>
+              </div>
+            
             </div>
-            <input className="video-submit-input" type="file" onChange={this.handleFile.bind(this)} /> 
+            <div className={!this.state.videoFile ? "video-submit-button-container" : "hide-in-corner"} >
+              <FontAwesomeIcon className={!this.state.videoFile ? "faIcons-upload" : "hide-in-corner"} id="" icon={faCloudUploadAlt}/>
+              <p className={!this.state.videoFile ? "video-form-header1" : "hide-in-corner"}>Select video to upload</p>
+              <p className={!this.state.videoFile ? "video-form-header2" : "hide-in-corner"}>or drag and drop video file</p>
+            </div>
+            <input className={!this.state.videoFile ? "video-submit-input" : "hide-in-corner"} type="file" onChange={this.handleVideoFile} /> 
           </form>
         </div>
         <div className="video-form-help-container">
