@@ -5,11 +5,17 @@ import NestedCommentItem from './nested_comment_item'
 
 const mapStateToProps = (state, ownProps) => {
   // debugger;
-  let comments;
-  if (state !== undefined ) {
-    debugger
-    comments = Object.values(state.entities.comments);
-  }
+  // let comments;
+  // if (state !== undefined ) {
+  //   debugger
+    let comments = Object.values(state.entities.comments);
+  // }
+  // console.log(ownProps)
+  // state.users.forEach(user => {
+  //   if (user.id === this.props.)
+  // })
+
+  // let commentAuthor = state.comments
 
   return({
     // currentUser: state.entities.users[currentUserId],
