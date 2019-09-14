@@ -13,9 +13,9 @@ class VideoIndexItem extends React.Component {
       return (
         <div className="video-item-container">
           <Link to={`/watch/${this.props.video.id}`} >
-            <img className="thumbnails" src={this.props.video.test_url} />
+            <img className="thumbnails" src={`https://img.youtube.com/vi/${this.props.video.test_url}/hqdefault.jpg`} />
           </Link>
-          {console.log(this.props.video.test_url)}
+          {/* {console.log(this.props.video.test_url)} */}
           <p className="index-video-title">
             <Link to={`/watch/${this.props.video.id}`} className="index-video-title-text">{this.props.video.title}</Link>
           </p>
@@ -38,9 +38,9 @@ class VideoIndexItem extends React.Component {
       return (
         <div className="show-video-item-container">
           <Link to={`/watch/${this.props.video.id}`} >
-            <img className="show-thumbnails" src={this.props.video.test_url} />
+            <img className="show-thumbnails" src={`https://img.youtube.com/vi/${this.props.video.test_url}/hqdefault.jpg`} />
           </Link>
-          {console.log(this.props.video.test_url)}
+          {/* {console.log(this.props.video.test_url)} */}
           <div className="show-index-video-description">
             <p className="index-video-title">
               <Link to={`/watch/${this.props.video.id}`} className="index-video-title-text">{this.props.video.title}</Link>

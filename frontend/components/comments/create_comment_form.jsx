@@ -37,6 +37,10 @@ class CreateCommentForm extends React.Component {
     };
   };
 
+  handleLightUpInput() {
+
+  }
+
   renderCommentForm() {
     if (this.props.currentUser) {
       return (
@@ -48,16 +52,18 @@ class CreateCommentForm extends React.Component {
               value={this.state.body}
               placeholder={`Commenting publicly as ${this.props.currentUser.username}`}
             />
+            <div className="comment-form-submit-container">
+              <button className="comment-form-submit">COMMENT</button>
+            </div>
           </form>
-          <div className="comment-form-submit-container">
-            <button className="comment-form-submit">COMMENT</button>
-          </div>
         </div>
         )
       } else {
         return(
           <div className="comment-form-item-container-require-signin">
-            <p>Please sign in to comment</p>
+            <p>Please&nbsp;
+              <Link to="/login/">sign in</Link>
+                &nbsp;to comment</p>
           </div>
         )
       }

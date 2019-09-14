@@ -25,13 +25,13 @@
   display: flex;
   align-items: center;
   // border: 1px blue dotted;
-  width: 150px;
+  width: 130px;
   height: 100%;
 }
 
 .comment-sort-container {
   // border: 1px orange dotted;
-  width: 150px;
+  width: 130px;
   height: 100%;
 }
 
@@ -66,7 +66,8 @@
   width: 100%;
   display: flex;
   justify-content: center;
-  border-bottom: 1px solid rgba(212, 212, 212, 0.7)
+  border-bottom: 0.5px solid rgba(255, 255, 255, 0.3);
+  // border-bottom: 1px solid rgba(212, 212, 212, 0.7);
 
   // border: 1px white dotted;
   
@@ -93,7 +94,7 @@
   font-size: 16px;
   width: 70px;
   // margin-bottom: 10px;
-  transform: translateY(10px);
+  transform: translateY(50px);
   display: flex;
   justify-content: center;
 }
@@ -109,8 +110,9 @@
 .comments-index-item-container {
   display: flex;
   width: 100%;
-  height: 150px;
-  margin-top: 25px;
+  // height: 130px;
+  height: auto;
+  margin-top: 10px;
   // border: 1px teal dotted;
 }
 
@@ -119,7 +121,8 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  height: 150px;
+  // height: 130px;
+  height: auto;
   width: 70px;
   
 }
@@ -141,12 +144,13 @@
 .comments-item-name-container {
   display: flex;
   flex-direction: row;
-  align-items: flex-end
+  align-items: flex-end;
+  // border: 1px green dotted;
 }
 
 .comments-item-name {
   padding-right: 10px;
-  font-size: 15px;
+  font-size: 14px;
 }
 
 .comments-item-time {
@@ -156,5 +160,43 @@
 
 .comments-item-body {
   padding-top: 10px;
-  font-size: 16px;
+  font-size: 15px;
+}
+
+.comments-item-likes {
+  display: flex;
+  margin-top: 15px;
+  margin-bottom: 15px;
+  color: rgb(139, 139, 139); 
+  font-size: 14px;
+}
+
+.comment-likes-count {
+  padding-right: 10px;
+}
+
+.comment-item-faIcons {
+  padding-right: 10px;
+}
+
+.comments-item-likes > p, span {
+  color: rgb(139, 139, 139); 
+  font-size: 14px;
+}
+
+.view-replies-text {
+  font-size: 14px;
+}
+
+.comment-item-faIcons {
+  color: rgb(139, 139, 139); 
+  font-size: 14px;
+}
+
+.comment-reply-form-text {
+  padding-left: 10px;
+}
+
+.comment-sign-in-link:hover {
+  cursor: pointer;
 }

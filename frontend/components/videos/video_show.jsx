@@ -24,7 +24,7 @@ class VideoShow extends React.Component {
       let j = Math.floor(Math.random() * (i + 1));
       [videos[i], videos[j]] = [videos[j], videos[i]]
     }
-    console.log('bye')
+    // console.log('bye')
     return videos
   }
 
@@ -42,8 +42,20 @@ class VideoShow extends React.Component {
     return (
       <div className="video-show-index">
         <div className="video-container">
-          <div className="video-clip-container"></div>
-            {video ? <img className="show-vid" src={video.test_url}/>: ""}
+          <div className="video-clip-container">
+            {video ? video.videoUrl ? 
+              <video className="video-preview" width="100%" controls>
+                <source
+                  src={video.videoUrl}
+                  type="video/mp4" />
+              </video> : <iframe width="100%" height="100%"
+                src={`https://www.youtube.com/embed/${video.test_url}`} 
+                frameborder="0" allow="accelerometer; 
+                autoplay; encrypted-media; gyroscope; picture-in-picture"  
+                allowfullscreen>
+              </iframe> 
+            : ""}
+          </div>
           <div className="video-description-container">
             <p className="show-video-clip-title">{video ? video.title : "" }</p>
             <div className="sub-title-descriptions-container">

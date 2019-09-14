@@ -60,9 +60,9 @@ class VideoIndex extends React.Component {
   render() {
 
       let videos = this.props.videos;
-      // let shuffledVideos = this.shuffleVideos(videos).slice(0,10)
-      // shuffledVideos = shuffledVideos.map(video => {
-      let shuffledVideos = this.shuffleVideos(videos.slice(0,10)).map(video => {
+      let shuffledVideos = this.shuffleVideos(videos).slice(0,10)
+      shuffledVideos = shuffledVideos.map(video => {
+      // let shuffledVideos = this.shuffleVideos(videos.slice(0,10)).map(video => {
         return (
           <VideoIndexItem video={video} key={video.id} indexPage={true} />
         )

@@ -32,7 +32,7 @@ class SessionForm extends React.Component {
   }
 
   setUsername(demoUsername) {
-    demoUsername = demoUsername || "BrianCho".split('');
+    demoUsername = demoUsername || "Brian Cho".split('');
     
     setTimeout( () => {
       this.setState({

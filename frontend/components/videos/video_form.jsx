@@ -87,16 +87,32 @@ class VideoForm extends React.Component {
     const formData = new FormData();
     formData.append('video[title]', this.state.title);
     formData.append('video[description]', this.state.description);
-    // debugger;
     if (this.state.videoFile) {
       formData.append('video[attached_video]', this.state.videoFile);
       formData.append('video[thumbnail]', this.state.thumbnail);
       // formData.append('video[videoUrl]', this.state.videoFile);
       // formData.append('video[photoUrl]', this.state.thumbnail);
     }
-    this.props.createVideo(formData).then( () => {
-      this.props.history.push('/')
-    })
+    this.props.createVideo(formData)
+    // $.ajax({
+    //     url: '/api/videos',
+    //     method: 'POST',
+    //     data: formData,
+    //     contentType: false,
+    //     processData: false
+    //   }).then(
+    //     (response) => console.log(response.message),
+    //     (response) => {
+    //       console.log(response.responseJSON)
+    //     }
+    //   );
+    }
+    
+    
+    // .then( () => {
+
+
+    //   this.props.history.push('/')
     // $.ajax({
     //   url: '/api/videos',
     //   method: 'POST',
@@ -109,7 +125,6 @@ class VideoForm extends React.Component {
     //     console.log(response.responseJSON)
     //   }
     // );
-  }
 
   render() {
     
@@ -124,7 +139,7 @@ class VideoForm extends React.Component {
                 <div className={this.state.thumbnail ? "new-form-thumbnail-container-preview" : "new-form-thumbnail-container-input"}>
 
                   <div className="new-form-thumb-text-container">
-                    <img className={this.state.thumbnail ? "thumbnail-preview-item" : " nonexist "} src={this.state.thumbUrl} />
+                    <img className={this.state.thumbnail ? "thumbnail-preview-item" : " nonexist "} src={this.state.thumbUrl}/>
 
 
                     <FontAwesomeIcon className={!this.state.thumbnail ? "new-form-thumb-icon" : " hide-in-corner "} icon={faCloudUploadAlt} />
@@ -135,12 +150,12 @@ class VideoForm extends React.Component {
                
                
                 </div>
-                <input className={!this.state.thumbnail ? "thumbnail-input" : " thumbnail-input "} type="file" onChange={this.handlePictureFile} /> 
+                <input className={!this.state.thumbnail ? "thumbnail-input" : " thumbnail-input "} type="file" onChange={this.handlePictureFile} accept="image/*" /> 
                 <div className="new-form-video-container">
 
                   <video className="video-preview" width="100%" controls>
                     <source
-                      src={this.state.videoURL}
+                      src={this.state.videoUrl}
                       type="video/mp4" />
                   </video>
                 </div>
@@ -176,7 +191,7 @@ class VideoForm extends React.Component {
               <p className={!this.state.videoFile ? "video-form-header1" : "hide-in-corner"}>Select video to upload</p>
               <p className={!this.state.videoFile ? "video-form-header2" : "hide-in-corner"}>or drag and drop video file</p>
             </div>
-            <input className={!this.state.videoFile ? "video-submit-input" : "hide-in-corner"} type="file" onChange={this.handleVideoFile} /> 
+            <input className={!this.state.videoFile ? "video-submit-input" : "hide-in-corner"} type="file" onChange={this.handleVideoFile} accept="video/*" /> 
           </form>
         </div>
         <div className="video-form-help-container">
