@@ -55,7 +55,7 @@ class NestedCommentItem extends React.Component {
           <p className="comments-item-name">{nestedComment ? nestedComment.author.username : ""}</p>
           <p className="comments-item-time">hours ago</p>
         </div>
-        <p className="comments-item-body">{nestedComment ? nestedComment.body + "hello": ""}</p>
+        <p className="comments-item-body">{nestedComment ? nestedComment.body : ""}</p>
         <div className="comments-item-likes">
           <span className="comment-thumb-up">
             <FontAwesomeIcon className="comment-item-faIcons" icon={faThumbsUp} />
@@ -64,7 +64,7 @@ class NestedCommentItem extends React.Component {
           <span className="comment-thumb-down">
             <FontAwesomeIcon className="comment-item-faIcons" icon={faThumbsDown} />
           </span>
-          <p className="comment-reply-form-text">REPLY</p>
+          {/* <p className="comment-reply-form-text">REPLY</p> */}
           
         </div>
         {/* <div className="comments-item-replies">

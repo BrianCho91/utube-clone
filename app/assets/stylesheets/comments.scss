@@ -25,7 +25,8 @@
   display: flex;
   align-items: center;
   // border: 1px blue dotted;
-  width: 130px;
+  // transform: translateY(10px);
+  width: 180px;
   height: 100%;
 }
 
@@ -202,5 +203,9 @@
 }
 
 .view-replies-text:hover {
+  cursor: pointer;
+}
+
+.comment-reply-form-text:hover {
   cursor: pointer;
 }

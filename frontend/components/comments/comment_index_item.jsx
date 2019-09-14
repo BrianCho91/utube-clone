@@ -5,47 +5,73 @@ import { faUserCircle, faThumbsUp, faThumbsDown } from '@fortawesome/free-solid-
 import commentsErrorsReducer from '../../reducers/comments/comments_errors_reducer';
 import NestedCommentsIndex from './nested_comments_index'
 import NestedCommentItemContainer from './nested_comment_item_container'
+import CreateCommentFormContainer from './create_comment_form_container'
 
 class CommentIndexItem extends React.Component {
   constructor(props) {
     super(props);
     // this.renderComments = this.renderComments.bind(this); 
     this.state = {
-      replyOpen: false
+      replyOpen: false,
+      commentFormOpen: false
     }
-    this.replyClickHandler = this.replyClickHandler.bind(this)
+    this.viewReplyClickHandler = this.viewReplyClickHandler.bind(this);
+    this.replyClickHandler = this.replyClickHandler.bind(this);
   };
 
-  replyClickHandler() {
-    console.log(this.state.replyOpen)
+  viewReplyClickHandler() {
+    // console.log(this.state.replyOpen)
     this.setState((prevState) => {
-      return { replyOpen: !prevState.replyOpen };
+      return { 
+        replyOpen: !prevState.replyOpen
+      };
     });
   }
 
-  replyClickToggle() {
-    console.log(this.state.replyOpen)
+  viewReplyClickToggle() {
+    // console.log(this.state.replyOpen)
     if (this.state.replyOpen) {
-      return "reply-comments"
+      return "view-reply-comments"
     } else {
       return "hide"
     }
   }
 
+  replyClickHandler() {
+    // console.log(this.state.replyOpen)
+    this.setState((prevState) => {
+      return {
+        commentFormOpen: !prevState.commentFormOpen  };
+    });
+  }
+
+  replyClickToggle() {
+    // console.log(this.state.commentFormOpen)
+    if (this.state.commentFormOpen) {
+      return "nested-comment-form"
+    } else {
+      return "hide"
+    }
+  }
 
   render() {
   let video = this.props.video
     // debugger;
     // debugger
+
+    
     
     let comments = this.props.comment.child_comments.reverse().map(comment => {
       if (comment) {
-      return (<NestedCommentItemContainer key={comment.id} comment={comment} />)
+      return ( <ul>
+      <NestedCommentItemContainer key={comment.id} comment={comment} />
+      </ul>
+      )
     }})
   // debugger;
 
   if (!this.props.comment.parent_comment) {
-
+    // debugger
   return(
     <div className="comments-index-item-container">
       <div className="comments-index-item-icon-container">
@@ -67,13 +93,15 @@ class CommentIndexItem extends React.Component {
           <span className="comment-thumb-down">
             <FontAwesomeIcon className="comment-item-faIcons" icon={faThumbsDown} />
           </span>
-          <p className="comment-reply-form-text">REPLY</p>
-
+          <p className="comment-reply-form-text" onClick={this.replyClickHandler}>REPLY</p>
+        </div>
+        <div className={this.replyClickToggle()}>
+          <CreateCommentFormContainer video={this.props.video} comment={this.props.comment} parent_comment={this.props.comment}/>
         </div>
         <div className="comments-item-replies">
-          <p className="view-replies-text" onClick={this.replyClickHandler}>View replies</p>
+          <p className="view-replies-text" onClick={this.viewReplyClickHandler}>View replies</p>
           
-          <div className={this.replyClickToggle()}>
+          <div className={this.viewReplyClickToggle()}>
             {comments}
           </div>
 

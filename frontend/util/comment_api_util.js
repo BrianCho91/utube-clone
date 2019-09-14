@@ -28,6 +28,7 @@ export const updateComment = comment => {
 };
 
 export const deleteComment = id => {
+  // debugger
   return (
     $.ajax({
       method: 'DELETE',

@@ -11,6 +11,7 @@ class VideoShow extends React.Component {
   constructor(props) {
     super(props);
     this.shuffleVideos = this.shuffleVideos.bind(this)
+    this.viewClickHandler = this.viewClickHandler.bind(this);
   };
 
   componentDidMount() {
@@ -28,6 +29,12 @@ class VideoShow extends React.Component {
     return videos
   }
 
+  viewClickHandler() {
+    console.log("clicked")
+    // debugger;
+    this.props.video ? this.props.video.views += 1 : null
+  };
+
 
   render() {
     let videos = this.props.videos;
@@ -36,13 +43,13 @@ class VideoShow extends React.Component {
         <VideoIndexItem video={video} key={video.id} indexPage={false} />
       )
     })
-
+// debugger
     let video = this.props.video;
 
     return (
       <div className="video-show-index">
         <div className="video-container">
-          <div className="video-clip-container">
+          <div className="video-clip-container" onClick={this.viewClickHandler}>
             {video ? video.videoUrl ? 
               <video className="video-preview" width="100%" controls>
                 <source
@@ -52,7 +59,7 @@ class VideoShow extends React.Component {
                 src={`https://www.youtube.com/embed/${video.test_url}`} 
                 frameborder="0" allow="accelerometer; 
                 autoplay; encrypted-media; gyroscope; picture-in-picture"  
-                allowfullscreen>
+                allowfullscreen >
               </iframe> 
             : ""}
           </div>
@@ -98,7 +105,30 @@ class VideoShow extends React.Component {
       
           {video ?
             <div className="comments-container">
+              {/* <CommentsIndexContainer video={video} /> */}
+              <div className="comment-form-container">
+                <div className="comment-count-container">
+                  <p className="comment-counter">{video.comments.length} {video.comments.length > 1 ? "comments" : "comment"}</p>
+                  <div className="comment-sort-container"></div>
+                </div>
+                {/* <div className="comment-form-container-items-container">
+                  <div className="comment-form-icon-container">
+                    <Link to={`/channel/""}`} className="comment-author-icon">
+                      <FontAwesomeIcon className="comment-author-faIcons" icon={faUserCircle} />
+                    </Link>
+                  </div> */}
+
+
+
+
+
+
+
               <CreateCommentFormContainer video={video} /> 
+                  {/* <CommentsIndexContainer video={video} /> */}
+
+                {/* </div> */}
+              </div>
               <CommentsIndexContainer video={video} />
             </div>
           : ""}

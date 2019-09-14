@@ -4,12 +4,14 @@ import { fetchComments, deleteComments } from '../../actions/comment_actions';
 
 const mapStateToProps = (state, ownProps) => {
   // debugger;
+  // debugger
   let video = ownProps.video;
   let currentUserId = state.session.id;
   let comments;
   if (state !== undefined ) {
     comments = Object.values(state.entities.comments);
   }
+  // debugger;
 
   return({
     currentUser: state.entities.users[currentUserId],
