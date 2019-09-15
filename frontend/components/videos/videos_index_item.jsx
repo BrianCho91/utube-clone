@@ -34,7 +34,7 @@ class VideoIndexItem extends React.Component {
 
   childOfVideosShow() {
     if (!this.props.indexPage) {
-      console.log('hi')
+      // console.log('hi')
       return (
         <div className="show-video-item-container">
           <Link to={`/watch/${this.props.video.id}`} >

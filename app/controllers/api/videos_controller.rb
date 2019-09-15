@@ -1,7 +1,9 @@
 class Api::VideosController < ApplicationController
 
   def index
-    @videos = Video.all
+    query = ('%' + params[:query].downcase + '%') || ""
+    @videos = Video.where("lower(videos.title) like ?", query) #look up % interpolating
+    render :index
   end
 
   def show

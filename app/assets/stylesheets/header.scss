@@ -50,10 +50,11 @@ img#logo {
 
 .header-search-container {
   display: flex;
+  flex-direction: row;
   width: 50%;
   transform: translateX(-20px);
   height: 30px;
-  // border: 1px white dotted;
+  border: 1px green dotted;
 }
 
 .header-search-bar {

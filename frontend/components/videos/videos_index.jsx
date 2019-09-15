@@ -14,7 +14,7 @@ class VideoIndex extends React.Component {
 
   componentDidMount() {
     this.menuClickHandler()
-    this.props.fetchVideos()
+    this.props.fetchVideos('')
   }
 
   menuClickHandler() {

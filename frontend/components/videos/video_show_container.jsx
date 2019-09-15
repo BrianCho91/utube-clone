@@ -19,7 +19,7 @@ const mapStateToProps = (state, ownProps) => {
 const mapDispatchToProps = dispatch => {
   return({
     fetchVideo: (id) => dispatch(fetchVideo(id)),
-    fetchVideos: () => dispatch(fetchVideos())
+    fetchVideos: (query) => dispatch(fetchVideos(query))
   })
 };
 

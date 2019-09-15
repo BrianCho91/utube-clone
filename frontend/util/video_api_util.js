@@ -1,11 +1,22 @@
-export const fetchVideos = () => {
+// export const fetchVideos = () => {
+//   return(
+//     $.ajax({
+//       method: 'GET',
+//       url: 'api/videos'
+//     })
+//   );
+// };
+
+export const fetchVideos = query => {
   return(
     $.ajax({
       method: 'GET',
-      url: 'api/videos'
+      url: 'api/videos',
+      data: { query }
     })
   );
 };
+
 
 export const fetchVideo = id => {
   return(

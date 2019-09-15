@@ -8,6 +8,7 @@ import { faYoutube } from '@fortawesome/free-brands-svg-icons';
 import SideDrawer from '../header/side_drawer';
 import UserMenu from '../header/user_menu';
 import VideoFormDropdown from '../header/video_form_dropdown';
+import SearchVideoDropdownContainer from '../searchbar/search_video_dropdown_container';
 
 class Header extends React.Component {
   constructor(props) {
@@ -16,11 +17,15 @@ class Header extends React.Component {
       sideDrawerOpen: false,
       userMenuOpen: false,
       videoFormDropOpen: false,
+      searchText: "",
+      searchbar: false
     };
     this.sideDrawerClickHandler = this.sideDrawerClickHandler.bind(this);
     this.signupLoginLink = this.signupLoginLink.bind(this);
     this.userMenuClickHandler = this.userMenuClickHandler.bind(this);
     this.videoFormDropdownClickHandler = this.videoFormDropdownClickHandler.bind(this);
+    this.searchClickHandler = this.searchClickHandler.bind(this);
+    this.update = this.update.bind(this);
   };
 
   clickedOutsideDropdown() {
@@ -184,6 +189,19 @@ class Header extends React.Component {
     };
   };
 
+  update(e) {
+    this.setState({
+      searchText: e.currentTarget.value,
+    });
+  }
+
+  searchClickHandler() {
+    this.props.history.push(`/results/search_query/${this.state.searchText}`)
+    this.setState({
+      searchText: ""
+    });
+  }
+
   signupLoginLink() {
     if (this.props.currentUser) {
       return (
@@ -232,13 +250,22 @@ class Header extends React.Component {
             {/* <img id="logo" src="https://i.ytimg.com/vi/216xvaj_OAA/maxresdefault.jpg" alt=""/> */}
           </div>
 
-          <div className="header-search-container">
-            <div className="header-search-bar">Search</div>
-            <div className="header-search-button">
-            <FontAwesomeIcon className="faIcons" id="faSearch" icon={faSearch} />
-              {/* <i id="search" className="large material-icons">search</i> */}
-            </div>
-          </div>
+          {/* <div className="header-search-container"> */}
+            <form className="header-search-container"> 
+              <input type="text"
+                className="header-search-bar"
+                value={this.state.searchText}
+                placeholder="Search"
+                onChange={this.update}
+                />
+              {/* <div className="header-search-bar">Search</div> */}
+              <button className="header-search-button" onClick={this.searchClickHandler}>
+              <FontAwesomeIcon className="faIcons" id="faSearch" icon={faSearch} />
+                {/* <i id="search" className="large material-icons">search</i> */}
+              </button>
+            </form>
+            {/* <SearchVideoDropdownContainer searchText={this.state.searchText} fetchVideos={this.props.fetchVideos} /> */}
+          {/* </div> */}
 
           <div className={this.userIconContainerSize()}>
             <div id="create-form-button" className="create-post-icon">

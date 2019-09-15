@@ -17,7 +17,7 @@ class VideoShow extends React.Component {
   componentDidMount() {
     let videoId = this.props.match.params.videoId;
     this.props.fetchVideo(videoId);
-    this.props.fetchVideos();
+    this.props.fetchVideos('');
   }
 
   shuffleVideos(videos) {

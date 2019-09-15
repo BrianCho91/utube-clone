@@ -19,8 +19,13 @@ const removeVideo = videoId => ({
   videoId
 });
 
-export const fetchVideos = () => dispatch => (
-  VideoAPIUtil.fetchVideos()
+// export const fetchVideos = () => dispatch => (
+//   VideoAPIUtil.fetchVideos()
+//     .then(videos => dispatch(receiveAllVideos(videos)))
+// );
+
+export const fetchVideos = query => dispatch => (
+  VideoAPIUtil.fetchVideos(query)
     .then(videos => dispatch(receiveAllVideos(videos)))
 );
 
