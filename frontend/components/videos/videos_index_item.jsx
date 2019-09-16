@@ -20,7 +20,7 @@ class VideoIndexItem extends React.Component {
             <Link to={`/watch/${this.props.video.id}`} className="index-video-title-text">{this.props.video.title}</Link>
           </p>
           <p className="index-video-author">
-            <Link to={`/channel/${this.props.video.id}`} className="index-video-author-text">{this.props.video.author.username}</Link>
+            <Link to={`/channel/${this.props.video.author.id}`} className="index-video-author-text">{this.props.video.author.username}</Link>
           </p>
           <div className="index-view-container">
             <p className="index-video-views">
@@ -46,7 +46,7 @@ class VideoIndexItem extends React.Component {
               <Link to={`/watch/${this.props.video.id}`} className="index-video-title-text">{this.props.video.title}</Link>
             </p>
             <p className="index-video-author">
-              <Link to={`/channel/${this.props.video.id}`} className="index-video-author-text">{this.props.video.author.username}</Link>
+              <Link to={`/channel/${this.props.video.author.id}`} className="index-video-author-text">{this.props.video.author.username}</Link>
             </p>
             <div className="index-view-container">
               <p className="index-video-views">

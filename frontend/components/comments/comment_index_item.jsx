@@ -6,6 +6,8 @@ import commentsErrorsReducer from '../../reducers/comments/comments_errors_reduc
 import NestedCommentsIndex from './nested_comments_index'
 import NestedCommentItemContainer from './nested_comment_item_container'
 import CreateCommentFormContainer from './create_comment_form_container'
+import EditCommentFormContainer from './edit_comment_form_container';
+// import EditCommentFormComponent from './EditCommentFormComponent';
 
 class CommentIndexItem extends React.Component {
   constructor(props) {
@@ -13,10 +15,13 @@ class CommentIndexItem extends React.Component {
     // this.renderComments = this.renderComments.bind(this); 
     this.state = {
       replyOpen: false,
-      commentFormOpen: false
+      commentFormOpen: false,
+      body: this.props.comment.body
     }
     this.viewReplyClickHandler = this.viewReplyClickHandler.bind(this);
     this.replyClickHandler = this.replyClickHandler.bind(this);
+    this.handleDelete = this.handleDelete.bind(this);
+    // this.handleSubmit = this.handleSubmit.bind(this);
   };
 
   viewReplyClickHandler() {
@@ -37,6 +42,28 @@ class CommentIndexItem extends React.Component {
     }
   }
 
+  // handleInput(type) {
+  //   return(e) => {
+  //     this.setState({
+  //       [type]: e.target.value
+  //     })
+  //   };
+  // };
+
+  // handleSubmit(e) {
+  //   e.preventDefault();
+  //   // debugger;
+  //   // this.props.action(this.state)
+  //   // let parent_comment_id = this.props.parent_commend_id ? this.props.parent_commend_id : null
+  //   // debugger;
+  //   this.props.updateComment({
+  //     body: this.state.body,
+  //   })
+  //   this.setState({
+  //     body: "",
+  //   })
+  // };
+
   replyClickHandler() {
     // console.log(this.state.replyOpen)
     this.setState((prevState) => {
@@ -54,12 +81,29 @@ class CommentIndexItem extends React.Component {
     }
   }
 
+  handleDelete() {
+    this.props.deleteComment(this.props.comment.id)
+  }
+
+  // renderUpdateForm() {
+  //   return (
+  //     <div className="comments-edit-container">
+  //       <form className="edit-form">
+  //         <input type="text"
+  //           className="comment-form-input"
+  //           onChange={this.handleInput('body')}
+  //           value={this.state.body}
+  //         />
+  //       </form>
+  //       <div className="comment-form-submit" onClick={this.handleSubmit}>SAVE</div>
+  //     </div>
+  //   )
+  // }
+
   render() {
   let video = this.props.video
     // debugger;
     // debugger
-
-    
     
     let comments = this.props.comment.child_comments.reverse().map(comment => {
       if (comment) {
@@ -70,20 +114,39 @@ class CommentIndexItem extends React.Component {
     }})
   // debugger;
 
+  let comment = this.props.comment
+
   if (!this.props.comment.parent_comment) {
     // debugger
   return(
     <div className="comments-index-item-container">
       <div className="comments-index-item-icon-container">
-        <Link to={`/channel/${this.props.comment.author.id}}`} className="comment-author-icon">
+        <Link to={`/channel/${this.props.comment.author.id}`} className="comment-author-icon">
           <FontAwesomeIcon className="comment-author-faIcons" icon={faUserCircle} />
         </Link>
       </div>
       <div className="comments-index-item-body-container">
-        <div className="comments-item-name-container">
-          <p className="comments-item-name">{this.props.comment.author.username}</p>
-          <p className="comments-item-time">hours ago</p>
+        <div className="comments-name-edit-container">
+          <div className="comments-item-name-container">
+            <Link to={`/channel/${this.props.comment.author.id}`}>
+              <p className="comments-item-name">{this.props.comment.author.username}</p>
+            </Link>
+            <p className="comments-item-time">hours ago</p>
+          </div>
+          <div className="comments-edit-delete-container">
+            {/* {this.renderUpdateForm()} */}
+            {/* <EditCommentFormContainer comment={this.props.comment} video={this.props.video} currentUser={this.props.currentUser}/> */}
+            <div className="delete-toggle-btn" onClick={this.handleDelete}>
+              delete
+            </div>
+          </div>
         </div>
+        {/* <div className="comments-item-name-container">
+          <Link to={`/channel/${this.props.comment.author.id}`}>
+            <p className="comments-item-name">{this.props.comment.author.username}</p>
+          </Link>
+          <p className="comments-item-time">hours ago</p>
+        </div> */}
         <p className="comments-item-body">{this.props.comment.body}</p>
         <div className="comments-item-likes">
           <span className="comment-thumb-up">
@@ -104,8 +167,6 @@ class CommentIndexItem extends React.Component {
           <div className={this.viewReplyClickToggle()}>
             {comments}
           </div>
-
-
       </div>
     </div>
   </div>

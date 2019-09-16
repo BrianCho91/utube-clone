@@ -209,3 +209,9 @@
 .comment-reply-form-text:hover {
   cursor: pointer;
 }
+
+.comments-name-edit-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}

@@ -13,7 +13,7 @@ import TestComponent from '../components/test_component';
 import VideoFormContainer from './videos/video_form_container';
 import VideoFormDetails from './videos/video_form_details';
 import SearchVideoIndexContainer from './searchbar/search_video_index_container'
-
+import ChannelContainer from './channel/channel_container'
 
 class App extends React.Component {
   constructor(props) {
@@ -73,11 +73,12 @@ class App extends React.Component {
         {/* <UploadRoute exact path="/upload/details" component={VideoUpdateDetailsContainer} />  */}
         {/* <UploadRoute exact path="/upload/details" component={VideoFormDetails} /> 
         <Route exact path="/watch/:videoId" component={VideoShowContainer} />    */}
+        <Route exact path='/' component={Sidebar} />
         <Route path='/results/search_query/:query' component={SearchVideoIndexContainer} />
         <Route exact path='/' component={VideoIndexContainer} />
         <UploadRoute path="/upload/details" component={VideoFormDetails} /> 
-        <Route path="/watch/:videoId" component={VideoShowContainer} />   
-        <Route exact path='/' component={Sidebar} />
+        <Route exact path="/watch/:videoId" component={VideoShowContainer} />   
+        <Route exact path='/channel/:userId' component={ChannelContainer} />
       </div>
     )
   }

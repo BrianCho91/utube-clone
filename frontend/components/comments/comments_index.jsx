@@ -31,7 +31,7 @@ class CommentsIndex extends React.Component {
 
       let comments = this.props.comments.reverse().map(comment => {
       if (this.props.video.id === comment.video_id) {
-        return <CommentIndexItem key={comment.id} video={video} comments={this.props.comments} comment={comment} deleteComment={this.props.deleteComment} />
+        return <CommentIndexItem key={comment.id} video={video} comments={this.props.comments} comment={comment} updateComment={this.props.updateComment} deleteComment={this.props.deleteComment} />
       }
     })
       // debugger;

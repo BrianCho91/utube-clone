@@ -34,6 +34,8 @@ class SearchVideoDropdown extends React.Component {
   //   }
   // }
 
+  // headerDropdown
+
   
   render() {
     // debugger
@@ -43,7 +45,7 @@ class SearchVideoDropdown extends React.Component {
     if (this.props.videos) {
       videos = this.props.videos.map( video => {
       // return <VideosIndexItem key={video.id} video={video} isSearchBar={this.props.searchbar} />
-      return <SearchVideoIndexItem key={video.id} noResults={noResults} video={video} isSearchBar={this.props.searchbar} />
+      return <SearchVideoIndexItem key={video.id} noResults={noResults} video={video} isSearchBar={true} />
     })
   }
   let noResults = () => {

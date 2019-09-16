@@ -22,7 +22,8 @@ class NestedCommentForm extends React.Component {
     this.props.action({
       body: this.state.body,
       video_id: this.props.video.id,
-      user_id: this.props.currentUser.id
+      user_id: this.props.currentUser.id,
+      parent_comment: this.props.comment
     })
     this.setState({
       body: ""

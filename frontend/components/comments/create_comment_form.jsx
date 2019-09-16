@@ -17,17 +17,16 @@ class CreateCommentForm extends React.Component {
 
 
   handleSubmit(e) {
-    let that = this;
     e.preventDefault();
     // debugger;
     // this.props.action(this.state)
     // let parent_comment_id = this.props.parent_commend_id ? this.props.parent_commend_id : null
-    debugger;
+    // debugger;
     this.props.action({
       body: this.state.body,
       video_id: this.props.video.id,
       user_id: this.props.currentUser.id,
-      parent_comment: this.props.parent_comment
+      // parent_comment: this.props.parent_comment
     })
     this.setState({
       body: "",
