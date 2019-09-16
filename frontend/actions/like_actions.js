@@ -13,8 +13,8 @@ const removeLike = likeId => ({
   likeId
 });
  
-export const createLike = formData => dispatch => (
-  LikeAPIUtil.createLike(formData)
+export const createLike = like => dispatch => (
+  LikeApiUtil.createLike(like)
     .then( like => dispatch(receiveLike(like)))
 )
 
@@ -23,7 +23,7 @@ export const updateLike = like => dispatch => (
     .then(like => dispatch(receiveLike(like)))
 );
 
-export const deleteLike = LikeId => dispatch => (
-  LikeAPIUtil.deleteLike(LikeId)
+export const deleteLike = likeId => dispatch => (
+  LikeApiUtil.deleteLike( likeId)
     .then(like => dispatch(removeLike(likeId)))
 );

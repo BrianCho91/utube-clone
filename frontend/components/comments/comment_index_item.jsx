@@ -21,6 +21,8 @@ class CommentIndexItem extends React.Component {
     this.viewReplyClickHandler = this.viewReplyClickHandler.bind(this);
     this.replyClickHandler = this.replyClickHandler.bind(this);
     this.handleDelete = this.handleDelete.bind(this);
+    this.commentLikeClickHandler = this.commentLikeClickHandler.bind(this);
+    this.commentUnlikeClickHandler = this.commentUnlikeClickHandler.bind(this)
     // this.handleSubmit = this.handleSubmit.bind(this);
   };
 
@@ -114,6 +116,82 @@ class CommentIndexItem extends React.Component {
   //   )
   // }
 
+
+    commentLikeClickHandler() {
+    // debugger
+    let that = this
+    let currentUser = this.props.currentUser
+    that.comment = this.props.comment
+    let currLike = currentUser.likedComments.find(comment => comment.likeable_id === that.comment.id)
+  
+    // if (currentUser.likedVideos.find(video => video.likeable_id === video.id)) {
+    if (currLike !== undefined) {
+      if (currLike.liked === false) {
+        console.log('update')
+        this.props.updateLike({
+          id: currLike.id,
+          liked: true,
+          likeable_id: that.comment.id,
+          likeable_type: "Comment"
+        })
+      } else {
+        console.log('remove')
+        this.props.deleteLike(currLike.id)
+      }
+    } else {
+      console.log('create')
+      this.props.createLike({
+        id: currentUser.id,
+        liked: true,
+        likeable_id: that.comment.id,
+        likeable_type: "Comment"
+      })
+    }
+    // this.setState({
+    //   liked: currLike.liked
+    // })
+  }
+
+  commentUnlikeClickHandler() {
+    // debugger
+    let that = this
+    let currentUser = this.props.currentUser
+    that.comment = this.props.comment
+    let currLike = currentUser.likedComments.find(comment => comment.likeable_id === that.comment.id)
+
+    // if (currentUser.likedVideos.find(video => video.likeable_id === video.id)) {
+    if (currLike !== undefined) {
+      if (currLike.liked === true) {
+        console.log('update')
+        this.props.updateLike({
+          id: currLike.id,
+          liked: false,
+          likeable_id: that.comment.id,
+          likeable_type: "Comment"
+        })
+      } else {
+        console.log('remove')
+        this.props.deleteLike(currLike.id)
+      }
+    } else {
+      console.log('create')
+      this.props.createLike({
+        id: currentUser.id,
+        liked: false,
+        likeable_id: that.comment.id,
+        likeable_type: "Comment"
+      })
+    }
+    // this.setState({
+    //   liked: currLike.liked
+    // })
+  }
+
+  likedCounter() {
+    return this.props.comment.likes.filter(like => like.liked === true).length
+  }
+
+
   render() {
   let video = this.props.video
     // debugger;
@@ -167,11 +245,11 @@ class CommentIndexItem extends React.Component {
         <p className="comments-item-body">{this.props.comment.body}</p>
         <div className="comments-item-likes">
           <span className="comment-thumb-up">
-            <FontAwesomeIcon className="comment-item-faIcons" icon={faThumbsUp} />
+            <FontAwesomeIcon className="comment-item-faIcons" icon={faThumbsUp} onClick={this.commentLikeClickHandler}/>
           </span>
-          <p className="comment-likes-count">3</p>
+          <p className="comment-likes-count">{this.likedCounter()}</p>
           <span className="comment-thumb-down">
-            <FontAwesomeIcon className="comment-item-faIcons" icon={faThumbsDown} />
+            <FontAwesomeIcon className="comment-item-faIcons" icon={faThumbsDown} onClick={this.commentUnlikeClickHandler}/>
           </span>
           <p className="comment-reply-form-text" onClick={this.replyClickHandler}>REPLY</p>
         </div>
@@ -179,11 +257,10 @@ class CommentIndexItem extends React.Component {
           <CreateCommentFormContainer video={this.props.video} comment={this.props.comment} parent_comment={this.props.comment}/>
         </div>
         <div className="comments-item-replies">
-          <p className="view-replies-text" onClick={this.viewReplyClickHandler}>View replies</p>
-          
-          <div className={this.viewReplyClickToggle()}>
-            {comments}
-          </div>
+          <p className="view-replies-text" onClick={this.viewReplyClickHandler}>View replies</p>        
+        <div className={this.viewReplyClickToggle()}>
+          {comments}
+        </div>
       </div>
     </div>
   </div>

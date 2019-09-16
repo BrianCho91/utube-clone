@@ -13,14 +13,13 @@ class SearchVideoIndexItem extends React.Component {
 
 
   isSearchBar() {
-  //   if (this.props.isSearchbar) {
-  //     return (
-        
-  //             <p className="index-video-title">
-  //               <Link to={`/watch/${this.props.video.id}`} className="index-video-title-text">{this.props.video.title}</Link>
-  //             </p>
-  //     )
-  //   }
+    // if (this.props.isSearchbar) {
+    //   return (
+    //           <p className="index-video-title">
+    //             <Link to={`/watch/${this.props.video.id}`} className="index-video-title-text">{this.props.video.title}</Link>
+    //           </p>
+    //   )
+    // }
   }
 
   isSearchPage() {

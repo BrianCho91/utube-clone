@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import VideoIndexItem from './videos_index_item';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faUserCircle } from '@fortawesome/free-solid-svg-icons'
+import { faUserCircle, faThumbsUp, faThumbsDown } from '@fortawesome/free-solid-svg-icons'
 import CreateCommentFormContainer from '../comments/create_comment_form_container';
 import CommentsIndexContainer from '../comments/comments_index_container';
 // import CreateCommentForm from '../comments/create_comment_form';
@@ -10,8 +10,14 @@ import CommentsIndexContainer from '../comments/comments_index_container';
 class VideoShow extends React.Component {
   constructor(props) {
     super(props);
+    this.state = {
+      liked: null
+    }
+
     this.shuffleVideos = this.shuffleVideos.bind(this)
     this.viewClickHandler = this.viewClickHandler.bind(this);
+    this.videoLikeClickHandler = this.videoLikeClickHandler.bind(this);
+    this.videoUnlikeClickHandler = this.videoUnlikeClickHandler.bind(this)
   };
 
   componentDidMount() {
@@ -35,10 +41,86 @@ class VideoShow extends React.Component {
     this.props.video ? this.props.video.views += 1 : null
   };
 
+  videoLikeClickHandler() {
+    // debugger
+    let that = this
+    let currentUser = this.props.currentUser
+    that.video = this.props.video
+    let currLike = currentUser.likedVideos.find(video => video.likeable_id === that.video.id)
   
+    // if (currentUser.likedVideos.find(video => video.likeable_id === video.id)) {
+    if (currLike !== undefined) {
+      if (currLike.liked === false) {
+        console.log('update')
+        this.props.updateLike({
+          id: currLike.id,
+          liked: true,
+          likeable_id: that.video.id,
+          likeable_type: "Video"
+        })
+      } else {
+        console.log('remove')
+        this.props.deleteLike(currLike.id)
+      }
+    } else {
+      console.log('create')
+      this.props.createLike({
+        id: currentUser.id,
+        liked: true,
+        likeable_id: that.video.id,
+        likeable_type: "Video"
+      })
+    }
+    // this.setState({
+    //   liked: currLike.liked
+    // })
+  }
 
+  videoUnlikeClickHandler() {
+    // debugger
+    let that = this
+    let currentUser = this.props.currentUser
+    that.video = this.props.video
+    let currLike = currentUser.likedVideos.find(video => video.likeable_id === that.video.id)
+
+    // if (currentUser.likedVideos.find(video => video.likeable_id === video.id)) {
+    if (currLike !== undefined) {
+      if (currLike.liked === true) {
+        console.log('update')
+        this.props.updateLike({
+          id: currLike.id,
+          liked: false,
+          likeable_id: that.video.id,
+          likeable_type: "Video"
+        })
+      } else {
+        console.log('remove')
+        this.props.deleteLike(currLike.id)
+      }
+    } else {
+      console.log('create')
+      this.props.createLike({
+        id: currentUser.id,
+        liked: false,
+        likeable_id: that.video.id,
+        likeable_type: "Video"
+      })
+    }
+    // this.setState({
+    //   liked: currLike.liked
+    // })
+  }
+
+  likedCounter() {
+    return this.props.video.likes.filter(like => like.liked === true).length
+  }
+
+  UnlikedCounter() {
+    return this.props.video.likes.filter(like => like.liked === false).length
+  }
 
   render() {
+    // debugger
     let videos = this.props.videos;
     let shuffledVids = this.shuffleVideos(videos).map(video => {
       return (
@@ -73,7 +155,10 @@ class VideoShow extends React.Component {
               </div>
               <div className="likes-view-counter-container">
                 <div className="likes-view-counter">
-                  <p className="">{video ? "THUMBS UP ICON" : ""}</p>
+                  <FontAwesomeIcon className="likes-view-faIcons" icon={faThumbsUp} onClick={this.videoLikeClickHandler} />
+                  <p className="video-likes-counter">{video ? this.likedCounter() : ""}</p>
+                  <FontAwesomeIcon className="likes-view-faIcons" id="likes-thumbsdown" icon={faThumbsDown} onClick={this.videoUnlikeClickHandler}/>
+                  <p className="video-likes-counter">{video ? this.UnlikedCounter() : ""}</p>
                 </div>
               </div>
             </div>

@@ -2,7 +2,7 @@ export const createLike = like => {
   return (
     $.ajax({
       method: 'POST',
-      url: `api/like`,
+      url: `api/likes`,
       data: { like }
     })
   );
@@ -12,7 +12,7 @@ export const updateLike = like => {
   return (
     $.ajax({
       method: 'PATCH',
-      url: `api/like/${like.id}`,
+      url: `api/likes/${like.id}`,
       data: { like }
     })
   );
@@ -22,7 +22,7 @@ export const deleteLike = likeId => {
   return (
     $.ajax({
       method: 'DELETE',
-      url: `api/like/${likeId}`
+      url: `api/likes/${likeId}`
     })
   );
 };

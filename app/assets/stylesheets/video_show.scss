@@ -165,3 +165,24 @@
   width: 80%;
   // border: 1px rgb(212, 0, 255) dotted;
 }
+
+.likes-view-counter {
+  display: flex;
+  flex-direction: row;
+  color: rgb(139, 139, 139);
+
+}
+
+.likes-view-faIcons {
+  font-size: 18px;
+  color: rgb(139, 139, 139);
+  margin-right: 10px;
+}
+
+.likes-view-faIcons#likes-thumbsdown {
+  margin-left: 20px;
+}
+
+.video-likes-counter {
+  color: rgb(139, 139, 139);
+}
