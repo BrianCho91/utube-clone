@@ -11,7 +11,7 @@ class VideoShow extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      liked: null
+      likedCount: null
     }
 
     this.shuffleVideos = this.shuffleVideos.bind(this)
@@ -25,6 +25,10 @@ class VideoShow extends React.Component {
     let videoId = this.props.match.params.videoId;
     this.props.fetchVideo(videoId);
     this.props.fetchVideos('');
+  }
+
+  componentDidUpdate() {
+
   }
 
   shuffleVideos(videos) {
@@ -80,9 +84,6 @@ class VideoShow extends React.Component {
           likeable_type: "Video"
         })
       }
-      this.setState({
-        liked: currLike.liked
-      })
     }
   }
 
@@ -117,9 +118,6 @@ class VideoShow extends React.Component {
           likeable_type: "Video"
         })
       }
-      this.setState({
-        liked: currLike.liked
-      })
     }
   }
 
@@ -142,6 +140,26 @@ class VideoShow extends React.Component {
     // }
   }
 
+  subOrEditButton() {
+    let video = this.props.video;
+    let currentUser = this.props.currentUser;
+
+    if (this.props.currentUser) {
+      return (
+        <div>
+        <div className={video.author.id === currentUser.id ? "hide" : "show-video-subscribe" }>SUBSCRIBE BUTTON</div>
+          <div className={video.author.id === currentUser.id ? "show-video-subscribe" : "hide" }>
+            <Link to={video ? `/upload/edit/${video.id}` : ""} video={video}> 
+              Edit video
+            </Link>
+          </div>
+          </div>
+      ) 
+    } else {
+      return <div className="show-video-subscribe">SUBSCRIBE BUTTON</div>
+    }
+  }
+
   render() {
     // debugger
     let videos = this.props.videos;
@@ -152,7 +170,10 @@ class VideoShow extends React.Component {
     })
 // debugger
     let video = this.props.video;
+    let currentUser = this.props.currentUser;
 
+    if (!video) return null
+    // debugger
     return (
       <div className="video-show-index">
         <div className="video-container">
@@ -164,9 +185,9 @@ class VideoShow extends React.Component {
                   type="video/mp4" />
               </video> : <iframe width="100%" height="100%"
                 src={`https://www.youtube.com/embed/${video.test_url}`} 
-                frameborder="0" allow="accelerometer; 
-                autoplay; encrypted-media; gyroscope; picture-in-picture"  
-                allowfullscreen >
+                frameBorder="0" allow="accelerometer; 
+                autoplay; encrypted-media; gyroscope; picture-in-picture
+                allowFullScreen" >
               </iframe> 
             : ""}
           </div>
@@ -201,7 +222,13 @@ class VideoShow extends React.Component {
                       </Link>
                     </p>
                   </div>
-                  <div className="show-video-subscribe">SUBSCRIBE BUTTON</div>
+                  {this.subOrEditButton()}
+                  {/* <div className={(video.author.id === currentUser.id ? "hide" : "show-video-subscribe" ) : "hide"}>SUBSCRIBE BUTTON</div>
+                  <div className={(video.author.id === currentUser.id ? "show-video-subscribe" : "hide" ) : "hide"}>
+                    <Link to={video ? `/upload/edit/${video.id}` : ""} video={video}> 
+                      Edit video
+                    </Link>
+                  </div> */}
                 </div>
                 <div className="show-video-description">
                   {video ? video.description : ""}

@@ -39,6 +39,19 @@ export const createVideo = formData => {
   );
 };
 
+export const updateVideo = (formData, videoId) => {
+  // debugger
+  return(
+    $.ajax({
+      method: 'PATCH',
+      url: `api/videos/${videoId}`,
+      data: formData,
+      contentType: false,
+      processData: false
+    })
+  )
+}
+
 export const deleteVideo = id => {
   return(
     $.ajax({

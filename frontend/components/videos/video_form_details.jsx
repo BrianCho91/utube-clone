@@ -45,7 +45,7 @@ class VideoFormDetails extends React.Component {
   // debugger;
     const reader = new FileReader();
     const file = e.currentTarget.files[0];
-    debugger;
+    // debugger;
     reader.onloadend = () =>
       this.setState({ videoFile: file });
 // debugger;

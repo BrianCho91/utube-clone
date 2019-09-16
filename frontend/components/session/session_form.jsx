@@ -146,7 +146,7 @@ class SessionForm extends React.Component {
 
   errorClickHandler(e) {
     e.preventDefault();
-    debugger;
+    // debugger;
     let errors = document.getElementsByClassName('hide');
     if (errors) {
       errors = Array.from(errors)

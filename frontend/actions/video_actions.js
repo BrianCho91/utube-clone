@@ -34,6 +34,13 @@ export const fetchVideo = video => dispatch => (
     .then(video => dispatch(receiveVideo(video)))
 );
 
+export const updateVideo = (formData, videoId) => dispatch => {
+  // debugger
+  return(
+  VideoAPIUtil.updateVideo(formData, videoId )
+    .then(video => dispatch(receiveVideo(video))))
+}
+
 export const createVideo = formData => dispatch => (
   VideoAPIUtil.createVideo(formData)
     .then( video => dispatch(receiveVideo(video)))

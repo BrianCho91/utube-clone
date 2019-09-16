@@ -17,13 +17,13 @@ class NestedCommentForm extends React.Component {
 
   handleSubmit(e) {
     e.preventDefault();
-    // debugger;
+    debugger;
     // this.props.action(this.state)
     this.props.action({
       body: this.state.body,
       video_id: this.props.video.id,
       user_id: this.props.currentUser.id,
-      parent_comment: this.props.comment
+      parent_comment_id: this.props.comment.id
     })
     this.setState({
       body: ""
