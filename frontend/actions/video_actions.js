@@ -19,8 +19,13 @@ const removeVideo = videoId => ({
   videoId
 });
 
-export const fetchVideos = () => dispatch => (
-  VideoAPIUtil.fetchVideos()
+// export const fetchVideos = () => dispatch => (
+//   VideoAPIUtil.fetchVideos()
+//     .then(videos => dispatch(receiveAllVideos(videos)))
+// );
+
+export const fetchVideos = query => dispatch => (
+  VideoAPIUtil.fetchVideos(query)
     .then(videos => dispatch(receiveAllVideos(videos)))
 );
 
@@ -28,6 +33,18 @@ export const fetchVideo = video => dispatch => (
   VideoAPIUtil.fetchVideo(video)
     .then(video => dispatch(receiveVideo(video)))
 );
+
+export const updateVideo = (formData, videoId) => dispatch => {
+  // debugger
+  return(
+  VideoAPIUtil.updateVideo(formData, videoId )
+    .then(video => dispatch(receiveVideo(video))))
+}
+
+export const createVideo = formData => dispatch => (
+  VideoAPIUtil.createVideo(formData)
+    .then( video => dispatch(receiveVideo(video)))
+)
 
 export const deleteVideo = videoId => dispatch => (
   VideoAPIUtil.deleteVideo(videoId)

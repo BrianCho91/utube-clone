@@ -7,24 +7,46 @@ import CommentIndexItem from './comment_index_item';
 class CommentsIndex extends React.Component {
   constructor(props) {
     super(props);
+    // this.renderComments = this.renderComments.bind(this); 
 
   };
 
   componentDidMount() {
     this.props.fetchComments()
   }
+
+  // renderComments() {
+  //   let video = this.props.video
+  //   // debugger;
+
+  //   let comments = this.props.comments.reverse().map(comment => {
+  //     if (comment.video_id === video.id) {
+  //       return (<CommentIndexItem key={comment.id} comment={comment} deleteComment={this.props.deleteComment} />)
+  //     }
+  //   })
+  // }
   
   render() {
-
       let video = this.props.video
-// debugger;
-    let comments = this.props.comments.reverse().map(comment => {
-      if (comment.video_id === video.id) {
-        return <CommentIndexItem key={comment.id} comment={comment} deleteComment={this.props.deleteComment} />
+
+      let comments = this.props.comments.reverse().map(comment => {
+      if (this.props.video.id === comment.video_id) {
+        return <CommentIndexItem key={comment.id} 
+                  currentUser={this.props.currentUser} 
+                  video={video} 
+                  comments={this.props.comments} 
+                  comment={comment} 
+                  updateComment={this.props.updateComment} 
+                  deleteComment={this.props.deleteComment} 
+                  createLike={this.props.createLike}
+                  updateLike={this.props.updateLike}
+                  deleteLike={this.props.deleteLike}
+                />
       }
     })
       // debugger;
     return(
+      
       <div className="comments-index-container">
         {comments}
         {/* <div className="comments-index-item-container">

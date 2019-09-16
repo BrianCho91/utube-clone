@@ -3,7 +3,15 @@ class Comment < ApplicationRecord
 
   belongs_to :user
   belongs_to :video
-  # has_many :child, class_name: 'Comment'
-  # belongs_to :parent, class_name: 'Comment'
+  has_many :likes, as: :likeable
+
+  has_many :child_comments,
+    foreign_key: :parent_comment_id,
+    class_name: :Comment
+
+  belongs_to :parent_comment, 
+    class_name: :Comment, 
+    foreign_key: :parent_comment_id, 
+    optional: true
 
 end

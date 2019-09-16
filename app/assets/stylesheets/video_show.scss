@@ -10,9 +10,10 @@
   display: flex;
   flex-direction: column;
 
-  margin-left: 25px;
+  // margin-left: 25px;
   width: 60vw;
-  height: 1200px;
+  // height: 720px;
+  max-height: 1200px;
   max-width: 1280px;
 
   // border: 1px green dotted;
@@ -21,7 +22,8 @@
 
 .video-clip-container {
   width: 100%;
-  max-height: 720px;
+  // height: 720px;
+  height: 560px;
   // border: 1px red dotted;
 }
 
@@ -38,7 +40,7 @@
 
 .next-video-index-container {
   width: 400px;
-  height: 800px;
+  height: 100%;
   margin-left: 25px;
 
   // border: 1px pink dotted;
@@ -48,11 +50,11 @@
 .show-video-item-container {
   display: flex;
   flex-direction: row;
-  margin-bottom: 15px;
+  margin-bottom: 5px;
 }
 
 .show-thumbnails {
-  width: 190px;
+  width: 168px;
 }
 
 .show-index-video-description {
@@ -60,6 +62,8 @@
   flex-direction: column;
   padding-left: 5px;
   transform: translateY(-8px);
+  height: 100px;
+  
 }
 
 .show-video-clip-title {
@@ -72,12 +76,27 @@
   justify-content: space-between;
   align-items: center;
   // border: 1px pink dotted;
-  // border-bottom: 1px solid rgba(255, 255, 255, 0.4);
+  border-bottom: 0.5px solid rgba(255, 255, 255, 0.3);
 }
 
-.show-views-counter {
-
+.show-views-published-container {
+  display: flex;
+  flex-direction: row;
+  color: rgb(139, 139, 139);
+  font-size: 14px;
   // border: 1px orange dotted;
+}
+
+.shows-view-counter {
+  color: rgb(139, 139, 139);
+  padding-right: 5px;
+  font-size: 14px;
+}
+
+.shows-video-published {
+  color: rgb(139, 139, 139);
+  padding-left: 5px;
+  font-size: 14px;
 }
 
 .likes-view-counter-container {
@@ -93,16 +112,16 @@
 .sub-views-description-container {
   display: flex;
   flex-direction: row;
-  height: 150px;
+  height: 140px;
   // border: 1px red dotted;
-
+  border-bottom: 0.5px solid rgba(255, 255, 255, 0.3);
 }
 
 .show-video-icon-container {
   display: flex;
   flex-direction: column;
   align-items: center;
-  height: 150px;
+  height: 140px;
   width: 70px;
   // border: 1px green dotted;  
 }
@@ -160,4 +179,33 @@
   padding-top: 10px;
   width: 80%;
   // border: 1px rgb(212, 0, 255) dotted;
+}
+
+.likes-view-counter {
+  display: flex;
+  flex-direction: row;
+  color: rgb(139, 139, 139);
+
+}
+
+.likes-view-faIcons {
+  font-size: 18px;
+  color: rgb(139, 139, 139);
+  margin-right: 10px;
+}
+
+.likes-view-faIcons:hover {
+  cursor: pointer;
+}
+
+.likes-view-faIcons#likes-thumbsdown {
+  margin-left: 20px;
+}
+
+.video-likes-counter {
+  color: rgb(139, 139, 139);
+}
+
+.highlighted {
+  color: white;
 }

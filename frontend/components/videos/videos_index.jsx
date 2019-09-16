@@ -3,15 +3,18 @@ import { Link } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faAddressCard } from '@fortawesome/free-solid-svg-icons'
 import VideoIndexItem from './videos_index_item';
+import VideoFormContainer from './video_form_container';
 
 class VideoIndex extends React.Component {
   constructor(props) {
     super(props);
+    this.renderShuffledOnClick = this.renderShuffledOnClick.bind(this);
+    this.shuffleVideos = this.shuffleVideos.bind(this);
   }
 
   componentDidMount() {
     this.menuClickHandler()
-    this.props.fetchVideos()
+    this.props.fetchVideos('')
   }
 
   menuClickHandler() {
@@ -22,6 +25,7 @@ class VideoIndex extends React.Component {
   }
 
   shuffleVideos(videos) {
+    // debugger;
     for (let i = videos.length - 1; i > 0; i--) {
       let j = Math.floor(Math.random() * (i + 1));
       [videos[i], videos[j]] = [videos[j], videos[i]]
@@ -29,11 +33,35 @@ class VideoIndex extends React.Component {
     return videos
   }
 
+  renderShuffledOnClick() {
+    // debugger;
+    const homeButtons = document.getElementById('home-buttons');
+    homeButtons.addEventListener('click', () => {
+      return true
+    });
+  }
+
+  renderVideos() {
+    if (this.props.videos.length > 0) {
+      let videos = this.props.videos.slice(0,10);
+        if (this.renderShuffledOnClick) {
+        this.shuffleVideos(videos).map(video => {
+          return <VideoIndexItem video={video} key={video.id} indexPage={true} />        
+        })
+      } else {
+        videos.map(video => {
+          return <VideoIndexItem video={video} key={video.id} indexPage={true} />
+        })
+      }
+    }
+  }
+
 
   render() {
       let videos = this.props.videos;
-      let shuffledVids = this.shuffleVideos(videos).map(video => {
-        // console.log(video)
+      let shuffledVideos = this.shuffleVideos(videos).slice(0,10)
+      shuffledVideos = shuffledVideos.map(video => {
+      // let shuffledVideos = this.shuffleVideos(videos.slice(0,10)).map(video => {
         return (
           <VideoIndexItem video={video} key={video.id} indexPage={true} />
         )
@@ -45,9 +73,21 @@ class VideoIndex extends React.Component {
           <div className="recommended-videos">
             <div className="recommended-bar">
               <p>Recommended</p>
+              {/* <VideoFormContainer /> */}
             </div>
-            {shuffledVids}
-            {/* <div className="video-item-container">
+            {/* {this.renderVideos()} */}
+            {shuffledVideos}
+
+          </div>
+        </div>
+      </div>
+    )
+  }
+}
+
+export default VideoIndex;
+
+            /* <div className="video-item-container">
               <img className="thumbnails" src="https://i.ytimg.com/vi/qnfEBjnX8GM/maxresdefault.jpg"/>
               <p className="index-video-title">
                 How to make a thumbnail!
@@ -185,13 +225,5 @@ class VideoIndex extends React.Component {
                 <p className="index-video-views">
                   10K views
                 </p> <span className="index-video-upload-date">1 week ago</span>
-              </div> */}
-            {/* </div> */}
-          </div>
-        </div>
-      </div>
-    )
-  }
-}
-
-export default VideoIndex;
+              </div> */
+            /* </div> */

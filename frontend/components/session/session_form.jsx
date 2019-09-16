@@ -32,7 +32,7 @@ class SessionForm extends React.Component {
   }
 
   setUsername(demoUsername) {
-    demoUsername = demoUsername || "BrianCho".split('');
+    demoUsername = demoUsername || "Brian Cho".split('');
     
     setTimeout( () => {
       this.setState({
@@ -146,7 +146,7 @@ class SessionForm extends React.Component {
 
   errorClickHandler(e) {
     e.preventDefault();
-    debugger;
+    // debugger;
     let errors = document.getElementsByClassName('hide');
     if (errors) {
       errors = Array.from(errors)
@@ -176,14 +176,14 @@ class SessionForm extends React.Component {
   renderCreateAccount() {
     if (this.props.formType === "login") {
       return (
-        <div className="session-form-redirect-signup">
-          <Link to="/signup">Create Account</Link>
+        <div className="session-form-redirect" id="signup">
+          <Link to="/signup"><p className="session-form-redirect-text">Create Account</p></Link>
         </div>
         )
     } else {
       return (
-        <div className="session-form-redirect-login">
-          <Link to="/login">Sign In</Link>
+        <div className="session-form-redirect" id="login">
+          <Link to="/login"><p className="session-form-redirect-text">Sign In</p></Link>
         </div>
       )
     }

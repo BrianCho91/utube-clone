@@ -6,17 +6,17 @@ import { faHome, faFire, faFolder, faLayerGroup, faUserCircle, faSignOutAlt, faA
 class UserMenu extends React.Component {
   constructor(props) {
     super(props);
-    this.userMenuClass = this.userMenuClass.bind(this);
+    // this.userMenuClass = this.userMenuClass.bind(this);
   }
 
-  userMenuClass() {
-    return this.props.show ? "userMenu-show" : "userMenu-hide"
-  }
+  // userMenuClass() {
+  //   return this.props.show ? "userMenu-show" : "userMenu-hide"
+  // }
 
   render() {
 
     return(
-      <div className="user-menu-container">
+      <div id="user-menu" className="user-menu-container">
         <div className="user-details-container">
           <div className="user-menu-user-pic">
             <FontAwesomeIcon className="faIcons" id="faUserCircle" icon={faUserCircle}/>

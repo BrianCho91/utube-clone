@@ -5,9 +5,10 @@ class Api::CommentsController < ApplicationController
   end
 
   def create
+    debugger
     @comment = Comment.new(comment_params)
     @comment.user_id = current_user.id
-
+    
     if @comment.save
       render :show
     else
@@ -41,7 +42,7 @@ class Api::CommentsController < ApplicationController
   private
 
   def comment_params
-    params.require(:comment).permit(:body, :user_id, :video_id)
+    params.require(:comment).permit(:body, :user_id, :video_id, :parent_comment_id)
   end
 
 end

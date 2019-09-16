@@ -35,5 +35,12 @@ class User < ApplicationRecord
 
   has_many :videos
   has_many :comments
+  has_many :likes
+  has_many :liked_videos, through: :likes
+  has_many :liked_comments, through: :likes
+
+  has_one_attached :photo
+
+
 
 end

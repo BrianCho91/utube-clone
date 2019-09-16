@@ -7,7 +7,8 @@
   flex-direction: column;
   align-items: center;
   width: 250px;
-  height: 500px;
+  height: auto;
+  padding-bottom: 10px;
   overflow: clip; 
   // width: 230px;
   background-color: #282828;
@@ -19,9 +20,11 @@
 }
 
 .user-details-container {
+
   display: flex;
-  border-bottom: 1px white solid;
-  height: 80px;
+  border-bottom: 1px solid rgba(212, 212, 212, 0.5);
+  // border-bottom: 1px white solid;
+  height: 75px;
 }
 
 .user-menu-user-pic {
@@ -63,8 +66,10 @@ p#email {
   display: flex;
   position: relative;
   flex-direction: column;
+  margin-top: 10px;
+
   min-width: 250px;
-  height: 100px;
+  height: auto;
   // border: 1px white dotted
 }
 

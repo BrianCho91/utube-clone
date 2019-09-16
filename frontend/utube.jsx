@@ -5,6 +5,7 @@ import Root from './components/root';
 
 ///////////// testing ///////////////
 import { login, signup } from './actions/session_actions';
+import { deleteComment } from './actions/comment_actions';
 ///////////// testing ///////////////
 
 document.addEventListener("DOMContentLoaded", () => {
@@ -26,6 +27,7 @@ document.addEventListener("DOMContentLoaded", () => {
   ///////////// testing ///////////////
   window.login = login;
   window.signup = signup;
+  window.deleteComment = deleteComment;
   window.getState = store.getState;
   window.dispatch = store.dispatch;
   ///////////// testing ///////////////
