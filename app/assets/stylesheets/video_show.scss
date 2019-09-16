@@ -79,9 +79,24 @@
   border-bottom: 0.5px solid rgba(255, 255, 255, 0.3);
 }
 
-.show-views-counter {
-
+.show-views-published-container {
+  display: flex;
+  flex-direction: row;
+  color: rgb(139, 139, 139);
+  font-size: 14px;
   // border: 1px orange dotted;
+}
+
+.shows-view-counter {
+  color: rgb(139, 139, 139);
+  padding-right: 5px;
+  font-size: 14px;
+}
+
+.shows-video-published {
+  color: rgb(139, 139, 139);
+  padding-left: 5px;
+  font-size: 14px;
 }
 
 .likes-view-counter-container {
@@ -179,10 +194,18 @@
   margin-right: 10px;
 }
 
+.likes-view-faIcons:hover {
+  cursor: pointer;
+}
+
 .likes-view-faIcons#likes-thumbsdown {
   margin-left: 20px;
 }
 
 .video-likes-counter {
   color: rgb(139, 139, 139);
+}
+
+.highlighted {
+  color: white;
 }

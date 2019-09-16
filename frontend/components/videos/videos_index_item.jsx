@@ -23,9 +23,8 @@ class VideoIndexItem extends React.Component {
             <Link to={`/channel/${this.props.video.author.id}`} className="index-video-author-text">{this.props.video.author.username}</Link>
           </p>
           <div className="index-view-container">
-            <p className="index-video-views">
-              {this.props.video.views} views
-            </p> <span className="index-video-upload-date">Created: {this.props.video.created_at}</span>
+            <p className="index-video-views">{this.videoViewsFormat(this.props.video.views)} views</p> 
+            • <span className="index-video-upload-date">{`${this.props.video.publishedAgo} ago`}</span>
           </div>
         </div>
       )
@@ -50,12 +49,22 @@ class VideoIndexItem extends React.Component {
             </p>
             <div className="index-view-container">
               <p className="index-video-views">
-                {this.props.video.views}
+                {this.videoViewsFormat(this.props.video.views)} views
               </p>
             </div>
           </div>
         </div>
       )
+    }
+  }
+
+  videoViewsFormat(views) {
+    if (views >= 1000000) {
+      return (views / 1000000).toFixed(1).replace(/\.0$/, '') + 'M'
+    } else if (views >= 1000) {
+      return (views / 1000).toFixed(1).replace(/\.0$/, '') + 'K'
+    } else {
+      return views
     }
   }
 

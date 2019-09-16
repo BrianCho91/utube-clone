@@ -17,7 +17,8 @@ class VideoShow extends React.Component {
     this.shuffleVideos = this.shuffleVideos.bind(this)
     this.viewClickHandler = this.viewClickHandler.bind(this);
     this.videoLikeClickHandler = this.videoLikeClickHandler.bind(this);
-    this.videoUnlikeClickHandler = this.videoUnlikeClickHandler.bind(this)
+    this.videoUnlikeClickHandler = this.videoUnlikeClickHandler.bind(this);
+    this.highlightedThumbsup = this.highlightedThumbsup.bind(this);
   };
 
   componentDidMount() {
@@ -47,33 +48,42 @@ class VideoShow extends React.Component {
     let currentUser = this.props.currentUser
     that.video = this.props.video
     let currLike = currentUser.likedVideos.find(video => video.likeable_id === that.video.id)
+
+    // if (currLike === true) { 
+    //   highlightedThumbsup("hightlighted")
+    // }
   
     // if (currentUser.likedVideos.find(video => video.likeable_id === video.id)) {
-    if (currLike !== undefined) {
-      if (currLike.liked === false) {
-        console.log('update')
-        this.props.updateLike({
-          id: currLike.id,
+    if (currentUser) {
+      if (currLike !== undefined) {
+        if (currLike.liked === false) {
+          console.log('update')
+          this.props.updateLike({
+            id: currLike.id,
+            liked: true,
+            likeable_id: that.video.id,
+            likeable_type: "Video"
+          })
+          // if (currLike === true) {
+          //   highlightedThumbsup("highlighted")
+          // }
+        } else {
+          console.log('remove')
+          this.props.deleteLike(currLike.id)
+        }
+      } else {
+        console.log('create')
+        this.props.createLike({
+          id: currentUser.id,
           liked: true,
           likeable_id: that.video.id,
           likeable_type: "Video"
         })
-      } else {
-        console.log('remove')
-        this.props.deleteLike(currLike.id)
       }
-    } else {
-      console.log('create')
-      this.props.createLike({
-        id: currentUser.id,
-        liked: true,
-        likeable_id: that.video.id,
-        likeable_type: "Video"
+      this.setState({
+        liked: currLike.liked
       })
     }
-    // this.setState({
-    //   liked: currLike.liked
-    // })
   }
 
   videoUnlikeClickHandler() {
@@ -84,31 +94,33 @@ class VideoShow extends React.Component {
     let currLike = currentUser.likedVideos.find(video => video.likeable_id === that.video.id)
 
     // if (currentUser.likedVideos.find(video => video.likeable_id === video.id)) {
-    if (currLike !== undefined) {
-      if (currLike.liked === true) {
-        console.log('update')
-        this.props.updateLike({
-          id: currLike.id,
+    if (currentUser) {
+      if (currLike !== undefined) {
+        if (currLike.liked === true) {
+          console.log('update')
+          this.props.updateLike({
+            id: currLike.id,
+            liked: false,
+            likeable_id: that.video.id,
+            likeable_type: "Video"
+          })
+        } else {
+          console.log('remove')
+          this.props.deleteLike(currLike.id)
+        }
+      } else {
+        console.log('create')
+        this.props.createLike({
+          id: currentUser.id,
           liked: false,
           likeable_id: that.video.id,
           likeable_type: "Video"
         })
-      } else {
-        console.log('remove')
-        this.props.deleteLike(currLike.id)
       }
-    } else {
-      console.log('create')
-      this.props.createLike({
-        id: currentUser.id,
-        liked: false,
-        likeable_id: that.video.id,
-        likeable_type: "Video"
+      this.setState({
+        liked: currLike.liked
       })
     }
-    // this.setState({
-    //   liked: currLike.liked
-    // })
   }
 
   likedCounter() {
@@ -117,6 +129,17 @@ class VideoShow extends React.Component {
 
   UnlikedCounter() {
     return this.props.video.likes.filter(like => like.liked === false).length
+  }
+
+  highlightedThumbsup(action) {
+    let thumb = document.getElementById(likes-thumbsup)
+    thumb.classList.toggle(action)
+    
+    // if (this.state.liked) {
+    //   return "highlighted"
+    // } else {
+    //   return ""
+    // }
   }
 
   render() {
@@ -150,12 +173,13 @@ class VideoShow extends React.Component {
           <div className="video-description-container">
             <p className="show-video-clip-title">{video ? video.title : "" }</p>
             <div className="sub-title-descriptions-container">
-              <div className="show-views-counter">
-                <p className="">{video ? video.views + " views" : ""}</p>
+              <div className="show-views-published-container">
+                <p className="shows-view-counter">{video ? video.views + " views" : ""}</p>
+                • <p className="shows-video-published">{`Published on ${video ? video.published : ""}`}</p>
               </div>
               <div className="likes-view-counter-container">
                 <div className="likes-view-counter">
-                  <FontAwesomeIcon className="likes-view-faIcons" icon={faThumbsUp} onClick={this.videoLikeClickHandler} />
+                  <FontAwesomeIcon className={`likes-view-faIcons`} id="likes-thumbsup" icon={faThumbsUp} onClick={this.videoLikeClickHandler} />
                   <p className="video-likes-counter">{video ? this.likedCounter() : ""}</p>
                   <FontAwesomeIcon className="likes-view-faIcons" id="likes-thumbsdown" icon={faThumbsDown} onClick={this.videoUnlikeClickHandler}/>
                   <p className="video-likes-counter">{video ? this.UnlikedCounter() : ""}</p>
@@ -175,9 +199,6 @@ class VideoShow extends React.Component {
                       <Link to={`/channel/${video ? video.author.id : ""}`} >
                         {video ? video.author.username : ""}
                       </Link>
-                    </p>
-                    <p className="show-video-published">
-                      {video ? video.created_at : ""}
                     </p>
                   </div>
                   <div className="show-video-subscribe">SUBSCRIBE BUTTON</div>

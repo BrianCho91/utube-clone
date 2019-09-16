@@ -88,16 +88,18 @@ class CommentIndexItem extends React.Component {
   }
 
   renderEdits() {
-    if (this.props.currentUser.id === this.props.comment.author.id) {
-      return (
-        <div className="comments-edit-delete-container">
-            {/* {this.renderUpdateForm()} */}
-            {/* <EditCommentFormContainer comment={this.props.comment} video={this.props.video} currentUser={this.props.currentUser}/> */}
-            <div className="delete-toggle-btn" onClick={this.handleDelete}>
-              delete
+    if (this.props.currentUser) {
+      if (this.props.currentUser.id === this.props.comment.author.id) {
+        return (
+          <div className="comments-edit-delete-container">
+              {/* {this.renderUpdateForm()} */}
+              {/* <EditCommentFormContainer comment={this.props.comment} video={this.props.video} currentUser={this.props.currentUser}/> */}
+              <div className="delete-toggle-btn" onClick={this.handleDelete}>
+                delete
+              </div>
             </div>
-          </div>
-      )
+        )
+      }
     }
   }
 
@@ -125,27 +127,29 @@ class CommentIndexItem extends React.Component {
     let currLike = currentUser.likedComments.find(comment => comment.likeable_id === that.comment.id)
   
     // if (currentUser.likedVideos.find(video => video.likeable_id === video.id)) {
-    if (currLike !== undefined) {
-      if (currLike.liked === false) {
-        console.log('update')
-        this.props.updateLike({
-          id: currLike.id,
+    if (currentUser) {
+      if (currLike !== undefined) {
+        if (currLike.liked === false) {
+          console.log('update')
+          this.props.updateLike({
+            id: currLike.id,
+            liked: true,
+            likeable_id: that.comment.id,
+            likeable_type: "Comment"
+          })
+        } else {
+          console.log('remove')
+          this.props.deleteLike(currLike.id)
+        }
+      } else {
+        console.log('create')
+        this.props.createLike({
+          id: currentUser.id,
           liked: true,
           likeable_id: that.comment.id,
           likeable_type: "Comment"
         })
-      } else {
-        console.log('remove')
-        this.props.deleteLike(currLike.id)
       }
-    } else {
-      console.log('create')
-      this.props.createLike({
-        id: currentUser.id,
-        liked: true,
-        likeable_id: that.comment.id,
-        likeable_type: "Comment"
-      })
     }
     // this.setState({
     //   liked: currLike.liked
@@ -160,27 +164,29 @@ class CommentIndexItem extends React.Component {
     let currLike = currentUser.likedComments.find(comment => comment.likeable_id === that.comment.id)
 
     // if (currentUser.likedVideos.find(video => video.likeable_id === video.id)) {
-    if (currLike !== undefined) {
-      if (currLike.liked === true) {
-        console.log('update')
-        this.props.updateLike({
-          id: currLike.id,
+    if (currentUser) { 
+      if (currLike !== undefined) {
+        if (currLike.liked === true) {
+          console.log('update')
+          this.props.updateLike({
+            id: currLike.id,
+            liked: false,
+            likeable_id: that.comment.id,
+            likeable_type: "Comment"
+          })
+        } else {
+          console.log('remove')
+          this.props.deleteLike(currLike.id)
+        }
+      } else {
+        console.log('create')
+        this.props.createLike({
+          id: currentUser.id,
           liked: false,
           likeable_id: that.comment.id,
           likeable_type: "Comment"
         })
-      } else {
-        console.log('remove')
-        this.props.deleteLike(currLike.id)
       }
-    } else {
-      console.log('create')
-      this.props.createLike({
-        id: currentUser.id,
-        liked: false,
-        likeable_id: that.comment.id,
-        likeable_type: "Comment"
-      })
     }
     // this.setState({
     //   liked: currLike.liked
