@@ -35,6 +35,8 @@ class VideoShow extends React.Component {
     this.props.video ? this.props.video.views += 1 : null
   };
 
+  
+
 
   render() {
     let videos = this.props.videos;

@@ -85,6 +85,20 @@ class CommentIndexItem extends React.Component {
     this.props.deleteComment(this.props.comment.id)
   }
 
+  renderEdits() {
+    if (this.props.currentUser.id === this.props.comment.author.id) {
+      return (
+        <div className="comments-edit-delete-container">
+            {/* {this.renderUpdateForm()} */}
+            {/* <EditCommentFormContainer comment={this.props.comment} video={this.props.video} currentUser={this.props.currentUser}/> */}
+            <div className="delete-toggle-btn" onClick={this.handleDelete}>
+              delete
+            </div>
+          </div>
+      )
+    }
+  }
+
   // renderUpdateForm() {
   //   return (
   //     <div className="comments-edit-container">
@@ -133,13 +147,16 @@ class CommentIndexItem extends React.Component {
             </Link>
             <p className="comments-item-time">hours ago</p>
           </div>
-          <div className="comments-edit-delete-container">
+
+            {this.renderEdits()}
+
+          {/* <div className="comments-edit-delete-container"> */}
             {/* {this.renderUpdateForm()} */}
             {/* <EditCommentFormContainer comment={this.props.comment} video={this.props.video} currentUser={this.props.currentUser}/> */}
-            <div className="delete-toggle-btn" onClick={this.handleDelete}>
+            {/* <div className="delete-toggle-btn" onClick={this.handleDelete}>
               delete
             </div>
-          </div>
+          </div> */}
         </div>
         {/* <div className="comments-item-name-container">
           <Link to={`/channel/${this.props.comment.author.id}`}>
