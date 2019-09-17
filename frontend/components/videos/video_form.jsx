@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link, Redirect } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faCloudUploadAlt } from '@fortawesome/free-solid-svg-icons'
+import { faCloudUploadAlt, faSpinner } from '@fortawesome/free-solid-svg-icons'
 import VideoFormDetails from './video_form_details';
 
 
@@ -98,6 +98,7 @@ class VideoForm extends React.Component {
     }
     this.props.createVideo(formData).then(() => {
       that.setState({ loading: false })
+      that.props.location.replace('/') 
     })
     // $.ajax({
     //     url: '/api/videos',
@@ -187,7 +188,10 @@ class VideoForm extends React.Component {
                 <div className="new-form-submit-container">
                   {/* <input type="button" className="new-form-submit" value="Submit"/> */}
                   <button className={this.state.loading === false ? "new-form-submit uploading" : "hide"}>Submit</button>
-                  <button className={this.state.loading === true ? "new-form-submit uploading" : "hide"}>Uploading</button>
+                  <button className={this.state.loading === true ? "new-form-submit uploading" : "hide"}>
+                    {/* Uploading */}
+                    <FontAwesomeIcon icon={faSpinner} className="fa-spin" />
+                  </button>
                 </div>
               </div>
             

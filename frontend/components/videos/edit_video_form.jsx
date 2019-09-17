@@ -3,7 +3,7 @@ import VideoForm from './video_form';
 import { fetchVideo, updateVideo } from '../../actions/video_actions';
 import React from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faCloudUploadAlt } from '@fortawesome/free-solid-svg-icons'
+import { faCloudUploadAlt, faSpinner } from '@fortawesome/free-solid-svg-icons'
 
 class EditVideoForm extends React.Component {
     constructor(props) {
@@ -23,6 +23,7 @@ class EditVideoForm extends React.Component {
       this.handlePictureFile = this.handlePictureFile.bind(this)
       this.handleVideoFile = this.handleVideoFile.bind(this)
   }
+
 
   componentDidMount() {
     // let video = ownProps.match.params.videoId;
@@ -84,6 +85,7 @@ class EditVideoForm extends React.Component {
     }
     this.props.action(formData, this.props.video.id).then(() => {
       that.setState({ loading: false })
+      that.props.location.replace('/') 
     })
   }
     // $.ajax({
@@ -165,7 +167,10 @@ class EditVideoForm extends React.Component {
               <div className="new-form-submit-container">
                 {/* <input type="button" className="new-form-submit" value="Submit"/> */}
                 <button className={this.state.loading === false ? "new-form-submit" : "hide"}>Submit</button>
-                <button className={this.state.loading === true ? "new-form-submit disabled" : "hide"}>Uploading</button>
+                <button className={this.state.loading === true ? "new-form-submit disabled" : "hide"}>
+                  {/* Uploading */}
+                  <FontAwesomeIcon icon={faSpinner} className="fa-spin" />
+                </button>
               </div>
             </div>
           

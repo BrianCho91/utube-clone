@@ -44,7 +44,7 @@ class NestedCommentForm extends React.Component {
   
   render() {
     return(
-      <div className="comment-form-item-container">
+      <div className="nested-comment-form-item-container">
         <form action="" className="comment-form-item" onSubmit={this.handleSubmit}>
           <input type="text" 
             className="comment-form-input"

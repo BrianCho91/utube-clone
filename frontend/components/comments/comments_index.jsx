@@ -33,6 +33,8 @@ class CommentsIndex extends React.Component {
       if (this.props.video.id === comment.video_id) {
         return <CommentIndexItem key={comment.id} 
                   currentUser={this.props.currentUser} 
+                  fetchComments={this.props.fetchComments}
+                  fetchComment={this.props.fetchComment}
                   video={video} 
                   comments={this.props.comments} 
                   comment={comment} 

@@ -27,6 +27,12 @@ class CommentIndexItem extends React.Component {
     // this.handleSubmit = this.handleSubmit.bind(this);
   };
 
+  componentDidMount() {
+    // debugger
+    this.props.fetchComments(),
+    this.props.fetchComment(this.props.comment.parent_comment_id)
+  }
+
   viewReplyClickHandler() {
     // console.log(this.state.replyOpen)
     this.setState((prevState) => {
@@ -202,12 +208,13 @@ class CommentIndexItem extends React.Component {
   render() {
   let video = this.props.video
     // debugger;
-    // debugger
+    debugger
     
-    let comments = this.props.comment.child_comments.reverse().map(comment => {
+    let comments = this.props.comment.child_comments.map(comment => {
       if (comment) {
-      return ( <ul>
-      <NestedCommentItemContainer key={comment.id} comment={comment} />
+      return ( 
+      <ul>
+        <NestedCommentItemContainer key={comment.id} comment={comment} />
       </ul>
       )
     }})
@@ -262,21 +269,25 @@ class CommentIndexItem extends React.Component {
         </div>
         <div className={this.replyClickToggle()}>
           <NestedCommentFormContainer video={this.props.video} comment={this.props.comment} parent_comment={this.props.comment}/>
-        </div>
+      </div>
         <div className="comments-item-replies">
           <p className="view-replies-text" onClick={this.viewReplyClickHandler}>
             {this.props.comment.child_comments.length > 0 ? "View replies" : ""}
           </p>        
+        </div>
         <div className={this.viewReplyClickToggle()}>
           {comments}
         </div>
-      </div>
     </div>
   </div>
 
   )
   } else {
+  //   <ul>
+  //   <NestedCommentItemContainer key={comment.id} comment={comment} />
+  // </ul>
     return null
+
   }
 }
 }

@@ -25,6 +25,11 @@ const receiveErrors = errors => ({
   errors
 });
 
+export const fetchComment = comment => dispatch => (
+  CommentApiUtil.fetchComment(comment)
+    .then(comment => dispatch(receiveComment(comment)))
+);
+
 export const fetchComments = () => dispatch => (
   CommentApiUtil.fetchComments()
     .then(comments => dispatch(receiveAllComments(comments)))

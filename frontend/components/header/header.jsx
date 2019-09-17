@@ -196,7 +196,7 @@ class Header extends React.Component {
   }
 
   searchClickHandler() {
-    this.props.history.push(`/results/search_query/${this.state.searchText}`)
+    this.props.history.push(`/results/search?query/${this.state.searchText}`)
     this.setState({
       searchText: ""
     });

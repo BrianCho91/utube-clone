@@ -15,7 +15,6 @@ class CreateCommentForm extends React.Component {
     this.handleSubmit = this.handleSubmit.bind(this);
   };
 
-
   handleSubmit(e) {
     e.preventDefault();
     // debugger;
@@ -31,9 +30,6 @@ class CreateCommentForm extends React.Component {
     this.setState({
       body: "",
     })
-    this.setState(() => ({
-      body: ""
-    }))
   };
 
   handleInput(type) {

@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import VideoIndexItem from './videos_index_item';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faUserCircle, faThumbsUp, faThumbsDown } from '@fortawesome/free-solid-svg-icons'
+import { faUserCircle, faThumbsUp, faThumbsDown, faSpinner , pulse } from '@fortawesome/free-solid-svg-icons'
 import CreateCommentFormContainer from '../comments/create_comment_form_container';
 import CommentsIndexContainer from '../comments/comments_index_container';
 // import CreateCommentForm from '../comments/create_comment_form';
@@ -71,7 +71,7 @@ class VideoShow extends React.Component {
   
     // if (currentUser.likedVideos.find(video => video.likeable_id === video.id)) {
     if (currentUser) {
-      debugger
+      // debugger
       if (currLike !== undefined) {
       // if (currLike.length > 0) {
         // if (currLike) {
@@ -169,16 +169,22 @@ class VideoShow extends React.Component {
     if (this.props.currentUser) {
       return (
         <div>
-        <div className={video.author.id === currentUser.id ? "hide" : "show-video-subscribe" }>SUBSCRIBE BUTTON</div>
+        <div className={video.author.id === currentUser.id ? "hide" : "show-video-subscribe" }>
+          {/* <div className="comment-form-submit-container"> */}
+            <button className="sub-btn">SUBSCRIBE</button>
+          {/* </div> */}
+          </div>
           <div className={video.author.id === currentUser.id ? "show-video-subscribe" : "hide" }>
             <Link to={video ? `/upload/edit/${video.id}` : ""} video={video}> 
-              Edit video
+            <button className="sub-btn">EDIT VIDEO</button>
             </Link>
           </div>
           </div>
       ) 
     } else {
-      return <div className="show-video-subscribe">SUBSCRIBE BUTTON</div>
+      return <div className="show-video-subscribe">
+        <button className="sub-btn">SUBSCRIBE</button>
+      </div>
     }
   }
 
