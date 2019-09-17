@@ -12,12 +12,14 @@ const mapStateToProps = (state, ownProps) => {
   let videoId = ownProps.match.params.videoId;
   let video = state.entities.videos[videoId]
   let videos = Object.values(state.entities.videos);
+  let currStateLike = state.entities.likes[1]
   // let currLike = state.entities.like;
 
   return ({
     video,
     videos,
     currentUser: state.entities.users[currentUserId],
+    currStateLike
   })
 }
 

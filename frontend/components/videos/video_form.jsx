@@ -15,6 +15,7 @@ class VideoForm extends React.Component {
       videoUrl: null,
       thumbnail: null,
       thumbUrl: null,
+      loading: false
     }
     this.update = this.update.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this)
@@ -83,6 +84,8 @@ class VideoForm extends React.Component {
   }
 
   handleSubmit(e) {
+    let that = this;
+    this.setState({ loading: true })
     e.preventDefault();
     const formData = new FormData();
     formData.append('video[title]', this.state.title);
@@ -93,7 +96,9 @@ class VideoForm extends React.Component {
       // formData.append('video[videoUrl]', this.state.videoFile);
       // formData.append('video[photoUrl]', this.state.thumbnail);
     }
-    this.props.createVideo(formData)
+    this.props.createVideo(formData).then(() => {
+      that.setState({ loading: false })
+    })
     // $.ajax({
     //     url: '/api/videos',
     //     method: 'POST',
@@ -181,7 +186,8 @@ class VideoForm extends React.Component {
                 </label>
                 <div className="new-form-submit-container">
                   {/* <input type="button" className="new-form-submit" value="Submit"/> */}
-                  <button className="new-form-submit">Submit</button>
+                  <button className={this.state.loading === false ? "new-form-submit uploading" : "hide"}>Submit</button>
+                  <button className={this.state.loading === true ? "new-form-submit uploading" : "hide"}>Uploading</button>
                 </div>
               </div>
             

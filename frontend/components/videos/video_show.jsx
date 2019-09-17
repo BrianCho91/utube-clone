@@ -11,7 +11,7 @@ class VideoShow extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      likedCount: null
+      liked: this.props.currStateLike
     }
 
     this.shuffleVideos = this.shuffleVideos.bind(this)
@@ -27,8 +27,17 @@ class VideoShow extends React.Component {
     this.props.fetchVideos('');
   }
 
-  componentDidUpdate() {
-
+  componentDidUpdate(prevProps) {
+    // if (this.props.currentUser) {
+    //   if (this.props.currentUser.likedVideos !== prevProp.currentUser.likedVideos) {
+    //     this.setState({ liked: this.props.currentUser.likedVideos })
+    //   }
+    // }
+    // this.state.liked === prevState.liked
+    // this.state.liked !== prevState.liked
+    // if(prevProps.currStateLike !== this.props.currStateLike) {
+    //   this.setState({liked: this.props.currStateLike});
+    // }
   }
 
   shuffleVideos(videos) {
@@ -52,6 +61,9 @@ class VideoShow extends React.Component {
     let currentUser = this.props.currentUser
     that.video = this.props.video
     let currLike = currentUser.likedVideos.find(video => video.likeable_id === that.video.id)
+    console.log(currLike)
+    // let currLike = this.props.currLike
+    
 
     // if (currLike === true) { 
     //   highlightedThumbsup("hightlighted")
@@ -59,7 +71,10 @@ class VideoShow extends React.Component {
   
     // if (currentUser.likedVideos.find(video => video.likeable_id === video.id)) {
     if (currentUser) {
+      debugger
       if (currLike !== undefined) {
+      // if (currLike.length > 0) {
+        // if (currLike) {
         if (currLike.liked === false) {
           console.log('update')
           this.props.updateLike({
@@ -67,13 +82,17 @@ class VideoShow extends React.Component {
             liked: true,
             likeable_id: that.video.id,
             likeable_type: "Video"
-          })
+          }).then(() => {
+            that.props.fetchVideo(that.video.id);
+          }) 
           // if (currLike === true) {
           //   highlightedThumbsup("highlighted")
           // }
         } else {
           console.log('remove')
-          this.props.deleteLike(currLike.id)
+          this.props.deleteLike(currLike.id).then(() => {
+            that.props.fetchVideo(that.video.id);
+          }) 
         }
       } else {
         console.log('create')
@@ -82,10 +101,13 @@ class VideoShow extends React.Component {
           liked: true,
           likeable_id: that.video.id,
           likeable_type: "Video"
-        })
+        }).then(() => {
+          that.props.fetchVideo(that.video.id);
+        }) 
       }
     }
   }
+// }
 
   videoUnlikeClickHandler() {
     // debugger

@@ -7,6 +7,7 @@ import NestedCommentsIndex from './nested_comments_index'
 import NestedCommentItemContainer from './nested_comment_item_container'
 import CreateCommentFormContainer from './create_comment_form_container'
 import EditCommentFormContainer from './edit_comment_form_container';
+import NestedCommentFormContainer from './nested_comment_form_container';
 // import EditCommentFormComponent from './EditCommentFormComponent';
 
 class CommentIndexItem extends React.Component {
@@ -214,7 +215,7 @@ class CommentIndexItem extends React.Component {
 
   let comment = this.props.comment
 
-  if (!this.props.comment.parent_comment) {
+  if (!this.props.comment.parent_comment_id) {
     // debugger
   return(
     <div className="comments-index-item-container">
@@ -260,10 +261,12 @@ class CommentIndexItem extends React.Component {
           <p className="comment-reply-form-text" onClick={this.replyClickHandler}>REPLY</p>
         </div>
         <div className={this.replyClickToggle()}>
-          <CreateCommentFormContainer video={this.props.video} comment={this.props.comment} parent_comment={this.props.comment}/>
+          <NestedCommentFormContainer video={this.props.video} comment={this.props.comment} parent_comment={this.props.comment}/>
         </div>
         <div className="comments-item-replies">
-          <p className="view-replies-text" onClick={this.viewReplyClickHandler}>View replies</p>        
+          <p className="view-replies-text" onClick={this.viewReplyClickHandler}>
+            {this.props.comment.child_comments.length > 0 ? "View replies" : ""}
+          </p>        
         <div className={this.viewReplyClickToggle()}>
           {comments}
         </div>

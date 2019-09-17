@@ -28,7 +28,7 @@ class SearchVideoIndexItem extends React.Component {
         <div className="search-index-item-container">
           {/* {noResults()} */}
           <Link to={`/watch/${this.props.video.id}`} >
-            <img className="search-show-thumbnails" src={`https://img.youtube.com/vi/${this.props.video.test_url}/hqdefault.jpg`} />
+            <img className="search-show-thumbnails" src={this.props.video.photoUrl ? this.props.video.photoUrl : `https://img.youtube.com/vi/${this.props.video.test_url}/hqdefault.jpg`} />
           </Link>
           {/* {console.log(this.props.video.test_url)} */}
           <div className="search-index-video-description">

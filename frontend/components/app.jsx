@@ -14,7 +14,7 @@ import VideoFormContainer from './videos/video_form_container';
 import VideoFormDetails from './videos/video_form_details';
 import SearchVideoIndexContainer from './searchbar/search_video_index_container'
 import ChannelContainer from './channel/channel_container'
-import EditVideoForm from './videos/edit_video_form';
+import EditVideoFormContainer from './videos/edit_video_form_container';
 
 class App extends React.Component {
   constructor(props) {
@@ -71,7 +71,7 @@ class App extends React.Component {
           <Route path='/' component={HeaderContainer} />
         </Switch>
         <UploadRoute exact path="/upload" component={VideoFormContainer} />   
-        <UploadRoute exact path='/upload/edit/:videoId' component={EditVideoForm} />   
+        <UploadRoute exact path='/upload/edit/:videoId' component={EditVideoFormContainer} />   
         {/* <UploadRoute exact path="/upload/details" component={VideoUpdateDetailsContainer} />  */}
         {/* <UploadRoute exact path="/upload/details" component={VideoFormDetails} /> 
         <Route exact path="/watch/:videoId" component={VideoShowContainer} />    */}

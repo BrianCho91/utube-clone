@@ -5,37 +5,6 @@ import React from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCloudUploadAlt } from '@fortawesome/free-solid-svg-icons'
 
-
-const mapStateToProps = (state, ownProps) => {
-  // debugger
-  // let video = ownProps.video;
-  // let currentUserId = state.session.id;
-  // debugger 
-  // let parent_comment = ownProps.
-  // let comment = ownProps.comment
-  let videoId = ownProps.match.params.videoId;
-  let video = state.entities.videos[videoId]
-  // debugger
-  let currentUser = state.session.id
-  // let video = { title: '', description: '' }
-  return({
-    video,
-    currentUser
-  });
-}
-    // formType: "Create Comment",
-    // currentUser: state.entities.users[currentUserId],
-    // video)
-
-
-const mapDispatchToProps = dispatch => {
-  // debugger
-  return({
-    action: (formData, videoId) => dispatch(updateVideo(formData, videoId)),
-    fetchVideo: video => dispatch(fetchVideo(video))
-  })
-};
-
 class EditVideoForm extends React.Component {
     constructor(props) {
       super(props);
@@ -47,6 +16,7 @@ class EditVideoForm extends React.Component {
         videoUrl: null,
         thumbnail: null,
         photoUrl: null,
+        loading: false,
       }
       this.update = this.update.bind(this);
       this.handleSubmit = this.handleSubmit.bind(this)
@@ -99,6 +69,8 @@ class EditVideoForm extends React.Component {
   }
 
   handleSubmit(e) {
+    let that = this;
+    this.setState({ loading: true })
     // debugger
     e.preventDefault();
     const formData = new FormData();
@@ -110,7 +82,10 @@ class EditVideoForm extends React.Component {
       // formData.append('video[videoUrl]', this.state.videoFile);
       // formData.append('video[photoUrl]', this.state.thumbnail);
     }
-    this.props.action(formData, this.props.video.id)
+    this.props.action(formData, this.props.video.id).then(() => {
+      that.setState({ loading: false })
+    })
+  }
     // $.ajax({
     //     url: '/api/videos',
     //     method: 'POST',
@@ -123,7 +98,6 @@ class EditVideoForm extends React.Component {
     //       console.log(response.responseJSON)
     //     }
     //   );
-    }
     
     
 
@@ -190,7 +164,8 @@ class EditVideoForm extends React.Component {
               </label>
               <div className="new-form-submit-container">
                 {/* <input type="button" className="new-form-submit" value="Submit"/> */}
-                <button className="new-form-submit">Submit</button>
+                <button className={this.state.loading === false ? "new-form-submit" : "hide"}>Submit</button>
+                <button className={this.state.loading === true ? "new-form-submit disabled" : "hide"}>Uploading</button>
               </div>
             </div>
           
@@ -216,4 +191,4 @@ class EditVideoForm extends React.Component {
   }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(EditVideoForm)
+export default EditVideoForm;
