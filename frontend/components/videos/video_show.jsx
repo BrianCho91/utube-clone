@@ -24,21 +24,36 @@ class VideoShow extends React.Component {
   componentDidMount() {
     let videoId = this.props.match.params.videoId;
     this.props.fetchVideo(videoId);
+    // this.props.fetchVideos('');
     this.props.fetchVideos('');
   }
 
-  componentDidUpdate(prevProps) {
-    // if (this.props.currentUser) {
-    //   if (this.props.currentUser.likedVideos !== prevProp.currentUser.likedVideos) {
-    //     this.setState({ liked: this.props.currentUser.likedVideos })
-    //   }
-    // }
-    // this.state.liked === prevState.liked
-    // this.state.liked !== prevState.liked
-    // if(prevProps.currStateLike !== this.props.currStateLike) {
-    //   this.setState({liked: this.props.currStateLike});
-    // }
-  }
+
+  // componentDidUpdate() {
+
+  // }
+
+  // shouldComponentUpdate(nextProps, nextState) {
+  //   return (this.props.comments !== nextProps.comments)
+  // }
+
+  // shouldComponentUpdate(nextProps, nextState) {
+  //   // this.props.video === this.props.video
+  // }
+
+
+  // componentDidUpdate(prevProps) {
+  //   // if (this.props.currentUser) {
+  //   //   if (this.props.currentUser.likedVideos !== prevProp.currentUser.likedVideos) {
+  //   //     this.setState({ liked: this.props.currentUser.likedVideos })
+  //   //   }
+  //   // }
+  //   // this.state.liked === prevState.liked
+  //   // this.state.liked !== prevState.liked
+  //   // if(prevProps.currStateLike !== this.props.currStateLike) {
+  //   //   this.setState({liked: this.props.currStateLike});
+  //   // }
+  // }
 
   shuffleVideos(videos) {
     for (let i = videos.length - 1; i > 0; i--) {
@@ -193,7 +208,7 @@ class VideoShow extends React.Component {
     let videos = this.props.videos;
     let shuffledVids = this.shuffleVideos(videos).map(video => {
       return (
-        <VideoIndexItem video={video} key={video.id} indexPage={false} />
+        <VideoIndexItem video={video} key={video.id} indexPage={false} fetchVideos={this.props.fetchVideos} videos={videos}/>
       )
     })
 // debugger
@@ -271,7 +286,7 @@ class VideoShow extends React.Component {
               {/* <CommentsIndexContainer video={video} /> */}
               <div className="comment-form-container">
                 <div className="comment-count-container">
-                  <p className="comment-counter">{video.comments.length} {video.comments.length > 1 ? "comments" : "comment"}</p>
+                  {/* <p className="comment-counter">{video.comments.length} {video.comments.length > 1 ? "comments" : "comment"}</p> */}
                   <div className="comment-sort-container"></div>
                 </div>
                 {/* <div className="comment-form-container-items-container">

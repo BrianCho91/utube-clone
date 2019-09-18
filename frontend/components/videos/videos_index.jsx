@@ -17,6 +17,16 @@ class VideoIndex extends React.Component {
     this.props.fetchVideos('')
   }
 
+  // shouldComponentUpdate(nextProps, nextState) {
+  //   return (this.props.video !== nextProps.video)
+  // }
+
+  // shouldComponentUpdate(nextProps, nextState) {
+  //   if (this.props.videos !== nextProps.video) {
+  //     // this.props.fetchVideos('')
+  //   }
+  // }
+
   menuClickHandler() {
     const menu = document.getElementById('faBars')
     menu.addEventListener('click', () => {
@@ -34,11 +44,14 @@ class VideoIndex extends React.Component {
   }
 
   renderShuffledOnClick() {
-    // debugger;
+    debugger;
     const homeButtons = document.getElementById('home-buttons');
-    homeButtons.addEventListener('click', () => {
-      return true
-    });
+
+    if (homeButtons) {
+      homeButtons.addEventListener('click', () => {
+        console.log('clicked')
+      });
+    }
   }
 
   renderVideos() {
@@ -58,14 +71,40 @@ class VideoIndex extends React.Component {
 
 
   render() {
-      let videos = this.props.videos;
-      let shuffledVideos = this.shuffleVideos(videos).slice(0,10)
-      shuffledVideos = shuffledVideos.map(video => {
-      // let shuffledVideos = this.shuffleVideos(videos.slice(0,10)).map(video => {
-        return (
-          <VideoIndexItem video={video} key={video.id} indexPage={true} />
-        )
-      })
+    let videos = this.props.videos;
+
+    const homeButtons = document.getElementById('home-buttons');
+    if (homeButtons) {
+      homeButtons.addEventListener('click', () => {
+        // console.log('clicked')
+        // let videos = this.props.videos;
+        let shuffledVideos = this.shuffleVideos(videos).slice(0,10)
+        shuffledVideos = shuffledVideos.map(video => {
+        // let shuffledVideos = this.shuffleVideos(videos.slice(0,10)).map(video => {
+          return (
+            <VideoIndexItem video={video} key={video.id} indexPage={true} />
+          )
+        })
+
+      });
+    } 
+      // let videos = this.props.videos;
+        let shuffledVideos = videos.slice(0,10)
+        shuffledVideos = shuffledVideos.map(video => {
+        // let shuffledVideos = this.shuffleVideos(videos.slice(0,10)).map(video => {
+          return (
+            <VideoIndexItem video={video} key={video.id} indexPage={true} />
+          )
+        })
+
+      // let videos = this.props.videos;
+      // let shuffledVideos = this.shuffleVideos(videos).slice(0,10)
+      // shuffledVideos = shuffledVideos.map(video => {
+      // // let shuffledVideos = this.shuffleVideos(videos.slice(0,10)).map(video => {
+      //   return (
+      //     <VideoIndexItem video={video} key={video.id} indexPage={true} />
+      //   )
+      // })
 
     return(
       <div className="index-main-page">

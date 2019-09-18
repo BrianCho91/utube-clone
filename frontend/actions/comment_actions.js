@@ -25,8 +25,8 @@ const receiveErrors = errors => ({
   errors
 });
 
-export const fetchComment = comment => dispatch => (
-  CommentApiUtil.fetchComment(comment)
+export const fetchComment = id => dispatch => (
+  CommentApiUtil.fetchComment(id)
     .then(comment => dispatch(receiveComment(comment)))
 );
 

@@ -13,6 +13,7 @@ class CommentsIndex extends React.Component {
 
   componentDidMount() {
     this.props.fetchComments()
+    // this.props.fetchComment(this.props.comment.id)
   }
 
   // renderComments() {
@@ -36,7 +37,7 @@ class CommentsIndex extends React.Component {
                   fetchComments={this.props.fetchComments}
                   fetchComment={this.props.fetchComment}
                   video={video} 
-                  comments={this.props.comments} 
+                  // comments={this.props.comments} 
                   comment={comment} 
                   updateComment={this.props.updateComment} 
                   deleteComment={this.props.deleteComment} 

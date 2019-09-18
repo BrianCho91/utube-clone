@@ -76,7 +76,7 @@ class App extends React.Component {
         {/* <UploadRoute exact path="/upload/details" component={VideoFormDetails} /> 
         <Route exact path="/watch/:videoId" component={VideoShowContainer} />    */}
         <Route exact path='/' component={Sidebar} />
-        <Route path='/results/search?query/:query' component={SearchVideoIndexContainer} />
+        <Route path='/results/search_query/:query' component={SearchVideoIndexContainer} />
         <Route exact path='/' component={VideoIndexContainer} />
         <UploadRoute path="/upload/details" component={VideoFormDetails} /> 
         <Route exact path="/watch/:videoId" component={VideoShowContainer} />   

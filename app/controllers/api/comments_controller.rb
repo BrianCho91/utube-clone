@@ -4,6 +4,11 @@ class Api::CommentsController < ApplicationController
     @comments = Comment.all
   end
 
+  def show
+    @comment = Comment.find(params[:id])
+    render :show
+  end
+
   def create
      
     @comment = Comment.new(comment_params)

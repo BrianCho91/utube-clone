@@ -17,7 +17,7 @@ class NestedCommentForm extends React.Component {
 
   handleSubmit(e) {
     e.preventDefault();
-    debugger;
+    // debugger;
     // this.props.action(this.state)
     this.props.action({
       body: this.state.body,

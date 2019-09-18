@@ -13,7 +13,7 @@ class NestedCommentItem extends React.Component {
   };
 
   componentDidMount() {
-    // this.props.fetchComments()
+    // this.props.fetchComment(this.props.comment)
   }
 
   findComment() {

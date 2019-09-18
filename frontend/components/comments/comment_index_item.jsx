@@ -29,8 +29,9 @@ class CommentIndexItem extends React.Component {
 
   componentDidMount() {
     // debugger
-    this.props.fetchComments(),
+    // this.props.fetchComments()
     this.props.fetchComment(this.props.comment.parent_comment_id)
+    // this.props.fetchComment(this.props.comment.id)
   }
 
   viewReplyClickHandler() {
@@ -206,9 +207,9 @@ class CommentIndexItem extends React.Component {
 
 
   render() {
-  let video = this.props.video
+  let video = this.props.video     
     // debugger;
-    debugger
+    // debugger
     
     let comments = this.props.comment.child_comments.map(comment => {
       if (comment) {

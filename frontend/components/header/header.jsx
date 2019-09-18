@@ -196,7 +196,7 @@ class Header extends React.Component {
   }
 
   searchClickHandler() {
-    this.props.history.push(`/results/search?query/${this.state.searchText}`)
+    this.props.history.push(`/results/search_query/${this.state.searchText}`)
     this.setState({
       searchText: ""
     });
@@ -241,9 +241,9 @@ class Header extends React.Component {
             <button>
               <FontAwesomeIcon className="faIcons" id="faBars" icon={faBars} onClick={this.sideDrawerClickHandler}/>
             </button>
-              <div className="uTube-icon">
+              <div id="home-buttons" className="uTube-icon">
                 <Link to={`/`} >
-                  <FontAwesomeIcon className="faYoutube" id="home-buttons" icon={faYoutube} />
+                  <FontAwesomeIcon className="faYoutube" icon={faYoutube} />
                   <span className="uTube-icon-letters">uTube</span>
                 </Link>
               </div>

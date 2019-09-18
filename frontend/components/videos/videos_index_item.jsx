@@ -8,6 +8,14 @@ class VideoIndexItem extends React.Component {
 
   };
 
+  // componentDidMount() {
+  //   // this.props.fetchVideos();
+  // }
+
+  // shouldComponentUpdate(nextProps, nextState) {
+  //   // if (this.props.video !== nextProps.video) return false
+  // }
+
   childOfVideosIndex() {
     if (this.props.indexPage) {
       return (
