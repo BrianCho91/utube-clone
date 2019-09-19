@@ -25,11 +25,13 @@ class ChannelIndex extends React.Component {
 
   render() {
 
-
+    
+    
     window.onscroll = this.stickyHeader
     let video = this.props.video
     let videos = this.props.videos
     let user = this.props.user
+    if (!user) return null
     
     let userVideos = this.props.videos.map(video => {
       if (video.author.id === user.id) {

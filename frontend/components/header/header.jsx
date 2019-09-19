@@ -37,7 +37,7 @@ class Header extends React.Component {
       let userMenuButton = document.getElementById('create-form-button')
       let videoFormButton = document.getElementById('user-menu-button')
       
-      let clickedInsideUserMenu;
+      let clickedInsideUserMenu
       let clickedInsideVideoMenu;
       let clickedInsideUserButton;
       let clickedInsideVideoButton;

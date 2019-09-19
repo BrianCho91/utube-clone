@@ -43,23 +43,32 @@ class NestedCommentForm extends React.Component {
   }
   
   render() {
+    if (this.props.currentUser) {
+      return(
+        <div className="nested-comment-form-item-container">
+          <form action="" className="comment-form-item" onSubmit={this.handleSubmit}>
+            <input type="text" 
+              className="comment-form-input"
+              onChange={this.handleInput('body')}
+              value={this.state.body}
+              placeholder={`Commenting publicly as ${this.props.currentUser.username}`}
+            />
+            <div className="comment-form-submit-container">
+              <button className="comment-form-submit">COMMENT</button>
+            </div>
+          </form>
+        </div>
+      )
+  } else {
     return(
-      <div className="nested-comment-form-item-container">
-        <form action="" className="comment-form-item" onSubmit={this.handleSubmit}>
-          <input type="text" 
-            className="comment-form-input"
-            onChange={this.handleInput('body')}
-            value={this.state.body}
-            placeholder={`Commenting publicly as ${this.props.currentUser.username}`}
-          />
-          <div className="comment-form-submit-container">
-            <button className="comment-form-submit">COMMENT</button>
-          </div>
-        </form>
+      <div className="comment-form-item-container-require-signin">
+        <p>Please&nbsp;
+          <Link to="/login/">sign in</Link>
+            &nbsp;to comment</p>
       </div>
     )
   }
-
+}
 }
 
 export default NestedCommentForm;

@@ -52,6 +52,17 @@ export const updateVideo = (formData, videoId) => {
   )
 }
 
+export const updateViews = (video) => {
+  // debugger
+  return(
+    $.ajax({
+      method: 'PATCH',
+      url: `api/videos/${video.id}`,
+      data: video
+    })
+  )
+}
+
 export const deleteVideo = id => {
   return(
     $.ajax({

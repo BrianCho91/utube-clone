@@ -38,8 +38,11 @@ class User < ApplicationRecord
   has_many :likes
   has_many :liked_videos, through: :likes
   has_many :liked_comments, through: :likes
+  has_many :subscriptions, foreign_key: :subscriber_id, class_name: :Subscription
+  has_many :channels, through: :subscription, source: :channels
 
   has_one_attached :photo
+  has_one_attached :banner
 
 
 

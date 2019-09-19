@@ -28,6 +28,17 @@ class VideoForm extends React.Component {
   //   this.setState({ title: e.currentTarget.value });
   // }
 
+  componentDidMount() {
+    
+    let dropdown = document.getElementById('dropdownMenu')
+    // debugger
+    if (dropdown) {
+      // dropdown.classList.toggle('video-form-dropdown-container')
+      // dropdown.classList.remove("video-form-dropdown-container")
+    dropdown.classList.add("hide")
+    }
+  }
+
   // handleFile(e) {
   //   debugger;
   //   const reader = new FileReader();

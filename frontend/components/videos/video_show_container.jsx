@@ -4,6 +4,7 @@ import React from "react";
 import { Link } from 'react-router-dom';
 import { fetchVideo, fetchVideos } from '../../actions/video_actions'
 import { createLike, updateLike, deleteLike } from '../../actions/like_actions'
+import { createSub, deleteSub } from '../../actions/subscription_actions';
 
 const mapStateToProps = (state, ownProps) => {
   // debugger
@@ -29,7 +30,9 @@ const mapDispatchToProps = dispatch => {
     fetchVideos: (query) => dispatch(fetchVideos(query)),
     createLike: like => dispatch(createLike(like)),
     updateLike: like => dispatch(updateLike(like)),
-    deleteLike: likeId => dispatch(deleteLike(likeId))
+    deleteLike: likeId => dispatch(deleteLike(likeId)),
+    createSub: sub => dispatch(createSub(sub)),
+    deleteSub: subId => dispatch(deleteSub(subId))
   })
 };
 

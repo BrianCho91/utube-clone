@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, withRouter } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPhotoVideo } from '@fortawesome/free-solid-svg-icons'
 
@@ -12,6 +12,10 @@ class VideoFormDropdown extends React.Component {
   // videoFormDropClass() {
   //   return this.props.show ? "videoFormDrop-show" : "videoFormDrop-hide"
   // }
+
+  componentDidUpdate() {
+
+  }
 
   render() {
     // {console.log("clicked")}
@@ -48,4 +52,4 @@ class VideoFormDropdown extends React.Component {
   }
 }
 
-export default VideoFormDropdown;
+export default withRouter(VideoFormDropdown);

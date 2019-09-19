@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, withRouter } from 'react-router-dom';
 import VideoIndexItem from './videos_index_item';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faUserCircle, faThumbsUp, faThumbsDown, faSpinner , pulse } from '@fortawesome/free-solid-svg-icons'
@@ -11,8 +11,10 @@ class VideoShow extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      liked: this.props.currStateLike
+      liked: this.props.currStateLike,
+      loaded: false
     }
+    this.shuffledVideos = null;
 
     this.shuffleVideos = this.shuffleVideos.bind(this)
     this.viewClickHandler = this.viewClickHandler.bind(this);
@@ -22,19 +24,31 @@ class VideoShow extends React.Component {
   };
 
   componentDidMount() {
+    // debugger
     let videoId = this.props.match.params.videoId;
     this.props.fetchVideo(videoId);
     // this.props.fetchVideos('');
     this.props.fetchVideos('');
+    // this.setState({loaded: true})
   }
 
 
-  // componentDidUpdate() {
+  componentDidUpdate(prevProps) {
+    // debugger
+    if (prevProps.video) {
+      debugger
+      if (prevProps.video.id !== this.props.video.id) {
+      // if (prevProps.video.id !== this.props.match.params.videoId && prevProps.video.id !== this.props.video.id) {
 
-  // }
+        this.props.fetchVideo(this.props.match.params.videoId)
+        this.shuffledVideos = this.shuffleVideos(this.props.videos)
+        // this.setState({loaded: true})
+      }
+    }
+  }
 
-  // shouldComponentUpdate(nextProps, nextState) {
-  //   return (this.props.comments !== nextProps.comments)
+  // shouldComponentUpdate(nextProps) {
+  //   return (this.props.currentUser.likedVideos !== nextProps.currentUser.likedVideos)
   // }
 
   // shouldComponentUpdate(nextProps, nextState) {
@@ -74,8 +88,9 @@ class VideoShow extends React.Component {
     // debugger
     let that = this
     let currentUser = this.props.currentUser
-    that.video = this.props.video
-    let currLike = currentUser.likedVideos.find(video => video.likeable_id === that.video.id)
+    this.video = this.props.video
+    // let currLike = currentUser.likedVideos.find(video => video.likeable_id === that.video.id)
+    let currLike = this.props.video.likes.find(like => like.user_id === this.props.currentUser.id)
     console.log(currLike)
     // let currLike = this.props.currLike
     
@@ -95,10 +110,10 @@ class VideoShow extends React.Component {
           this.props.updateLike({
             id: currLike.id,
             liked: true,
-            likeable_id: that.video.id,
+            likeable_id: that.props.video.id,
             likeable_type: "Video"
           }).then(() => {
-            that.props.fetchVideo(that.video.id);
+            that.props.fetchVideo(that.props.video.id);
           }) 
           // if (currLike === true) {
           //   highlightedThumbsup("highlighted")
@@ -106,7 +121,7 @@ class VideoShow extends React.Component {
         } else {
           console.log('remove')
           this.props.deleteLike(currLike.id).then(() => {
-            that.props.fetchVideo(that.video.id);
+            that.props.fetchVideo(that.props.video.id);
           }) 
         }
       } else {
@@ -114,10 +129,10 @@ class VideoShow extends React.Component {
         this.props.createLike({
           id: currentUser.id,
           liked: true,
-          likeable_id: that.video.id,
+          likeable_id: that.props.video.id,
           likeable_type: "Video"
         }).then(() => {
-          that.props.fetchVideo(that.video.id);
+          that.props.fetchVideo(that.props.video.id);
         }) 
       }
     }
@@ -128,8 +143,12 @@ class VideoShow extends React.Component {
     // debugger
     let that = this
     let currentUser = this.props.currentUser
-    that.video = this.props.video
-    let currLike = currentUser.likedVideos.find(video => video.likeable_id === that.video.id)
+    this.video = this.props.video
+    // let currLike = currentUser.likedVideos.find(video => video.likeable_id === that.video.id)
+    let currLike = this.props.video.likes.find(like => like.user_id === this.props.currentUser.id)
+    console.log(currLike)
+    // let currLike = this.props.currLike
+    
 
     // if (currentUser.likedVideos.find(video => video.likeable_id === video.id)) {
     if (currentUser) {
@@ -141,10 +160,14 @@ class VideoShow extends React.Component {
             liked: false,
             likeable_id: that.video.id,
             likeable_type: "Video"
+          }).then(() => {
+            that.props.fetchVideo(that.props.video.id);
           })
         } else {
           console.log('remove')
-          this.props.deleteLike(currLike.id)
+          this.props.deleteLike(currLike.id).then(() => {
+            that.props.fetchVideo(that.props.video.id);
+          }) 
         }
       } else {
         console.log('create')
@@ -153,7 +176,9 @@ class VideoShow extends React.Component {
           liked: false,
           likeable_id: that.video.id,
           likeable_type: "Video"
-        })
+        }).then(() => {
+          that.props.fetchVideo(that.props.video.id);
+        }) 
       }
     }
   }
@@ -203,26 +228,46 @@ class VideoShow extends React.Component {
     }
   }
 
+  // subscribe() {
+  //   let currentUser = this.props.currentUser;
+
+  //   let currSub = this.props.video.
+  //   }
+  // }
+
   render() {
     // debugger
-    let videos = this.props.videos;
-    let shuffledVids = this.shuffleVideos(videos).map(video => {
-      return (
-        <VideoIndexItem video={video} key={video.id} indexPage={false} fetchVideos={this.props.fetchVideos} videos={videos}/>
-      )
-    })
-// debugger
     let video = this.props.video;
-    let currentUser = this.props.currentUser;
-
     if (!video) return null
+    let videos = this.props.videos
+    // if (!this.state.loaded) {
+    //   videos = (this.shuffleVideos(videos))
+    // }
+
+    videos = videos.map(video => {
+      return( 
+      <VideoIndexItem video={video} key={video.id} indexPage={false} fetchVideos={this.props.fetchVideos} videos={videos}/>
+      )
+    });
+    let shuffledVideos;
+    // let shuffledVids = this.shuffleVideos(videos).map(video => {
+    if (this.shuffledVideos) {
+      shuffledVideos = this.shuffledVideos.map(video=> {
+        return (
+          <VideoIndexItem video={video} key={video.id} indexPage={false} fetchVideos={this.props.fetchVideos} videos={videos}/>
+        )
+      })
+    }
+// debugger
+
+    let currentUser = this.props.currentUser;
     // debugger
     return (
       <div className="video-show-index">
         <div className="video-container">
           <div className="video-clip-container" onClick={this.viewClickHandler}>
             {video ? video.videoUrl ? 
-              <video className="video-preview" width="100%" controls>
+              <video className="video-preview" width="100%" height="auto" controls>
                 <source
                   src={video.videoUrl}
                   type="video/mp4" />
@@ -286,7 +331,7 @@ class VideoShow extends React.Component {
               {/* <CommentsIndexContainer video={video} /> */}
               <div className="comment-form-container">
                 <div className="comment-count-container">
-                  {/* <p className="comment-counter">{video.comments.length} {video.comments.length > 1 ? "comments" : "comment"}</p> */}
+                  <p className="comment-counter">{video.comments.length} {video.comments.length > 1 ? "comments" : "comment"}</p>
                   <div className="comment-sort-container"></div>
                 </div>
                 {/* <div className="comment-form-container-items-container">
@@ -344,7 +389,8 @@ class VideoShow extends React.Component {
         <div className="next-video-index-container">
           <div className="next-video-container">
             <p>Recommended</p><br/>
-            {shuffledVids}
+            {/* {shuffledVids} */}
+            {shuffledVideos ? shuffledVideos : videos}
             <div className="next-video-thumbnail">
             </div>
           </div>
@@ -361,4 +407,4 @@ class VideoShow extends React.Component {
   
 }
 
-export default VideoShow;
+export default (VideoShow);

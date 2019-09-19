@@ -19,6 +19,7 @@ class CommentIndexItem extends React.Component {
       commentFormOpen: false,
       body: this.props.comment.body
     }
+
     this.viewReplyClickHandler = this.viewReplyClickHandler.bind(this);
     this.replyClickHandler = this.replyClickHandler.bind(this);
     this.handleDelete = this.handleDelete.bind(this);
@@ -30,7 +31,9 @@ class CommentIndexItem extends React.Component {
   componentDidMount() {
     // debugger
     // this.props.fetchComments()
+    if (this.props.comment.parent_comment_id) {
     this.props.fetchComment(this.props.comment.parent_comment_id)
+    }
     // this.props.fetchComment(this.props.comment.id)
   }
 
@@ -92,6 +95,10 @@ class CommentIndexItem extends React.Component {
   }
 
   handleDelete() {
+    let that = this;
+    this.props.comment.child_comments.forEach(comment => {
+      that.props.deleteComment(comment.id)
+    })
     this.props.deleteComment(this.props.comment.id)
   }
 
@@ -131,9 +138,10 @@ class CommentIndexItem extends React.Component {
     // debugger
     let that = this
     let currentUser = this.props.currentUser
-    that.comment = this.props.comment
-    let currLike = currentUser.likedComments.find(comment => comment.likeable_id === that.comment.id)
-  
+    this.comment = this.props.comment
+    // let currLike = currentUser.likedComments.find(comment => comment.likeable_id === that.comment.id)
+      let currLike = this.props.comment.likes.find(comment => comment.user_id === this.props.currentUser.id)
+
     // if (currentUser.likedVideos.find(video => video.likeable_id === video.id)) {
     if (currentUser) {
       if (currLike !== undefined) {
@@ -144,10 +152,14 @@ class CommentIndexItem extends React.Component {
             liked: true,
             likeable_id: that.comment.id,
             likeable_type: "Comment"
-          })
+          }).then(() => {
+            that.props.fetchComment(that.props.comment.id)
+          }) 
         } else {
           console.log('remove')
-          this.props.deleteLike(currLike.id)
+          this.props.deleteLike(currLike.id).then(() => {
+            that.props.fetchComment(that.props.comment.id)
+          }) 
         }
       } else {
         console.log('create')
@@ -156,7 +168,9 @@ class CommentIndexItem extends React.Component {
           liked: true,
           likeable_id: that.comment.id,
           likeable_type: "Comment"
-        })
+        }).then(() => {
+          that.props.fetchComment(that.props.comment.id)
+        }) 
       }
     }
     // this.setState({
@@ -169,7 +183,9 @@ class CommentIndexItem extends React.Component {
     let that = this
     let currentUser = this.props.currentUser
     that.comment = this.props.comment
-    let currLike = currentUser.likedComments.find(comment => comment.likeable_id === that.comment.id)
+    // let currLike = currentUser.likedComments.find(comment => comment.likeable_id === that.comment.id)
+    let currLike = this.props.comment.likes.find(comment => comment.user_id === this.props.currentUser.id)
+
 
     // if (currentUser.likedVideos.find(video => video.likeable_id === video.id)) {
     if (currentUser) { 
@@ -181,10 +197,14 @@ class CommentIndexItem extends React.Component {
             liked: false,
             likeable_id: that.comment.id,
             likeable_type: "Comment"
-          })
+          }).then(() => {
+            that.props.fetchComment(that.props.comment.id)
+          }) 
         } else {
           console.log('remove')
-          this.props.deleteLike(currLike.id)
+          this.props.deleteLike(currLike.id).then(() => {
+            that.props.fetchComment(that.props.comment.id)
+          }) 
         }
       } else {
         console.log('create')
@@ -193,7 +213,9 @@ class CommentIndexItem extends React.Component {
           liked: false,
           likeable_id: that.comment.id,
           likeable_type: "Comment"
-        })
+        }).then(() => {
+          that.props.fetchComment(that.props.comment.id)
+        }) 
       }
     }
     // this.setState({
@@ -202,6 +224,7 @@ class CommentIndexItem extends React.Component {
   }
 
   likedCounter() {
+    // debugger;
     return this.props.comment.likes.filter(like => like.liked === true).length
   }
 

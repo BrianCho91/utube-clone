@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
 import CommentsIndex from './comments_index';
-import { fetchComments, deleteComments } from '../../actions/comment_actions';
+import { fetchComment, fetchComments, deleteComment } from '../../actions/comment_actions';
 import NestedCommentItem from './nested_comment_item'
 
 const mapStateToProps = (state, ownProps) => {
@@ -27,7 +27,8 @@ const mapStateToProps = (state, ownProps) => {
 const mapDispatchToProps = dispatch => {
   return({
     fetchComments: () => dispatch(fetchComments()),
-    deleteComments: (id) => dispatch(deleteComments(id)),
+    fetchComment: (id) => dispatch(fetchComment(id)),
+    deleteComment: (id) => dispatch(deleteComment(id)),
   })
 };
 

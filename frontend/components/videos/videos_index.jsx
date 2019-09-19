@@ -76,7 +76,7 @@ class VideoIndex extends React.Component {
     const homeButtons = document.getElementById('home-buttons');
     if (homeButtons) {
       homeButtons.addEventListener('click', () => {
-        // console.log('clicked')
+        console.log('clicked')
         // let videos = this.props.videos;
         let shuffledVideos = this.shuffleVideos(videos).slice(0,10)
         shuffledVideos = shuffledVideos.map(video => {
@@ -89,7 +89,7 @@ class VideoIndex extends React.Component {
       });
     } 
       // let videos = this.props.videos;
-        let shuffledVideos = videos.slice(0,10)
+        let shuffledVideos = this.shuffleVideos(videos).slice(0,10)
         shuffledVideos = shuffledVideos.map(video => {
         // let shuffledVideos = this.shuffleVideos(videos.slice(0,10)).map(video => {
           return (
