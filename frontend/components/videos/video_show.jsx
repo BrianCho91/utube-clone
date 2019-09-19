@@ -12,7 +12,8 @@ class VideoShow extends React.Component {
     super(props);
     this.state = {
       liked: this.props.currStateLike,
-      loaded: false
+      loaded: false,
+      subbed: false
     }
     this.shuffledVideos = null;
 
@@ -21,6 +22,9 @@ class VideoShow extends React.Component {
     this.videoLikeClickHandler = this.videoLikeClickHandler.bind(this);
     this.videoUnlikeClickHandler = this.videoUnlikeClickHandler.bind(this);
     this.highlightedThumbsup = this.highlightedThumbsup.bind(this);
+    this.subscribeHandler = this.subscribeHandler.bind(this);
+    this.subOrEditButton = this.subOrEditButton.bind(this)
+    this.subscriberText = this.subscriberText.bind(this)
   };
 
   componentDidMount() {
@@ -36,7 +40,7 @@ class VideoShow extends React.Component {
   componentDidUpdate(prevProps) {
     // debugger
     if (prevProps.video) {
-      debugger
+      // debugger
       if (prevProps.video.id !== this.props.video.id) {
       // if (prevProps.video.id !== this.props.match.params.videoId && prevProps.video.id !== this.props.video.id) {
 
@@ -44,6 +48,9 @@ class VideoShow extends React.Component {
         this.shuffledVideos = this.shuffleVideos(this.props.videos)
         // this.setState({loaded: true})
       }
+    }
+    if (prevProps.currentUser !== this.props.currentUser) {
+      // this.props.fetchVideo(this.props.match.params.videoId)
     }
   }
 
@@ -202,17 +209,60 @@ class VideoShow extends React.Component {
     // }
   }
 
+
+  subscribeHandler() {
+    let that = this;
+    let currentUser = this.props.currentUser;
+    
+    let currSub = this.props.video.author
+// debugger
+    if (currentUser) {
+      let matchingSub = this.props.currentUser.subscriptions.find(sub => sub.subscribee_id === currSub.id)
+      if (!matchingSub) {
+        this.props.createSub({ subscribee_id: currSub.id})
+          .then(that.setState({ subbed: true }))
+          .then(() => {
+            that.props.fetchUser(that.props.currentUser.id);
+          }) 
+      } else {
+        this.props.deleteSub(matchingSub.id)
+          .then(that.setState({ subbed: false }))
+          .then(() => {
+            that.props.fetchUser(that.props.currentUser.id);
+          }) 
+      }
+    }
+  }
+
+  subscriberText() {
+    // debugger
+    let currentUser = this.props.currentUser;
+
+    let currSub = this.props.video.author
+
+    if (currentUser) {
+      let matchingSub = this.props.currentUser.subscriptions.find(sub =>  sub.subscribee_id === currSub.id )
+
+      if (!matchingSub) {
+        return <button className="sub-btn" onClick={this.subscribeHandler} >SUBSCRIBE</button>
+      } else {
+        return <button className="sub-btn" onClick={this.subscribeHandler} >UNSUBSCRIBE</button>
+      }
+    }
+  }
+
   subOrEditButton() {
     let video = this.props.video;
     let currentUser = this.props.currentUser;
-
+// debugger
     if (this.props.currentUser) {
       return (
         <div>
         <div className={video.author.id === currentUser.id ? "hide" : "show-video-subscribe" }>
-          {/* <div className="comment-form-submit-container"> */}
-            <button className="sub-btn">SUBSCRIBE</button>
+          {this.subscriberText()}
           {/* </div> */}
+          {/* <div className="comment-form-submit-container"> */}
+            {/* <button className="sub-btn" onClick={this.subscribeHandler} >SUBSCRIBE</button> */}
           </div>
           <div className={video.author.id === currentUser.id ? "show-video-subscribe" : "hide" }>
             <Link to={video ? `/upload/edit/${video.id}` : ""} video={video}> 
@@ -223,17 +273,10 @@ class VideoShow extends React.Component {
       ) 
     } else {
       return <div className="show-video-subscribe">
-        <button className="sub-btn">SUBSCRIBE</button>
+        <button className="sub-btn" onClick={this.subscribeHandler} >SUBSCRIBE</button>
       </div>
     }
   }
-
-  // subscribe() {
-  //   let currentUser = this.props.currentUser;
-
-  //   let currSub = this.props.video.
-  //   }
-  // }
 
   render() {
     // debugger

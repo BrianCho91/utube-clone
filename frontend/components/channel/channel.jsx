@@ -30,6 +30,7 @@ class Channel extends React.Component {
   //     banner.classList.remove('sticky')
   //   }
   // }
+
   
   render() {
     // debugger
@@ -46,7 +47,7 @@ class Channel extends React.Component {
 // debugger
     return(
       <div className="channel-main">
-        <ChannelIndex videos={this.props.videos} user={this.props.user}/>
+        <ChannelIndex videos={this.props.videos} fetchUser={this.props.fetchUser} user={this.props.user} currentUser={this.props.currentUser} createSub={this.props.createSub} deleteSub={this.props.deleteSub} />
        
         { // {userVideos}
           /* <div className="header-image">

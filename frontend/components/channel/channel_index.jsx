@@ -9,6 +9,8 @@ import VideoIndexItem from '../videos/videos_index_item';
 class ChannelIndex extends React.Component {
   constructor(props) {
     super(props);
+    this.subscriberText = this.subscriberText.bind(this);
+    this.subscribeHandler = this.subscribeHandler.bind(this);
 
   };
 
@@ -19,6 +21,49 @@ class ChannelIndex extends React.Component {
       banner.classList.add('sticky');
     } else {
       banner.classList.remove('sticky')
+    }
+  }
+
+  subscribeHandler() {
+    let that = this;
+    // debugger
+    let currentUser = this.props.currentUser;
+    
+    if (currentUser) {
+    let currSub = this.props.user
+      let matchingSub = this.props.currentUser.subscriptions.find(sub => sub.subscribee_id === currSub.id)
+      if (!matchingSub) {
+        this.props.createSub({ subscribee_id: currSub.id })
+          .then(that.setState({ subbed: true }))
+          .then(() => {
+            that.props.fetchUser(that.props.currentUser.id);
+            that.props.fetchUser(that.props.user.id);
+          })
+      } else {
+        this.props.deleteSub(matchingSub.id)
+          .then(that.setState({ subbed: false }))
+          .then(() => {
+            that.props.fetchUser(that.props.user.id);
+            that.props.fetchUser(that.props.currentUser.id);
+          })
+      }
+    }
+  }
+
+  subscriberText() {
+    // debugger
+    let currentUser = this.props.currentUser;
+      if (currentUser) {
+
+      let currSub = this.props.user
+
+      let matchingSub = this.props.currentUser.subscriptions.find(sub => sub.subscribee_id === currSub.id)
+
+      if (!matchingSub) {
+        return <button className="sub-btn" onClick={this.subscribeHandler} >SUBSCRIBE</button>
+      } else {
+        return <button className="sub-btn" onClick={this.subscribeHandler} >UNSUBSCRIBE</button>
+      }
     }
   }
 
@@ -55,11 +100,15 @@ class ChannelIndex extends React.Component {
               </div>
               <div className="banner-description">
                 <p className="banner-artist">{user ? user.username: ""}</p>
-                <p className="banner-sub-count">subscribers count</p>
+                <p className="banner-sub-count">
+                  {user ? user.subscribers.length : "" } {user.subscribers.length <=1 ? "subscriber" : "subscribers"}
+                </p>
               </div>
             </div>
             <div className="banner-sub-container">
-              <div className="banner-sub-btn">SUB BUTTON</div>
+              <div className="banner-sub-btn">
+                {this.subscriberText()}
+              </div>
             </div>
           </div>
         </div>
