@@ -310,7 +310,7 @@ class VideoShow extends React.Component {
         <div className="video-container">
           <div className="video-clip-container" onClick={this.viewClickHandler}>
             {video.videoUrl ? 
-              <video key={video.videoUrl} className="video-preview" width="100%" height="auto" controls>
+              <video key={video.videoUrl} className="video-clip" width="100%" height="auto" controls>
                 <source
                   src={video.videoUrl}
                   type="video/mp4" />
