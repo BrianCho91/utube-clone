@@ -203,11 +203,15 @@ class Header extends React.Component {
   }
 
   signupLoginLink() {
+    // debugger
     if (this.props.currentUser) {
       return (
         <div id="user-menu-button" className="user-profile-icon" >
           {this.userMenuToggle()}
           <FontAwesomeIcon className="faIcons" icon={faUserCircle} onClick={this.userMenuClickHandler}/>
+          <div>
+            {this.props.currentUser.photo}
+          </div>
         </div>
       )
     } else {

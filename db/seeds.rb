@@ -6,7 +6,7 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
-ActiveRecord::Base.transaction do
+# ActiveRecord::Base.transaction do
 
   require 'open-uri'
 
@@ -17,7 +17,7 @@ ActiveRecord::Base.transaction do
   User.connection.execute('ALTER SEQUENCE users_id_seq RESTART WITH 1')
   brian = User.create(username: "Brian Cho", email: "briancho@gmail.com", password: "123123")
     pic1 = open("https://utube-seed.s3-us-west-1.amazonaws.com/user_pics/gt3.jpeg")
-    brian.photo.attach(io: pic1, filename: "pic1.jpg")
+    brian.photo.attach(io: pic1, filename: "pic1.jpeg")
     banner1 = open("https://utube-seed.s3-us-west-1.amazonaws.com/user_pics/coding.jpg")
     brian.banner.attach(io: banner1, filename: "banner1.jpg")
   jason = User.create(username: "Jason", email: "jason@gmail.com", password: "123123")
@@ -164,4 +164,4 @@ ActiveRecord::Base.transaction do
   comment1 = Comment.create(body: "This is my first comment. Hopefully it works!", user_id: brian.id, video_id: video3.id)
   comment2 = Comment.create(body: "This is my first nested comment. Hopefully it works!", user_id: brian.id, video_id: video3.id, parent_comment_id: comment1.id)
   
-end
+# end
