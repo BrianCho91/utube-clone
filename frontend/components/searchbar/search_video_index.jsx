@@ -38,6 +38,7 @@ class SearchVideoIndex extends React.Component {
   
   render() {
     // debugger
+    if (!this.props.videos) return null
     let videos;
     // let noResults = this.props.videos.length < 1 ? true : false;
 

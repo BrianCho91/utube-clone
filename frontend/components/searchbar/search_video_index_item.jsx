@@ -56,6 +56,7 @@ class SearchVideoIndexItem extends React.Component {
   render() {
     // debugger
     let video = this.props.video
+    if (!video) return null;
 // debugger
     
     

@@ -41,9 +41,9 @@ class VideoShow extends React.Component {
     // debugger
     if (prevProps.video) {
       // debugger
-      if (prevProps.video.id !== this.props.video.id) {
+      if (prevProps.video.id != this.props.match.params.videoId) {
       // if (prevProps.video.id !== this.props.match.params.videoId && prevProps.video.id !== this.props.video.id) {
-
+// debugger
         this.props.fetchVideo(this.props.match.params.videoId)
         this.shuffledVideos = this.shuffleVideos(this.props.videos)
         // this.setState({loaded: true})
@@ -309,18 +309,20 @@ class VideoShow extends React.Component {
       <div className="video-show-index">
         <div className="video-container">
           <div className="video-clip-container" onClick={this.viewClickHandler}>
-            {video ? video.videoUrl ? 
-              <video className="video-preview" width="100%" height="auto" controls>
+            {video.videoUrl ? 
+              <video key={video.videoUrl} className="video-preview" width="100%" height="auto" controls>
                 <source
                   src={video.videoUrl}
                   type="video/mp4" />
-              </video> : <iframe width="100%" height="100%"
-                src={`https://www.youtube.com/embed/${video.test_url}`} 
-                frameBorder="0" allow="accelerometer; 
-                autoplay; encrypted-media; gyroscope; picture-in-picture
-                allowFullScreen" >
-              </iframe> 
-            : ""}
+              </video> : "" }
+              
+            {/* //   <iframe width="100%" height="100%" */}
+            {/* //     src={`https://www.youtube.com/embed/${video.test_url}`} 
+            //     frameBorder="0" allow="accelerometer; 
+            //     autoplay; encrypted-media; gyroscope; picture-in-picture
+            //     allowFullScreen" >
+            //   </iframe> 
+            // : ""} */}
           </div>
           <div className="video-description-container">
             <p className="show-video-clip-title">{video ? video.title : "" }</p>
