@@ -318,8 +318,12 @@ class VideoShow extends React.Component {
     }
 // debugger
 // debugger
-let currLike = this.props.video.likes.find(like => like.user_id === this.props.currentUser.id && like.liked === true)
-let currDislike = this.props.video.likes.find(like => like.user_id === this.props.currentUser.id && like.liked === false)
+let currLike;
+let currDislike;
+if (this.props.currentUser) {
+  currLike = this.props.video.likes.find(like => like.user_id === this.props.currentUser.id && like.liked === true)
+  currDislike = this.props.video.likes.find(like => like.user_id === this.props.currentUser.id && like.liked === false)
+}
 
     let currentUser = this.props.currentUser;
     // debugger
