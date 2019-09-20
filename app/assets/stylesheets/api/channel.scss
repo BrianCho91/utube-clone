@@ -6,20 +6,25 @@
   width: 100vw;
   // height: 100vw;
   height: 100%;
-  border: 1x yellow dotted;
+  // border: 1x yellow dotted;
 }
 
 .header-image {
   position: relative;
   // top: 60px;
   width: 100vw;
-  height: 150px;
+  height: 250px;
   // border: 1px blue dotted;
+}
+
+.banner-picture {
+  object-fit: cover;
+  height: 250px;
 }
 
 .header-banner {
   display: flex;
-  // position: relative;
+  position: relative;
   flex-direction: column;
   align-items: center;
   // top: 0px;
@@ -34,10 +39,10 @@
 .sticky {
   display: flex;
   position: fixed;
-  top: 60px;
-  width: 100vw;
-  height: 120px;
-  z-index: 1000;
+  // top: 60px;
+  // width: 100vw;
+  // height: 120px;
+  // z-index: 1000;
   // background-color: aqua
   // border: red 1px dotted;
 }
@@ -121,4 +126,41 @@
 
 .channel-main-text {
   padding-bottom: 30px;
+}
+
+.user-icon {
+  border-radius: 50%;
+  height: 50px;
+  width: 50px;
+  z-index: 1000;
+}
+
+.user-icon-header {
+  border-radius: 50%;
+  height: 40px;
+  width: 40px;
+  z-index: 1000;
+}
+
+.user-icon-video-show {
+  margin-top: 10px;
+  border-radius: 50%;
+  height: 50px;
+  width: 50px;
+  z-index: 1000;
+}
+
+.user-icon-drop-menu {
+  margin-top: 10px;
+  border-radius: 50%;
+  height: 50px;
+  width: 50px;
+  z-index: 1000;
+}
+
+.user-icon-channel {
+  border-radius: 50%;
+  height: 75px;
+  width: 75px;
+  z-index: 1000;
 }

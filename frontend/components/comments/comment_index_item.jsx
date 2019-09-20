@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faUserCircle, faThumbsUp, faThumbsDown } from '@fortawesome/free-solid-svg-icons'
+import { faUserCircle, faThumbsUp, faThumbsDown, faTrashAlt } from '@fortawesome/free-solid-svg-icons'
 import commentsErrorsReducer from '../../reducers/comments/comments_errors_reducer';
 import NestedCommentsIndex from './nested_comments_index'
 import NestedCommentItemContainer from './nested_comment_item_container'
@@ -110,7 +110,7 @@ class CommentIndexItem extends React.Component {
               {/* {this.renderUpdateForm()} */}
               {/* <EditCommentFormContainer comment={this.props.comment} video={this.props.video} currentUser={this.props.currentUser}/> */}
               <div className="delete-toggle-btn" onClick={this.handleDelete}>
-                delete
+                <FontAwesomeIcon className={`trash-faIcons`} id="trash" icon={faTrashAlt} />
               </div>
             </div>
         )
@@ -252,7 +252,9 @@ class CommentIndexItem extends React.Component {
     <div className="comments-index-item-container">
       <div className="comments-index-item-icon-container">
         <Link to={`/channel/${this.props.comment.author.id}`} className="comment-author-icon">
-          <FontAwesomeIcon className="comment-author-faIcons" icon={faUserCircle} />
+          {/* <FontAwesomeIcon className="comment-author-faIcons" icon={faUserCircle} /> */}
+          <img className="user-icon" src={this.props.comment ? this.props.comment.author.photo : "" } alt=""/>
+
         </Link>
       </div>
       <div className="comments-index-item-body-container">
@@ -261,7 +263,7 @@ class CommentIndexItem extends React.Component {
             <Link to={`/channel/${this.props.comment.author.id}`}>
               <p className="comments-item-name">{this.props.comment.author.username}</p>
             </Link>
-            <p className="comments-item-time">hours ago</p>
+            <p className="comments-item-time">{this.props.comment.publishedAgo} ago</p>
           </div>
 
             {this.renderEdits()}

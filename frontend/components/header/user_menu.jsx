@@ -14,12 +14,15 @@ class UserMenu extends React.Component {
   // }
 
   render() {
+    if (!this.props.user) return nullr
 
     return(
       <div id="user-menu" className="user-menu-container">
         <div className="user-details-container">
           <div className="user-menu-user-pic">
-            <FontAwesomeIcon className="faIcons" id="faUserCircle" icon={faUserCircle}/>
+            {/* <FontAwesomeIcon className="faIcons" id="faUserCircle" icon={faUserCircle}/> */}
+            {/* <img className="user-icon" src={user ? user.photo : "" } alt=""/> */}
+          <img className="user-icon-drop-menu" src={this.props.user ? this.props.user.photo : "" } alt=""/>
           </div>
           <div className="user-details">
             <p id="username">

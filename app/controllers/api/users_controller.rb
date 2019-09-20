@@ -1,3 +1,5 @@
+require 'open-uri'
+
 class Api::UsersController < ApplicationController
 
   def show
@@ -6,9 +8,9 @@ class Api::UsersController < ApplicationController
 
   def create
     @user = User.new(user_params)
-    pic1 = open("https://utube-seed.s3-us-west-1.amazonaws.com/user_pics/user-circle-solid.svg")
+    pic1 = open("https://utube-seed.s3-us-west-1.amazonaws.com/user_pics/user-circle-solid.jpg")
     banner1 = open("https://utube-seed.s3-us-west-1.amazonaws.com/user_pics/welcome.jpeg")
-    @user.photo.attach(io: pic1, filename: "pic1.svg")
+    @user.photo.attach(io: pic1, filename: "pic1.jpeg")
     @user.banner.attach(io: banner1, filename: "banner1.jpeg")
 
     if @user.save

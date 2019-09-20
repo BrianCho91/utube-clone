@@ -77,8 +77,10 @@ class CreateCommentForm extends React.Component {
         )
       }
     }
+
   
   render() {
+    // if (!this.props.currentUser) return null;
     return(
       <div>
       {/* // <div className="comment-form-container">
@@ -97,9 +99,11 @@ class CreateCommentForm extends React.Component {
 
         <div className="comment-form-container-items-container">
           <div className="comment-form-icon-container">
-            <Link to={`/channel/""}`} className="comment-author-icon">
-              <FontAwesomeIcon className="comment-author-faIcons" icon={faUserCircle} />
-            </Link>
+            {/* <Link to={`/channel/${this.props.currentUser.id}`} className="comment-author-icon"> */}
+              {!this.props.currentUser ? <FontAwesomeIcon className="comment-author-faIcons" icon={faUserCircle} /> : ""}
+              <img className="user-icon" src={this.props.currentUser ? this.props.currentUser.photo : "" } alt=""/>
+
+            {/* </Link> */}
           </div>
           {this.renderCommentForm()}
           </div>

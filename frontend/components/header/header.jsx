@@ -169,6 +169,7 @@ class Header extends React.Component {
   };
 
   userMenuClickHandler() {
+    // console.log('hi2')
     this.setState((prevState) => {
       return {
         userMenuOpen: !prevState.userMenuOpen,
@@ -178,6 +179,7 @@ class Header extends React.Component {
   };
 
   userMenuToggle() {
+    // console.log('hi')
     let userMenu;
     if (this.state.userMenuOpen) {
       return userMenu = <UserMenu
@@ -205,13 +207,15 @@ class Header extends React.Component {
   signupLoginLink() {
     // debugger
     if (this.props.currentUser) {
+      // debugger
       return (
-        <div id="user-menu-button" className="user-profile-icon" >
+        <div id="user-menu-button" className="user-profile-icon">
           {this.userMenuToggle()}
-          <FontAwesomeIcon className="faIcons" icon={faUserCircle} onClick={this.userMenuClickHandler}/>
-          <div>
-            {this.props.currentUser.photo}
-          </div>
+          {/* <FontAwesomeIcon className="faIcons" icon={faUserCircle} onClick={this.userMenuClickHandler}/> */}
+          {/* <div> */}
+          <img className="user-icon-header" src={this.props.currentUser ? this.props.currentUser.photo : "" } onClick={this.userMenuClickHandler} alt=""/>
+            {/* {this.props.currentUser.photo} */}
+          {/* </div> */}
         </div>
       )
     } else {

@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faUserCircle, faThumbsUp, faThumbsDown } from '@fortawesome/free-solid-svg-icons'
+import { faUserCircle, faThumbsUp, faThumbsDown, faTrashAlt } from '@fortawesome/free-solid-svg-icons'
 import commentsErrorsReducer from '../../reducers/comments/comments_errors_reducer';
 
 
@@ -139,7 +139,7 @@ class NestedCommentItem extends React.Component {
               {/* {this.renderUpdateForm()} */}
               {/* <EditCommentFormContainer comment={this.props.comment} video={this.props.video} currentUser={this.props.currentUser}/> */}
               <div className="delete-toggle-btn" onClick={this.handleDelete}>
-                delete
+                <FontAwesomeIcon className={`trash-faIcons`} id="likes-thumbsup" icon={faTrashAlt} />
               </div>
             </div>
         )
@@ -161,12 +161,13 @@ class NestedCommentItem extends React.Component {
         nestedComment = comment
       }
     })
-
+// debugger
   return(
     <div className="comments-index-item-container">
       <div className="comments-index-item-icon-container">
         <Link to={`/channel/${nestedComment ? nestedComment.author.id : ""}`} className="comment-author-icon">
-          <FontAwesomeIcon className="comment-author-faIcons" icon={faUserCircle} />
+              <img className="user-icon" src={nestedComment ? nestedComment.author.photo : "" } alt=""/>
+          {/* <FontAwesomeIcon className="comment-author-faIcons" icon={faUserCircle} /> */}
         </Link>
       </div>
       <div className="comments-index-item-body-container">
@@ -174,7 +175,7 @@ class NestedCommentItem extends React.Component {
 
         <div className="comments-item-name-container">
           <p className="comments-item-name">{nestedComment ? nestedComment.author.username : ""}</p>
-          <p className="comments-item-time">hours ago</p>
+          <p className="comments-item-time">{nestedComment ? nestedComment.publishedAgo : ""} ago</p>
         </div>
         {this.renderEdits()}
       </div>

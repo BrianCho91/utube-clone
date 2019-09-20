@@ -17,7 +17,7 @@ class ChannelIndex extends React.Component {
   stickyHeader() {
     let banner = document.getElementById('banner')
     let sticky = banner.offsetTop;
-    if (window.pageYOffset > sticky) {
+    if (window.pageYOffset >= sticky) {
       banner.classList.add('sticky');
     } else {
       banner.classList.remove('sticky')
@@ -88,14 +88,16 @@ class ChannelIndex extends React.Component {
     return(
       <div className="channel-main">
         <div className="header-image">
-
+          <img className="banner-picture" src={user ? user.banner : "" } alt=""/>
         </div>
         <div className="header-banner" id="banner">
           <div className="banner-body">
             <div className="banner-user-info">
               <div className="banner-icon-container">
                 <Link to={`/channel/${user ? user.id : ""}`} className="banner-icon">
-                    <FontAwesomeIcon className="banner-faIcons" icon={faUserCircle} />
+                  <img className="user-icon-channel" src={user ? user.photo : "" } alt=""/>
+
+                    {/* <FontAwesomeIcon className="banner-faIcons" icon={faUserCircle} /> */}
                 </Link>
               </div>
               <div className="banner-description">

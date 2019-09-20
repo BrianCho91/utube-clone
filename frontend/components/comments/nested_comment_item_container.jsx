@@ -9,7 +9,8 @@ const mapStateToProps = (state, ownProps) => {
   // if (state !== undefined ) {
   //   debugger
     let comments = Object.values(state.entities.comments);
-  // }
+    // let currentUserId = state.session.id;
+    // }
   // console.log(ownProps)
   // state.users.forEach(user => {
   //   if (user.id === this.props.)

@@ -225,3 +225,17 @@
   flex-direction: row;
   justify-content: space-between;
 }
+
+.trash-faIcons {
+  color: rgba(139, 139, 139, 0.2);   
+}
+
+.trash-faIcons:hover {
+  // color: white;
+  color: #707070;
+  cursor: pointer;
+}
+
+.comment-item-faIcons:hover {
+  cursor: pointer;
+}

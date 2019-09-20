@@ -33,7 +33,10 @@ class VideoShow extends React.Component {
     this.props.fetchVideo(videoId);
     // this.props.fetchVideos('');
     this.props.fetchVideos('');
+    // this.props.fetchUser(this.props.video.author.id)
     // this.setState({loaded: true})
+    // this.props.fetchUser(this.props.video.author.id)
+    window.scrollTo(0, 0);
   }
 
 
@@ -46,6 +49,8 @@ class VideoShow extends React.Component {
 // debugger
         this.props.fetchVideo(this.props.match.params.videoId)
         this.shuffledVideos = this.shuffleVideos(this.props.videos)
+    window.scrollTo(0, 0);
+
         // this.setState({loaded: true})
       }
     }
@@ -342,8 +347,9 @@ class VideoShow extends React.Component {
             </div>
             <div className="sub-views-description-container">
               <div className="show-video-icon-container">
-                <Link to={`/channel/${video ? video.id : ""}`} className="index-video-author-text">
-                  <FontAwesomeIcon className="video-show-faIcons" icon={faUserCircle} />
+                <Link to={`/channel/${video.author ? video.author.id : ""}`} className="index-video-author-text">
+                  {/* <FontAwesomeIcon className="video-show-faIcons" icon={faUserCircle} /> */}
+                  <img className="user-icon-video-show" src={this.props.video.author ? this.props.video.author.photo : "" } alt=""/>
                 </Link>
               </div>
               <div className="show-video-author-description-container">

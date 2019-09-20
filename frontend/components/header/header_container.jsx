@@ -3,10 +3,10 @@ import Header from './header';
 import { logout } from '../../actions/session_actions';
 
 const mapStateToProps = state => {
-  let currentUser = state.session.id
+  let currentUserId = state.session.id
   return({
-    currentUser: state.session.id,
-    user: state.entities.users[currentUser]
+    currentUser: state.entities.users[currentUserId],
+    user: state.entities.users[currentUserId]
   })
 };
 

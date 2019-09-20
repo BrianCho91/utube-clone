@@ -23,7 +23,7 @@
   jason = User.create(username: "Jason", email: "jason@gmail.com", password: "123123")
     pic2 = open("https://utube-seed.s3-us-west-1.amazonaws.com/user_pics/gokublack.jpg")
     jason.photo.attach(io: pic2, filename: "pic2.jpg")
-    banner2 = open("https://utube-seed.s3-us-west-1.amazonaws.com/user_pics/dimsum.jpg")
+    banner2 = open("https://utube-seed.s3-us-west-1.amazonaws.com/user_pics/dimsum2.jpg")
     jason.banner.attach(io: banner2, filename: "banner2.jpg")
   mary = User.create(username: "Mary", email: "mary@gmail.com", password: "123123")
     pic3 = open("https://utube-seed.s3-us-west-1.amazonaws.com/user_pics/Boba-Tea.jpg")
