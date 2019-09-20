@@ -58,7 +58,7 @@ export const updateViews = (video) => {
     $.ajax({
       method: 'PATCH',
       url: `api/videos/${video.id}`,
-      data: video
+      data: {video}
     })
   )
 }

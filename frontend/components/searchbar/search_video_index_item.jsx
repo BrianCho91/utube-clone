@@ -37,8 +37,8 @@ class SearchVideoIndexItem extends React.Component {
             </p>
             <div className="search-video-info">
               <Link to={`/channel/${this.props.video.author.id}`} className="search-video-author-text">{this.props.video.author.username}</Link>
-              • <p className="search-views-text">{this.props.video.views}</p>
-              • <p className="search-views-text">{this.props.video.created_at}</p>
+              • <p className="search-views-text">{this.props.video.views.toLocaleString()} views</p>
+              • <p className="search-views-text">{this.props.video.publishedAgo}</p>
             </div>
             <p className="search-video-description">{this.props.video.description}</p>
             {/* <div className="index-view-container">

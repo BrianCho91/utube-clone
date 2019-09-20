@@ -13,7 +13,8 @@ class VideoShow extends React.Component {
     this.state = {
       liked: this.props.currStateLike,
       loaded: false,
-      subbed: false
+      subbed: false,
+      clicked: false
     }
     this.shuffledVideos = null;
 
@@ -91,9 +92,18 @@ class VideoShow extends React.Component {
   }
 
   viewClickHandler() {
-    console.log("clicked")
-    // debugger;
-    this.props.video ? this.props.video.views += 1 : null
+    if (!this.state.clicked) {
+      // console.log("clicked")
+      // debugger;
+      // this.props.video ? this.props.video.views += 1 : null
+      this.props.updateViews({
+        id: this.props.video.id,
+        // title: this.props.video.title,
+        // description: this.props.video.description,
+        views: this.props.video.views + 1
+      })
+      this.setState({clicked: true})
+    }
   };
 
   videoLikeClickHandler() {
@@ -307,6 +317,9 @@ class VideoShow extends React.Component {
       })
     }
 // debugger
+// debugger
+let currLike = this.props.video.likes.find(like => like.user_id === this.props.currentUser.id && like.liked === true)
+let currDislike = this.props.video.likes.find(like => like.user_id === this.props.currentUser.id && like.liked === false)
 
     let currentUser = this.props.currentUser;
     // debugger
@@ -333,14 +346,14 @@ class VideoShow extends React.Component {
             <p className="show-video-clip-title">{video ? video.title : "" }</p>
             <div className="sub-title-descriptions-container">
               <div className="show-views-published-container">
-                <p className="shows-view-counter">{video ? video.views + " views" : ""}</p>
+                <p className="shows-view-counter">{video ? video.views.toLocaleString() + " views" : ""}</p>
                 • <p className="shows-video-published">{`Published on ${video ? video.published : ""}`}</p>
               </div>
               <div className="likes-view-counter-container">
                 <div className="likes-view-counter">
-                  <FontAwesomeIcon className={`likes-view-faIcons`} id="likes-thumbsup" icon={faThumbsUp} onClick={this.videoLikeClickHandler} />
+                  <FontAwesomeIcon className={currLike ? `likes-view-faIcons glow` : 'likes-view-faIcons'} id="likes-thumbsup" icon={faThumbsUp} onClick={this.videoLikeClickHandler} />
                   <p className="video-likes-counter">{video ? this.likedCounter() : ""}</p>
-                  <FontAwesomeIcon className="likes-view-faIcons" id="likes-thumbsdown" icon={faThumbsDown} onClick={this.videoUnlikeClickHandler}/>
+                  <FontAwesomeIcon className={currDislike ? "likes-view-faIcons glow" : "likes-view-faIcons"} id="likes-thumbsdown" icon={faThumbsDown} onClick={this.videoUnlikeClickHandler}/>
                   <p className="video-likes-counter">{video ? this.UnlikedCounter() : ""}</p>
                 </div>
               </div>
@@ -380,7 +393,7 @@ class VideoShow extends React.Component {
           {video ?
             <div className="comments-container">
               {/* <CommentsIndexContainer video={video} /> */}
-              <div className="comment-form-container">
+              {/* <div className="comment-form-container">
                 <div className="comment-count-container">
                   <p className="comment-counter">{video.comments.length} {video.comments.length > 1 ? "comments" : "comment"}</p>
                   <div className="comment-sort-container"></div>
@@ -398,11 +411,11 @@ class VideoShow extends React.Component {
 
 
 
-              <CreateCommentFormContainer video={video} /> 
+              {/* <CreateCommentFormContainer video={video} />  */}
                   {/* <CommentsIndexContainer video={video} /> */}
 
                 {/* </div> */}
-              </div>
+              {/* </div> */}
               <CommentsIndexContainer video={video} />
             </div>
           : ""}

@@ -3,17 +3,28 @@ import { Link } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faUserCircle } from '@fortawesome/free-solid-svg-icons'
 import CommentIndexItem from './comment_index_item';
+import CreateCommentFormContainer from '../comments/create_comment_form_container';
 
 class CommentsIndex extends React.Component {
   constructor(props) {
     super(props);
     // this.renderComments = this.renderComments.bind(this); 
-
+    this.state ={
+      commentsLength: this.props.comments.length
+    }
   };
 
   componentDidMount() {
     this.props.fetchComments()
     // this.props.fetchComment(this.props.comment.id)
+  }
+
+
+  componentDidUpdate(prevProps) {
+    // debugger
+    if (prevProps.comments.length !== this.props.comments.length) {
+      this.setState({ commentsLength: this.props.comments.length })
+    }
   }
 
   // renderComments() {
@@ -49,7 +60,30 @@ class CommentsIndex extends React.Component {
     })
       // debugger;
     return(
-      
+      <div>
+      <div className="comment-form-container">
+        <div className="comment-count-container">
+          <p className="comment-counter">{this.state.commentsLength ? this.state.commentsLength : ""} {video.comments.length > 1 ? "comments" : "comment"}</p>
+          <div className="comment-sort-container"></div>
+        </div>
+        {/* <div className="comment-form-container-items-container">
+          <div className="comment-form-icon-container">
+            <Link to={`/channel/""}`} className="comment-author-icon">
+              <FontAwesomeIcon className="comment-author-faIcons" icon={faUserCircle} />
+            </Link>
+          </div> */}
+
+
+
+
+
+
+
+      <CreateCommentFormContainer video={video} /> 
+          {/* <CommentsIndexContainer video={video} /> */}
+
+        {/* </div> */}
+      </div>
       <div className="comments-index-container">
         {comments}
         {/* <div className="comments-index-item-container">
@@ -68,6 +102,7 @@ class CommentsIndex extends React.Component {
             <div className="comments-item-replies"></div>
           </div>
         </div> */}
+      </div>
       </div>
     )
   }

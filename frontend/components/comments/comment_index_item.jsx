@@ -237,14 +237,17 @@ class CommentIndexItem extends React.Component {
     let comments = this.props.comment.child_comments.map(comment => {
       if (comment) {
       return ( 
-      <ul>
-        <NestedCommentItemContainer key={comment.id} comment={comment} />
-      </ul>
+        <ul>
+          <NestedCommentItemContainer key={comment.id} comment={comment} />
+        </ul>
       )
     }})
   // debugger;
 
   let comment = this.props.comment
+  let currLike = this.props.comment.likes.find(comment => comment.user_id === this.props.currentUser.id && comment.liked === true)
+  let currDislike = this.props.comment.likes.find(comment => comment.user_id === this.props.currentUser.id && comment.liked === false)
+  
 
   if (!this.props.comment.parent_comment_id) {
     // debugger
@@ -285,11 +288,11 @@ class CommentIndexItem extends React.Component {
         <p className="comments-item-body">{this.props.comment.body}</p>
         <div className="comments-item-likes">
           <span className="comment-thumb-up">
-            <FontAwesomeIcon className="comment-item-faIcons" icon={faThumbsUp} onClick={this.commentLikeClickHandler}/>
+            <FontAwesomeIcon className={currLike ? "comment-item-faIcons glow" : "comment-item-faIcons"} icon={faThumbsUp} onClick={this.commentLikeClickHandler}/>
           </span>
           <p className="comment-likes-count">{this.likedCounter()}</p>
           <span className="comment-thumb-down">
-            <FontAwesomeIcon className="comment-item-faIcons" icon={faThumbsDown} onClick={this.commentUnlikeClickHandler}/>
+            <FontAwesomeIcon className={currDislike ? "comment-item-faIcons glow" : "comment-item-faIcons"} icon={faThumbsDown} onClick={this.commentUnlikeClickHandler}/>
           </span>
           <p className="comment-reply-form-text" onClick={this.replyClickHandler}>REPLY</p>
         </div>

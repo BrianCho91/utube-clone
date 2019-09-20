@@ -2,7 +2,7 @@ import { connect } from 'react-redux';
 import VideoShow from './video_show';
 import React from "react";
 import { Link } from 'react-router-dom';
-import { fetchVideo, fetchVideos } from '../../actions/video_actions'
+import { fetchVideo, fetchVideos, updateViews } from '../../actions/video_actions'
 import { createLike, updateLike, deleteLike } from '../../actions/like_actions'
 import { createSub, deleteSub } from '../../actions/subscription_actions';
 import { fetchUser } from '../../actions/user_actions';
@@ -36,7 +36,8 @@ const mapDispatchToProps = dispatch => {
     deleteLike: likeId => dispatch(deleteLike(likeId)),
     createSub: sub => dispatch(createSub(sub)),
     deleteSub: subId => dispatch(deleteSub(subId)),
-    fetchUser: (id) => dispatch(fetchUser(id))
+    fetchUser: (id) => dispatch(fetchUser(id)),
+    updateViews: video => dispatch(updateViews(video))
   })
 };
 
