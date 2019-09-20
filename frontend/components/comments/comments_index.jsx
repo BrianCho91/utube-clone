@@ -10,20 +10,22 @@ class CommentsIndex extends React.Component {
     super(props);
     // this.renderComments = this.renderComments.bind(this); 
     this.state ={
-      commentsLength: this.props.comments.length
+      commentsLength: this.props.video.comments.length
     }
   };
 
   componentDidMount() {
     this.props.fetchComments()
+    // this.props.fetchVideo(this.props.video.id)
     // this.props.fetchComment(this.props.comment.id)
   }
 
 
-  componentDidUpdate(prevProps) {
-    // debugger
-    if (prevProps.comments.length !== this.props.comments.length) {
-      this.setState({ commentsLength: this.props.comments.length })
+  componentDidUpdate(prevProps, prevState) {    
+    if (prevProps.comments.length !== this.props.comments.length || prevProps.video.comments.length !== this.props.video.comments.length) {
+      this.props.fetchVideo(this.props.video.id)
+      // this.setState({ commentsLength: this.props.video.comments.length })
+      // this.props.fetchComments()
     }
   }
 
@@ -40,6 +42,7 @@ class CommentsIndex extends React.Component {
   
   render() {
       let video = this.props.video
+      if (!video) return null
 
       let comments = this.props.comments.reverse().map(comment => {
       if (this.props.video.id === comment.video_id) {
@@ -63,7 +66,7 @@ class CommentsIndex extends React.Component {
       <div>
       <div className="comment-form-container">
         <div className="comment-count-container">
-          <p className="comment-counter">{this.state.commentsLength ? this.state.commentsLength : ""} {video.comments.length > 1 ? "comments" : "comment"}</p>
+          <p className="comment-counter">{video.comments.length ? video.comments.length : 0} {video.comments.length > 1 ? "comments" : "comment"}</p>
           <div className="comment-sort-container"></div>
         </div>
         {/* <div className="comment-form-container-items-container">
