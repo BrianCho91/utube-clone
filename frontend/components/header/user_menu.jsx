@@ -35,12 +35,15 @@ class UserMenu extends React.Component {
         </div>
         <div className="user-menu-additional">
           <div className="user-menu-buttons">
-            <div className="channel-button">
-              <FontAwesomeIcon className="faUserMenuIcons" icon={faAddressCard}/>
-              <span id="user-menu-text">
-                Your channel
-              </span>
-            </div>
+              <Link to={`/channel/${this.props.user.id}`} >
+
+                <div className="channel-button">
+                  <FontAwesomeIcon className="faUserMenuIcons" icon={faAddressCard}/>
+                  <span id="user-menu-text">
+                    Your channel
+                  </span>
+                </div>
+              </Link>
             <div className="signout-button" onClick={this.props.logout}>
               <FontAwesomeIcon className="faUserMenuIcons" icon={faSignOutAlt}/>
               <span id="user-menu-text">
