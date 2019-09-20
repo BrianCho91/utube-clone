@@ -101,7 +101,7 @@ class CreateCommentForm extends React.Component {
           <div className="comment-form-icon-container">
             {/* <Link to={`/channel/${this.props.currentUser.id}`} className="comment-author-icon"> */}
               {!this.props.currentUser ? <FontAwesomeIcon className="comment-author-faIcons" icon={faUserCircle} /> : ""}
-              <img className="user-icon" src={this.props.currentUser ? this.props.currentUser.photo : "" } alt=""/>
+              <img className={this.props.currentUser ? "user-icon" : "hide" } src={this.props.currentUser ? this.props.currentUser.photo : "" } alt=""/>
 
             {/* </Link> */}
           </div>
