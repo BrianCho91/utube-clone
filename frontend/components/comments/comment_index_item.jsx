@@ -8,7 +8,7 @@ import NestedCommentItemContainer from './nested_comment_item_container'
 import CreateCommentFormContainer from './create_comment_form_container'
 import EditCommentFormContainer from './edit_comment_form_container';
 import NestedCommentFormContainer from './nested_comment_form_container';
-// import EditCommentFormComponent from './EditCommentFormComponent';
+
 
 class CommentIndexItem extends React.Component {
   constructor(props) {
