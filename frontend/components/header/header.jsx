@@ -281,10 +281,10 @@ class Header extends React.Component {
               <FontAwesomeIcon id="faIcons" className="faIcons" icon={faVideo} onClick={this.videoFormDropdownClickHandler} />
               {/* <i id="video_call" className="large material-icons">video_call</i> */}
             </div>
-            <div className="messages-icon">
-              <FontAwesomeIcon className="faIcons" icon={faEnvelope} />
+            {/* <div className="messages-icon">
+              <FontAwesomeIcon className="faIcons" icon={faEnvelope} /> */}
               {/* <i id="mail" className="large material-icons">mail</i> */}
-            </div>
+            {/* </div> */}
             {/* <div className="alerts-icon">
               <FontAwesomeIcon className="faIcons" icon={faBell} />
               
