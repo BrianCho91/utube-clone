@@ -230,6 +230,7 @@ class CommentIndexItem extends React.Component {
 
 
   render() {
+
   let video = this.props.video     
     // debugger;
     // debugger
@@ -245,9 +246,14 @@ class CommentIndexItem extends React.Component {
   // debugger;
 
   let comment = this.props.comment
-  let currLike = this.props.comment.likes.find(comment => comment.user_id === this.props.currentUser.id && comment.liked === true)
-  let currDislike = this.props.comment.likes.find(comment => comment.user_id === this.props.currentUser.id && comment.liked === false)
-  
+
+    let currLike = false;
+    let currDislike = false;
+
+  if (this.props.currentUser) {
+    currLike = this.props.comment.likes.find(comment => comment.user_id === this.props.currentUser.id && comment.liked === true)
+    currDislike = this.props.comment.likes.find(comment => comment.user_id === this.props.currentUser.id && comment.liked === false)
+  }
 
   if (!this.props.comment.parent_comment_id) {
     // debugger

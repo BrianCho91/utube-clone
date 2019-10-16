@@ -54,7 +54,7 @@ class NestedCommentItem extends React.Component {
           }).then(() => {
             that.props.fetchComment(that.props.comment.id)
           }) 
-        } else {
+        } else if (currLike.liked === true) {
           // console.log('remove')
           this.props.deleteLike(currLike.id).then(() => {
             that.props.fetchComment(that.props.comment.id)
@@ -99,7 +99,7 @@ class NestedCommentItem extends React.Component {
           }).then(() => {
             that.props.fetchComment(that.props.comment.id)
           }) 
-        } else {
+        } else if (currLike.liked === false) {
           // console.log('remove')
           this.props.deleteLike(currLike.id).then(() => {
             that.props.fetchComment(that.props.comment.id)
