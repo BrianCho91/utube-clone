@@ -185,7 +185,7 @@ class VideoShow extends React.Component {
           }).then(() => {
             that.props.fetchVideo(that.props.video.id);
           })
-        } else if (currLike.liked === true) {
+        } else if (currLike.liked === false) {
           // console.log('remove')
           this.props.deleteLike(currLike.id).then(() => {
             that.props.fetchVideo(that.props.video.id);
