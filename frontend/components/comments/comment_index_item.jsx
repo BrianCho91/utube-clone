@@ -8,7 +8,7 @@ import NestedCommentItemContainer from './nested_comment_item_container'
 import CreateCommentFormContainer from './create_comment_form_container'
 import EditCommentFormContainer from './edit_comment_form_container';
 import NestedCommentFormContainer from './nested_comment_form_container';
-// import EditCommentFormComponent from './EditCommentFormComponent';
+
 
 class CommentIndexItem extends React.Component {
   constructor(props) {
@@ -146,7 +146,7 @@ class CommentIndexItem extends React.Component {
     if (currentUser) {
       if (currLike !== undefined) {
         if (currLike.liked === false) {
-          console.log('update')
+          // console.log('update')
           this.props.updateLike({
             id: currLike.id,
             liked: true,
@@ -155,14 +155,14 @@ class CommentIndexItem extends React.Component {
           }).then(() => {
             that.props.fetchComment(that.props.comment.id)
           }) 
-        } else {
-          console.log('remove')
+        } else if (currLike.liked === true) {
+          // console.log('remove')
           this.props.deleteLike(currLike.id).then(() => {
             that.props.fetchComment(that.props.comment.id)
           }) 
         }
       } else {
-        console.log('create')
+        // console.log('create')
         this.props.createLike({
           id: currentUser.id,
           liked: true,
@@ -191,7 +191,7 @@ class CommentIndexItem extends React.Component {
     if (currentUser) { 
       if (currLike !== undefined) {
         if (currLike.liked === true) {
-          console.log('update')
+          // console.log('update')
           this.props.updateLike({
             id: currLike.id,
             liked: false,
@@ -200,14 +200,14 @@ class CommentIndexItem extends React.Component {
           }).then(() => {
             that.props.fetchComment(that.props.comment.id)
           }) 
-        } else {
-          console.log('remove')
+        } else if (currLike.liked === false) {
+          // console.log('remove')
           this.props.deleteLike(currLike.id).then(() => {
             that.props.fetchComment(that.props.comment.id)
           }) 
         }
       } else {
-        console.log('create')
+        // console.log('create')
         this.props.createLike({
           id: currentUser.id,
           liked: false,
@@ -230,6 +230,7 @@ class CommentIndexItem extends React.Component {
 
 
   render() {
+
   let video = this.props.video     
     // debugger;
     // debugger
@@ -245,9 +246,14 @@ class CommentIndexItem extends React.Component {
   // debugger;
 
   let comment = this.props.comment
-  let currLike = this.props.comment.likes.find(comment => comment.user_id === this.props.currentUser.id && comment.liked === true)
-  let currDislike = this.props.comment.likes.find(comment => comment.user_id === this.props.currentUser.id && comment.liked === false)
-  
+
+    let currLike = false;
+    let currDislike = false;
+
+  if (this.props.currentUser) {
+    currLike = this.props.comment.likes.find(comment => comment.user_id === this.props.currentUser.id && comment.liked === true)
+    currDislike = this.props.comment.likes.find(comment => comment.user_id === this.props.currentUser.id && comment.liked === false)
+  }
 
   if (!this.props.comment.parent_comment_id) {
     // debugger

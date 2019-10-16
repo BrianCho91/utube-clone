@@ -25,11 +25,11 @@ document.addEventListener("DOMContentLoaded", () => {
   const root = document.getElementById('root');
 
   ///////////// testing ///////////////
-  window.login = login;
-  window.signup = signup;
-  window.deleteComment = deleteComment;
-  window.getState = store.getState;
-  window.dispatch = store.dispatch;
+  // window.login = login;
+  // window.signup = signup;
+  // window.deleteComment = deleteComment;
+  // window.getState = store.getState;
+  // window.dispatch = store.dispatch;
   ///////////// testing ///////////////
   // ReactDOM.render(<h1>REACT DOWN!!</h1>, root);
 // debugger

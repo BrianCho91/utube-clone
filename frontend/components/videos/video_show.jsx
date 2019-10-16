@@ -113,7 +113,7 @@ class VideoShow extends React.Component {
     this.video = this.props.video
     // let currLike = currentUser.likedVideos.find(video => video.likeable_id === that.video.id)
     let currLike = this.props.video.likes.find(like => like.user_id === this.props.currentUser.id)
-    console.log(currLike)
+    // console.log(currLike)
     // let currLike = this.props.currLike
     
 
@@ -128,7 +128,7 @@ class VideoShow extends React.Component {
       // if (currLike.length > 0) {
         // if (currLike) {
         if (currLike.liked === false) {
-          console.log('update')
+          // console.log('update')
           this.props.updateLike({
             id: currLike.id,
             liked: true,
@@ -140,14 +140,14 @@ class VideoShow extends React.Component {
           // if (currLike === true) {
           //   highlightedThumbsup("highlighted")
           // }
-        } else {
-          console.log('remove')
+        } else if (currLike.liked === true) {
+          // console.log('remove')
           this.props.deleteLike(currLike.id).then(() => {
             that.props.fetchVideo(that.props.video.id);
           }) 
         }
       } else {
-        console.log('create')
+        // console.log('create')
         this.props.createLike({
           id: currentUser.id,
           liked: true,
@@ -168,7 +168,7 @@ class VideoShow extends React.Component {
     this.video = this.props.video
     // let currLike = currentUser.likedVideos.find(video => video.likeable_id === that.video.id)
     let currLike = this.props.video.likes.find(like => like.user_id === this.props.currentUser.id)
-    console.log(currLike)
+    // console.log(currLike)
     // let currLike = this.props.currLike
     
 
@@ -176,7 +176,7 @@ class VideoShow extends React.Component {
     if (currentUser) {
       if (currLike !== undefined) {
         if (currLike.liked === true) {
-          console.log('update')
+          // console.log('update')
           this.props.updateLike({
             id: currLike.id,
             liked: false,
@@ -185,14 +185,14 @@ class VideoShow extends React.Component {
           }).then(() => {
             that.props.fetchVideo(that.props.video.id);
           })
-        } else {
-          console.log('remove')
+        } else if (currLike.liked === false) {
+          // console.log('remove')
           this.props.deleteLike(currLike.id).then(() => {
             that.props.fetchVideo(that.props.video.id);
           }) 
         }
       } else {
-        console.log('create')
+        // console.log('create')
         this.props.createLike({
           id: currentUser.id,
           liked: false,

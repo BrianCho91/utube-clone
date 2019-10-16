@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link } from 'react-router-dom'; 
+import { Link } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faUserCircle } from '@fortawesome/free-solid-svg-icons'
 
@@ -26,12 +26,13 @@ class NestedCommentForm extends React.Component {
       parent_comment_id: this.props.comment.id
     })
     this.setState({
-      body: ""
+      body: "",
     })
+    // this.closeReply();
   };
 
   handleInput(type) {
-    return(e) => {
+    return (e) => {
       this.setState({
         [type]: e.target.value
       })
@@ -41,34 +42,41 @@ class NestedCommentForm extends React.Component {
   handleLightUpInput() {
 
   }
-  
+
+  // closeReply() {
+  //   // debugger
+  //   let openReply = document.getElementsByClassName('nested-comment-form')
+  //   openReply[0].className.toggle = "hide"
+  // }
+
   render() {
     if (this.props.currentUser) {
-      return(
-        <div className="nested-comment-form-item-container">
-          <form action="" className="comment-form-item" onSubmit={this.handleSubmit}>
-            <input type="text" 
-              className="comment-form-input"
-              onChange={this.handleInput('body')}
-              value={this.state.body}
-              placeholder={`Commenting publicly as ${this.props.currentUser.username}`}
-            />
-            <div className="comment-form-submit-container">
-              <button className="comment-form-submit">COMMENT</button>
-            </div>
-          </form>
-        </div>
-      )
-  } else {
-    return(
-      <div className="comment-form-item-container-require-signin">
-        <p>Please&nbsp;
+        return (
+          <div className="nested-comment-form-item-container">
+            <form action="" className="comment-form-item" onSubmit={this.handleSubmit}>
+              <input type="text"
+                className="comment-form-input"
+                onChange={this.handleInput('body')}
+                value={this.state.body}
+                placeholder={`Commenting publicly as ${this.props.currentUser.username}`}
+              />
+              <div className="comment-form-submit-container">
+                <button className="comment-form-submit">COMMENT</button>
+              </div>
+            </form>
+          </div>
+        )
+
+    } else {
+      return (
+        <div className="comment-form-item-container-require-signin">
+          <p>Please&nbsp;
           <Link to="/login/">sign in</Link>
             &nbsp;to comment</p>
-      </div>
-    )
+        </div>
+      )
+    }
   }
-}
 }
 
 export default NestedCommentForm;

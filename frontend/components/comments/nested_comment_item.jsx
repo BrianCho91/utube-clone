@@ -45,7 +45,7 @@ class NestedCommentItem extends React.Component {
     if (currentUser) {
       if (currLike !== undefined) {
         if (currLike.liked === false) {
-          console.log('update')
+          // console.log('update')
           this.props.updateLike({
             id: currLike.id,
             liked: true,
@@ -54,14 +54,14 @@ class NestedCommentItem extends React.Component {
           }).then(() => {
             that.props.fetchComment(that.props.comment.id)
           }) 
-        } else {
-          console.log('remove')
+        } else if (currLike.liked === true) {
+          // console.log('remove')
           this.props.deleteLike(currLike.id).then(() => {
             that.props.fetchComment(that.props.comment.id)
           }) 
         }
       } else {
-        console.log('create')
+        // console.log('create')
         this.props.createLike({
           id: currentUser.id,
           liked: true,
@@ -90,7 +90,7 @@ class NestedCommentItem extends React.Component {
     if (currentUser) { 
       if (currLike !== undefined) {
         if (currLike.liked === true) {
-          console.log('update')
+          // console.log('update')
           this.props.updateLike({
             id: currLike.id,
             liked: false,
@@ -99,14 +99,14 @@ class NestedCommentItem extends React.Component {
           }).then(() => {
             that.props.fetchComment(that.props.comment.id)
           }) 
-        } else {
-          console.log('remove')
+        } else if (currLike.liked === false) {
+          // console.log('remove')
           this.props.deleteLike(currLike.id).then(() => {
             that.props.fetchComment(that.props.comment.id)
           }) 
         }
       } else {
-        console.log('create')
+        // console.log('create')
         this.props.createLike({
           id: currentUser.id,
           liked: false,
