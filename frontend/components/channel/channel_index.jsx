@@ -80,7 +80,7 @@ class ChannelIndex extends React.Component {
     
     let userVideos = this.props.videos.map(video => {
       if (video.author.id === user.id) {
-        console.log(video)
+        // console.log(video)
         return <VideoIndexItem video={video} key={video.id} indexPage={true} /> }
     }) 
 // debugger
