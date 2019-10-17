@@ -1,24 +1,27 @@
-# README
+# uTube
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## Description
 
-Things you may want to cover:
+- Youtube inspired, video sharing web application
 
-* Ruby version
+## Link
 
-* System dependencies
+* [uTube](http://utube-fsp.herokuapp.com)
 
-* Configuration
+## User Authentication
 
-* Database creation
+* Utilizes Ruby on Rails backend with BCrypt for secure user authentication 
 
-* Database initialization
+![gif](https://media.giphy.com/media/SXZcPE6DtUoVUk2nSW/giphy.gif)
 
-* How to run the test suite
+## Video Uploading and Editing with Thumbnail Previews
 
-* Services (job queues, cache servers, search engines, etc.)
+* Users can upload, edit, and delete their videos through AJAX calls that connect to Ruby on Rails backend CRUD system
 
-* Deployment instructions
+![gif2](https://media.giphy.com/media/ckNvLtPycgwblzZOTD/giphy.gif)
 
-* ...
+## Video Uploading and Editing with Thumbnail Previews
+
+* Custom built commenting system with nested comments and likes
+
+![gif2](https://media.giphy.com/media/J4TrRMrUKB4A5PDsH7/giphy.gif)
