@@ -21,53 +21,12 @@ class Channel extends React.Component {
     // debugger
   }
 
-  // stickyHeader() {
-  //   let banner = document.getElementById('banner')
-  //   let sticky = banner.offsetTop;
-  //   if (window.pageYOffset > sticky) {
-  //     banner.classList.add('sticky');
-  //   } else {
-  //     banner.classList.remove('sticky')
-  //   }
-  // }
-
-  
   render() {
-    // debugger
-// debugger
-
-    // window.onscroll = this.stickyHeader
-
-    // let userVideos = this.props.videos.map(video => {
-    //   if (video.author.id === this.props.user.id) {
-    //     console.log(video)
-    //     return <ChannelIndex videos={this.props.videos} video={video} key={video.id} indexPage={true} /> }
-        // return <VideoIndexItem video={video} key={video.id} indexPage={true} /> }
-    // }) 
 // debugger
     return(
       <div className="channel-main">
         <ChannelIndex videos={this.props.videos} fetchUser={this.props.fetchUser} user={this.props.user} currentUser={this.props.currentUser} createSub={this.props.createSub} deleteSub={this.props.deleteSub} />
-       
-        { // {userVideos}
-          /* <div className="header-image">
-
-        </div>
-        <div className="header-banner" id="banner">
-          <div className="banner-body">
-            <div className="banner-icon-container">
-              
-            </div>
-          </div>
-        </div>
-
-        <div className="channel-main-body" id="body">
-          <div className="channel-main-body-container">
-            {userVideos}
-          </div>
-        </div> */}
       </div>
-      
 
     )
   }

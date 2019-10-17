@@ -7,7 +7,6 @@ import { fetchVideo } from '../../actions/video_actions';
 
 const mapStateToProps = (state, ownProps) => {
   // debugger;
-  // debugger
   let video = ownProps.video;
   let currentUserId = state.session.id;
   let comments;

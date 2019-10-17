@@ -7,9 +7,6 @@ import { createSub, deleteSub } from '../../actions/subscription_actions';
 
 const mapStateToProps = (state, ownProps) => {
   // debugger
-  // let searchbar = ownProps.searchbar ? true : false;
-  // let query = ownProps.searchBar ? "" : ownProps.match.params.query
-  // debugger
   let currentUserId = state.session.id;
   let currentUser = state.entities.users[currentUserId]
   let userId = ownProps.match.params.userId

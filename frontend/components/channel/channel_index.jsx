@@ -80,7 +80,6 @@ class ChannelIndex extends React.Component {
     
     let userVideos = this.props.videos.map(video => {
       if (video.author.id === user.id) {
-        // console.log(video)
         return <VideoIndexItem video={video} key={video.id} indexPage={true} /> }
     }) 
 // debugger
@@ -96,8 +95,6 @@ class ChannelIndex extends React.Component {
               <div className="banner-icon-container">
                 <Link to={`/channel/${user ? user.id : ""}`} className="banner-icon">
                   <img className="user-icon-channel" src={user ? user.photo : "" } alt=""/>
-
-                    {/* <FontAwesomeIcon className="banner-faIcons" icon={faUserCircle} /> */}
                 </Link>
               </div>
               <div className="banner-description">
@@ -120,7 +117,6 @@ class ChannelIndex extends React.Component {
             <p className="channel-main-text">Uploads</p>
             <div className="channel-main-video-container">
               {userVideos}
-              {/* <VideoIndexItem video={video} key={video.id} indexPage={true} /> */}
             </div>
           </div>
         </div>
