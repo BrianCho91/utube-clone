@@ -6,8 +6,6 @@ const mapStateToProps = (state, ownProps) => {
   let video = ownProps.video;
   let currentUserId = state.session.id;
   // debugger 
-  // let parent_comment = ownProps.
-  
   return({
     comment: { 
       body: ""
