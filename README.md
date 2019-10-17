@@ -20,8 +20,8 @@
 
 ![gif2](https://media.giphy.com/media/ckNvLtPycgwblzZOTD/giphy.gif)
 
-## Video Uploading and Editing with Thumbnail Previews
+## Custom built commenting system with nested comments and likes
 
-* Custom built commenting system with nested comments and likes
+* By fetching videos and the comments related through those comments through React state, we recursively fetch comments with parent IDs.
 
 ![gif2](https://media.giphy.com/media/J4TrRMrUKB4A5PDsH7/giphy.gif)
