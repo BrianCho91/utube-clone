@@ -4,29 +4,15 @@ import { fetchComment, fetchComments, deleteComment } from '../../actions/commen
 import NestedCommentItem from './nested_comment_item'
 
 const mapStateToProps = (state, ownProps) => {
-  // debugger;
-  // let comments;
-  // if (state !== undefined ) {
-  //   debugger
-    let comments = Object.values(state.entities.comments);
-    // let currentUserId = state.session.id;
-    // }
-  // console.log(ownProps)
-  // state.users.forEach(user => {
-  //   if (user.id === this.props.)
-  // })
 
-  // let commentAuthor = state.comments
-
-  return({
-    // currentUser: state.entities.users[currentUserId],
+  let comments = Object.values(state.entities.comments);
+  return ({
     comments
-    // video
   })
 };
 
 const mapDispatchToProps = dispatch => {
-  return({
+  return ({
     fetchComments: () => dispatch(fetchComments()),
     fetchComment: (id) => dispatch(fetchComment(id)),
     deleteComment: (id) => dispatch(deleteComment(id)),

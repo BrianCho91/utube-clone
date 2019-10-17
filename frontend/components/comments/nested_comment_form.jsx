@@ -8,8 +8,6 @@ class NestedCommentForm extends React.Component {
     super(props);
     this.state = {
       body: "",
-      // video_id: this.props.video.id,
-      // user_id: this.props.currentUser.id
     }
     this.handleSubmit = this.handleSubmit.bind(this);
   };
@@ -18,7 +16,6 @@ class NestedCommentForm extends React.Component {
   handleSubmit(e) {
     e.preventDefault();
     // debugger;
-    // this.props.action(this.state)
     this.props.action({
       body: this.state.body,
       video_id: this.props.video.id,
@@ -28,7 +25,6 @@ class NestedCommentForm extends React.Component {
     this.setState({
       body: "",
     })
-    // this.closeReply();
   };
 
   handleInput(type) {
@@ -51,21 +47,21 @@ class NestedCommentForm extends React.Component {
 
   render() {
     if (this.props.currentUser) {
-        return (
-          <div className="nested-comment-form-item-container">
-            <form action="" className="comment-form-item" onSubmit={this.handleSubmit}>
-              <input type="text"
-                className="comment-form-input"
-                onChange={this.handleInput('body')}
-                value={this.state.body}
-                placeholder={`Commenting publicly as ${this.props.currentUser.username}`}
-              />
-              <div className="comment-form-submit-container">
-                <button className="comment-form-submit">COMMENT</button>
-              </div>
-            </form>
-          </div>
-        )
+      return (
+        <div className="nested-comment-form-item-container">
+          <form action="" className="comment-form-item" onSubmit={this.handleSubmit}>
+            <input type="text"
+              className="comment-form-input"
+              onChange={this.handleInput('body')}
+              value={this.state.body}
+              placeholder={`Commenting publicly as ${this.props.currentUser.username}`}
+            />
+            <div className="comment-form-submit-container">
+              <button className="comment-form-submit">COMMENT</button>
+            </div>
+          </form>
+        </div>
+      )
 
     } else {
       return (

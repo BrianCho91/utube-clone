@@ -22,8 +22,8 @@ class Channel extends React.Component {
   }
 
   render() {
-// debugger
-    return(
+    // debugger
+    return (
       <div className="channel-main">
         <ChannelIndex videos={this.props.videos} fetchUser={this.props.fetchUser} user={this.props.user} currentUser={this.props.currentUser} createSub={this.props.createSub} deleteSub={this.props.deleteSub} />
       </div>

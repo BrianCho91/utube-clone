@@ -19,67 +19,31 @@ import EditVideoFormContainer from './videos/edit_video_form_container';
 class App extends React.Component {
   constructor(props) {
     super(props);
-      this.state = {
-        sideDrawerOpen: false
-      }
-    // this.state = { 
-    //   sideDrawerOpen: false
-    // }
-    // this.sideDrawerClickHandler = this.sideDrawerClickHandler.bind(this)
+    this.state = {
+      sideDrawerOpen: false
+    }
   }
-
-  // sideDrawerClickHandler() {
-  //   this.setState((prevState) => {
-  //   return {sideDrawerOpen: !prevState.sideDrawerOpen}
-  //   });
-  // }
-
-  // sideDrawerToggle() {
-  //   let sideDrawer;
-  //   // let modal;
-  //   console.log("toggled")
-  //   console.log(this.state.sideDrawerOpen)
-  //   if (this.state.sideDrawerOpen) {
-  //     return sideDrawer = <Route exact path='/' component={SideDrawer} 
-  //                           show={this.state.sideDrawerOpen} 
-  //                           sideDrawerClickHandler={this.sideDrawerClickHandler}
-  //                         />;
-    //   return sideDrawer = <SideDrawer
-    //   show={this.state.sideDrawerOpen} 
-    //   sideDrawerClickHandler={this.sideDrawerClickHandler}
-    // />;
-      // modal = <Modal show={this.state.sidebarOpen} />;
-  //   }
-  // }
 
   componentDidMount() {
     document.body.classList.add("background-black");
   }
 
   render() {
-    return(  
+    return (
       <div>
-        <Switch>       
+        <Switch>
           <AuthRoute path="/login" component={LoginFormContainer} />
-          <AuthRoute path="/signup" component={SignupFormContainer} />  
-          
-          {/* <Route exact path='/' component={Header} sideDrawerClickHandler={this.sideDrawerClickHandler}/> */}
-          {/* {this.sideDrawerToggle()} */}
-          
-          {/* <Route exact path="/videos/:videoId" component={VideoShowContainer} /> */}
-          <Route exact path="/test" component={TestComponent} />      
+          <AuthRoute path="/signup" component={SignupFormContainer} />
+          <Route exact path="/test" component={TestComponent} />
           <Route path='/' component={HeaderContainer} />
         </Switch>
-        <UploadRoute exact path="/upload" component={VideoFormContainer} />   
-        <UploadRoute exact path='/upload/edit/:videoId' component={EditVideoFormContainer} />   
-        {/* <UploadRoute exact path="/upload/details" component={VideoUpdateDetailsContainer} />  */}
-        {/* <UploadRoute exact path="/upload/details" component={VideoFormDetails} /> 
-        <Route exact path="/watch/:videoId" component={VideoShowContainer} />    */}
+        <UploadRoute exact path="/upload" component={VideoFormContainer} />
+        <UploadRoute exact path='/upload/edit/:videoId' component={EditVideoFormContainer} />
         <Route exact path='/' component={Sidebar} />
         <Route path='/results/search_query/:query' component={SearchVideoIndexContainer} />
         <Route exact path='/' component={VideoIndexContainer} />
-        <UploadRoute path="/upload/details" component={VideoFormDetails} /> 
-        <Route exact path="/watch/:videoId" component={VideoShowContainer} />   
+        <UploadRoute path="/upload/details" component={VideoFormDetails} />
+        <Route exact path="/watch/:videoId" component={VideoShowContainer} />
         <Route exact path='/channel/:userId' component={ChannelContainer} />
       </div>
     )

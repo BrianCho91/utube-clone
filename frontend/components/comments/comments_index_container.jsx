@@ -10,12 +10,12 @@ const mapStateToProps = (state, ownProps) => {
   let video = ownProps.video;
   let currentUserId = state.session.id;
   let comments;
-  if (state !== undefined ) {
+  if (state !== undefined) {
     comments = Object.values(state.entities.comments);
   }
   // debugger;
 
-  return({
+  return ({
     currentUser: state.entities.users[currentUserId],
     comments,
     video
@@ -23,7 +23,7 @@ const mapStateToProps = (state, ownProps) => {
 };
 
 const mapDispatchToProps = dispatch => {
-  return({
+  return ({
     fetchComment: comment => dispatch(fetchComment(comment)),
     fetchComments: () => dispatch(fetchComments()),
     deleteComment: id => dispatch(deleteComment(id)),

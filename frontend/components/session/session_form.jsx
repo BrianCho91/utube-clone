@@ -14,7 +14,6 @@ class SessionForm extends React.Component {
     this.setUsername = this.setUsername.bind(this);
     this.setPassword = this.setPassword.bind(this);
     this.toggleErrors = this.toggleErrors.bind(this);
-    // this.errorClickHandler = this.errorClickHandler.bind(this);
   };
 
   componentDidMount() {
@@ -33,8 +32,8 @@ class SessionForm extends React.Component {
 
   setUsername(demoUsername) {
     demoUsername = demoUsername || "Brian Cho".split('');
-    
-    setTimeout( () => {
+
+    setTimeout(() => {
       this.setState({
         username: this.state.username + demoUsername.shift()
       });
@@ -56,8 +55,8 @@ class SessionForm extends React.Component {
   }
 
   handleInput(type) {
-    return(e) => {
-      this.setState({ [type]: e.target.value})
+    return (e) => {
+      this.setState({ [type]: e.target.value })
     }
   }
 
@@ -89,45 +88,22 @@ class SessionForm extends React.Component {
       return (
         <label className="login-label">
           <p className="login-input-text">Email</p>
-          <input 
+          <input
             className="session-login-input"
-            type="text" 
-            onChange={this.handleInput('email')} 
+            type="text"
+            onChange={this.handleInput('email')}
             value={this.state.email}
-          /><br/>
+          /><br />
           {this.returnErrors("Email can't be blank")}
         </label>
       )
     }
   }
 
-  // returnErrors(type) {
-  //     if (this.props.errors.includes(type)) {
-  //       let errorIdx = this.props.errors.indexOf(type);
-  //       return <div className="error-messages">{this.props.errors[errorIdx]}</div>
-  //     }
-  // }
-
-  // returnErrors(type) {
-  //   if (this.props.errors.includes(type)) {
-  //     let errorIdx = this.props.errors.indexOf(type);
-  //     return <div className={ this.state.errors ? "hide" : "error-messages" }>{this.props.errors[errorIdx]}</div>
-  //   }
-  // }
-
   returnErrors(type) {
 
     if (this.props.errors.includes(type)) {
 
-    // let errors = document.getElementsByClassName('hide');
-    // if (errors) {
-    //   errors = Array.from(errors)
-    //   errors.forEach(error => {
-    //     error.classList.remove('hide')
-    //     error.classList.add('error-messages')
-    //   });
-    // };
-      
       let errorIdx = this.props.errors.indexOf(type);
       this.toggleErrors();
       return <div id="session-errors" className="error-messages" >{this.props.errors[errorIdx]}</div>
@@ -158,16 +134,6 @@ class SessionForm extends React.Component {
     };
   }
 
-  // toggleErrorOnClick() {
-  //   let errors = document.getElementsByClassName('error-messages');
-  //     errors = Array.from(errors)
-  //     errors.forEach(error => {
-  //       error.classList.add('error-messages')
-  //       error.classList.remove('hide')
-  //     })
-  // }
-
-  
   renderDemo() {
     if (this.props.formType === "login") {
       return <button className="login-submit" id="demo-button" onClick={this.demoClickHandler}> Demo </button>
@@ -180,7 +146,7 @@ class SessionForm extends React.Component {
         <div className="session-form-redirect" id="signup">
           <Link to="/signup"><p className="session-form-redirect-text">Create Account</p></Link>
         </div>
-        )
+      )
     } else {
       return (
         <div className="session-form-redirect" id="login">
@@ -191,7 +157,6 @@ class SessionForm extends React.Component {
   }
 
   render() {
-    // ! or&nbsp; {this.props.navLink}
     return (
       <div className="session-form-main">
         <div className="session-form-container">
@@ -201,42 +166,32 @@ class SessionForm extends React.Component {
             </Link>
             <h2 className="login-text">{this.formText()}</h2>
             <h3 className="login-subtext">to continue to uTube</h3>
-            <br/><br/>
+            <br /><br />
             <form className="login-form" onSubmit={this.handleSubmit}>
               <label className="login-label" id="username">
                 <p className="login-input-text">Username</p>
-                <input 
+                <input
                   className="session-login-input"
                   type="text"
-                  onChange={this.handleInput('username')} 
+                  onChange={this.handleInput('username')}
                   value={this.state.username}
-                /><br/>
+                /><br />
                 {this.returnErrors("Username can't be blank")}
                 {this.returnErrors("Invalid Credentials")}
-              </label><br/><br/>
-
+              </label><br /><br />
               {this.renderEmail()}
-
-              {/* <label>Email:
-                <input 
-                  className="session-login-input"
-                  type="text" 
-                  onChange={this.handleInput('email')} 
-                  value={this.state.email}
-                />
-              </label><br/> */}
-              <br/><br/>
+              <br /><br />
               <label className="login-label" id="password">
                 <p className="login-input-text">Password</p>
-                <input 
+                <input
                   className="session-login-input"
-                  type="password" 
-                  onChange={this.handleInput('password')} 
-                  value={this.state.password} 
-                /><br/>
+                  type="password"
+                  onChange={this.handleInput('password')}
+                  value={this.state.password}
+                /><br />
                 {this.returnErrors("Password is too short (minimum is 6 characters)")}
                 {this.returnErrors("Invalid Credentials")}
-              </label><br/>
+              </label><br />
               <div className="login-buttons-containers">
                 <div className="login-button-items">
                   <button className="login-submit" id="sign-in-button" onClick={this.errorClickHandler} onClick={this.handleSubmit}> {this.formText()} </button>

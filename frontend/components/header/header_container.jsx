@@ -4,14 +4,14 @@ import { logout } from '../../actions/session_actions';
 
 const mapStateToProps = state => {
   let currentUserId = state.session.id
-  return({
+  return ({
     currentUser: state.entities.users[currentUserId],
     user: state.entities.users[currentUserId]
   })
 };
 
 const mapDispatchToProps = dispatch => {
-  return({
+  return ({
     logout: () => dispatch(logout()),
     fetchVideos: (query) => dispatch(fetchVideos(query))
   })

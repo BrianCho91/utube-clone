@@ -5,11 +5,11 @@ import React from "react";
 import { Link } from 'react-router-dom';
 
 
-const mapStateToProps = ( { errors, session } ) => {
+const mapStateToProps = ({ errors, session }) => {
   return ({
     errors: errors.session,
     formType: 'login',
-    navLink: <Link to="/signup">Sign Up</Link>, 
+    navLink: <Link to="/signup">Sign Up</Link>,
     loggedIn: Boolean(session.id)
   })
 }

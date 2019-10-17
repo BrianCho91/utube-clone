@@ -7,10 +7,9 @@ const mapStateToProps = (state, ownProps) => {
   let currentUserId = state.session.id;
   let comment = ownProps.comment;
   // debugger 
-  // let parent_comment = ownProps.
-  
-  return({
-    comment: { 
+
+  return ({
+    comment: {
       body: ""
     },
     formType: "Create Comment",
@@ -21,7 +20,7 @@ const mapStateToProps = (state, ownProps) => {
 };
 
 const mapDispatchToProps = dispatch => {
-  return({
+  return ({
     action: comment => dispatch(createComment(comment)),
   })
 };

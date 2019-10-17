@@ -6,8 +6,8 @@ const mapStateToProps = (state, ownProps) => {
   let video = ownProps.video;
   let currentUserId = state.session.id;
   // debugger 
-  return({
-    comment: { 
+  return ({
+    comment: {
       body: ""
     },
     formType: "Create Comment",
@@ -17,7 +17,7 @@ const mapStateToProps = (state, ownProps) => {
 };
 
 const mapDispatchToProps = dispatch => {
-  return({
+  return ({
     action: comment => dispatch(createComment(comment)),
   })
 };

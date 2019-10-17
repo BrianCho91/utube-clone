@@ -11,11 +11,11 @@ class Sidebar extends React.Component {
 
   render() {
 
-    return(
+    return (
       <div className="sidebar-main">
         <div className="sidebar">
           <div className="sidebar-icon-container" >
-            <Link to='/' className="sidebar-container-icon">  
+            <Link to='/' className="sidebar-container-icon">
               <FontAwesomeIcon className="faIcons" icon={faHome} />
               <p>Home</p>
             </Link>
@@ -29,21 +29,6 @@ class Sidebar extends React.Component {
               <FontAwesomeIcon className="faIcons" icon={faGithubSquare} />
               <p>GitHub</p>
             </div>
-
-            {/* <div className="sidebar-container-icon">
-              <FontAwesomeIcon className="faIcons" icon={faFire} />
-              <p>Trending</p>
-            </div>
-
-            <div className="sidebar-container-icon">
-              <FontAwesomeIcon className="faIcons" icon={faLayerGroup} />
-              <p>Subscriptions</p>
-            </div>
-
-            <div className="sidebar-container-icon">
-              <FontAwesomeIcon className="faIcons" icon={faFolder} />
-              <p>Library</p>
-            </div> */}
 
           </div>
         </div>

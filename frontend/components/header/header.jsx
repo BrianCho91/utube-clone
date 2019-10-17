@@ -3,12 +3,9 @@ import { Link } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faBars, faUserCircle, faBell, faEnvelope, faVideo, faSearch } from '@fortawesome/free-solid-svg-icons'
 import { faYoutube } from '@fortawesome/free-brands-svg-icons';
-// import Icon from '@material-ui/core/Icon'
-// import {search} from '@material-ui/icons';
 import SideDrawer from '../header/side_drawer';
 import UserMenu from '../header/user_menu';
 import VideoFormDropdown from '../header/video_form_dropdown';
-import SearchVideoDropdownContainer from '../searchbar/search_video_dropdown_container';
 
 class Header extends React.Component {
   constructor(props) {
@@ -31,12 +28,12 @@ class Header extends React.Component {
   clickedOutsideDropdown() {
     let that = this;
 
-    document.addEventListener('click', function(e) {
+    document.addEventListener('click', function (e) {
       let userMenuDrop = document.getElementById('user-menu')
       let videoFormDrop = document.getElementById('dropdownMenu')
       let userMenuButton = document.getElementById('create-form-button')
       let videoFormButton = document.getElementById('user-menu-button')
-      
+
       let clickedInsideUserMenu
       let clickedInsideVideoMenu;
       let clickedInsideUserButton;
@@ -44,7 +41,7 @@ class Header extends React.Component {
 
       if (userMenuDrop) {
         clickedInsideUserMenu = userMenuDrop.contains(e.target);
-      } 
+      }
       if (videoFormDrop) {
         clickedInsideVideoMenu = videoFormDrop.contains(e.target);
       }
@@ -60,7 +57,7 @@ class Header extends React.Component {
           if (!clickedInsideVideoMenu && !clickedInsideVideoButton) {
 
             that.setState((prevState) => {
-              return {userMenuOpen: !prevState.userMenuOpen};
+              return { userMenuOpen: !prevState.userMenuOpen };
             });
           }
         }
@@ -71,7 +68,7 @@ class Header extends React.Component {
           if (!clickedInsideUserMenu && !clickedInsideUserButton) {
 
             that.setState((prevState) => {
-              return {videoFormDropOpen: !prevState.videoFormDropOpen};
+              return { videoFormDropOpen: !prevState.videoFormDropOpen };
             });
           }
         }
@@ -79,61 +76,10 @@ class Header extends React.Component {
     })
   }
 
-  // clickedOutsideDropdown() {
-  //   let that = this;
-
-  //   document.addEventListener('click', function(e) {
-  //     e.preventDefault()
-  //     let userMenuDrop = document.getElementById('user-menu')
-  //     let videoFormDrop = document.getElementById('dropdownMenu')
-  //     let userMenuButton = document.getElementById('create-form-button')
-  //     let videoFormButton = document.getElementById('user-menu-button')
-      
-  //     let clickedInsideUserMenu;
-  //     let clickedInsideVideoMenu;
-  //     let clickedInsideUserButton;
-  //     let clickedInsideVideoButton;
-
-  //     if (userMenuDrop) {
-  //       clickedInsideUserMenu = userMenuDrop.contains(e.target);
-  //     } 
-  //     if (videoFormDrop) {
-  //       clickedInsideVideoMenu = videoFormDrop.contains(e.target);
-  //     }
-  //     if (userMenuButton) {
-  //       clickedInsideUserButton = userMenuButton.contains(e.target);
-  //     }
-  //     if (videoFormButton) {
-  //       clickedInsideVideoButton = videoFormButton.contains(e.target);
-  //     }
-
-  //     if (that.state.userMenuOpen === true) {
-  //       if (!clickedInsideUserMenu && !clickedInsideUserButton) {
-  //         if (!clickedInsideVideoMenu && !clickedInsideVideoButton) {
-
-  //           that.setState((prevState) => {
-  //             return {userMenuOpen: !prevState.userMenuOpen};
-  //           });
-  //         }
-  //       }
-  //     }
-
-  //     if (that.state.videoFormDropOpen === true) {
-  //       if (!clickedInsideVideoMenu && !clickedInsideVideoButton) {
-  //         if (!clickedInsideUserMenu && !clickedInsideUserButton) {
-
-  //           that.setState((prevState) => {
-  //             return {videoFormDropOpen: !prevState.videoFormDropOpen};
-  //           });
-  //         }
-  //       }
-  //     }
-  //   })
-  // }
 
   sideDrawerClickHandler() {
     this.setState((prevState) => {
-    return {sideDrawerOpen: !prevState.sideDrawerOpen};
+      return { sideDrawerOpen: !prevState.sideDrawerOpen };
     });
   };
 
@@ -141,9 +87,9 @@ class Header extends React.Component {
     let sideDrawer;
     if (this.state.sideDrawerOpen) {
       return sideDrawer = <SideDrawer
-                            show={this.state.sideDrawerOpen} 
-                            sideDrawerClickHandler={this.sideDrawerClickHandler}
-                          />;
+        show={this.state.sideDrawerOpen}
+        sideDrawerClickHandler={this.sideDrawerClickHandler}
+      />;
     };
   };
 
@@ -160,16 +106,15 @@ class Header extends React.Component {
     let videoFormDropdown;
     if (this.state.videoFormDropOpen) {
       return videoFormDropdown = <VideoFormDropdown
-                          show={this.state.videoFormDropOpen}
-                          videoFormDropdownClickHandler={this.videoFormDropdownClickHandler}
-                          user={this.props.user}
-                          currentUser={this.props.currentUser}
-                        />;
+        show={this.state.videoFormDropOpen}
+        videoFormDropdownClickHandler={this.videoFormDropdownClickHandler}
+        user={this.props.user}
+        currentUser={this.props.currentUser}
+      />;
     };
   };
 
   userMenuClickHandler() {
-    // console.log('hi2')
     this.setState((prevState) => {
       return {
         userMenuOpen: !prevState.userMenuOpen,
@@ -179,15 +124,14 @@ class Header extends React.Component {
   };
 
   userMenuToggle() {
-    // console.log('hi')
     let userMenu;
     if (this.state.userMenuOpen) {
       return userMenu = <UserMenu
-                          show={this.state.userMenuOpen}
-                          userMenuClickHandler={this.userMenuClickHandler}
-                          user={this.props.user}
-                          logout={this.props.logout}
-                        />;
+        show={this.state.userMenuOpen}
+        userMenuClickHandler={this.userMenuClickHandler}
+        user={this.props.user}
+        logout={this.props.logout}
+      />;
     };
   };
 
@@ -211,11 +155,7 @@ class Header extends React.Component {
       return (
         <div id="user-menu-button" className="user-profile-icon">
           {this.userMenuToggle()}
-          {/* <FontAwesomeIcon className="faIcons" icon={faUserCircle} onClick={this.userMenuClickHandler}/> */}
-          {/* <div> */}
-          <img className="user-icon-header" src={this.props.currentUser ? this.props.currentUser.photo : "" } onClick={this.userMenuClickHandler} alt=""/>
-            {/* {this.props.currentUser.photo} */}
-          {/* </div> */}
+          <img className="user-icon-header" src={this.props.currentUser ? this.props.currentUser.photo : ""} onClick={this.userMenuClickHandler} alt="" />
         </div>
       )
     } else {
@@ -241,59 +181,38 @@ class Header extends React.Component {
 
     this.clickedOutsideDropdown();
 
-    return(
+    return (
       <div>
         {this.sideDrawerToggle()}
         <div className="header">
           <div className="home-icons-container">
             <button>
-              <FontAwesomeIcon className="faIcons" id="faBars" icon={faBars} onClick={this.sideDrawerClickHandler}/>
+              <FontAwesomeIcon className="faIcons" id="faBars" icon={faBars} onClick={this.sideDrawerClickHandler} />
             </button>
-              <div id="home-buttons" className="uTube-icon">
-                <Link to={`/`} >
-                  <FontAwesomeIcon className="faYoutube" icon={faYoutube} />
-                  <span className="uTube-icon-letters">uTube</span>
-                </Link>
-              </div>
-            {/* <img id="logo" src="https://i.ytimg.com/vi/216xvaj_OAA/maxresdefault.jpg" alt=""/> */}
+            <div id="home-buttons" className="uTube-icon">
+              <Link to={`/`} >
+                <FontAwesomeIcon className="faYoutube" icon={faYoutube} />
+                <span className="uTube-icon-letters">uTube</span>
+              </Link>
+            </div>
           </div>
-
-          {/* <div className="header-search-container"> */}
-            <form className="header-search-container"> 
-              <input type="text"
-                className="header-search-bar"
-                value={this.state.searchText}
-                placeholder="Search"
-                onChange={this.update}
-                />
-              {/* <div className="header-search-bar">Search</div> */}
-              <button className="header-search-button" onClick={this.searchClickHandler}>
+          <form className="header-search-container">
+            <input type="text"
+              className="header-search-bar"
+              value={this.state.searchText}
+              placeholder="Search"
+              onChange={this.update}
+            />
+            <button className="header-search-button" onClick={this.searchClickHandler}>
               <FontAwesomeIcon className="faIcons" id="faSearch" icon={faSearch} />
-                {/* <i id="search" className="large material-icons">search</i> */}
-              </button>
-            </form>
-            {/* <SearchVideoDropdownContainer searchText={this.state.searchText} fetchVideos={this.props.fetchVideos} /> */}
-          {/* </div> */}
-
+            </button>
+          </form>
           <div className={this.userIconContainerSize()}>
             <div id="create-form-button" className="create-post-icon">
               {this.videoFormDropdownToggle()}
               <FontAwesomeIcon id="faIcons" className="faIcons" icon={faVideo} onClick={this.videoFormDropdownClickHandler} />
-              {/* <i id="video_call" className="large material-icons">video_call</i> */}
             </div>
-            {/* <div className="messages-icon">
-              <FontAwesomeIcon className="faIcons" icon={faEnvelope} /> */}
-              {/* <i id="mail" className="large material-icons">mail</i> */}
-            {/* </div> */}
-            {/* <div className="alerts-icon">
-              <FontAwesomeIcon className="faIcons" icon={faBell} />
-              
-            </div> */}
             {this.signupLoginLink()}
-            {/* <div className="user-profile-icon">
-              <FontAwesomeIcon className="faIcons" icon={faUserCircle} /> */}
-              {/* <i id="person" className="large material-icons">person</i> */}
-            {/* </div> */}
           </div>
         </div>
       </div>

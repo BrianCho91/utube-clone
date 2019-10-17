@@ -38,14 +38,10 @@ class VideoShow extends React.Component {
   componentDidUpdate(prevProps) {
     // debugger
     if (prevProps.video) {
-      // debugger
       if (prevProps.video.id != this.props.match.params.videoId) {
-        // debugger
         this.props.fetchVideo(this.props.match.params.videoId)
         this.shuffledVideos = this.shuffleVideos(this.props.videos)
         window.scrollTo(0, 0);
-
-        // this.setState({loaded: true})
       }
     }
     if (prevProps.currentUser !== this.props.currentUser) {
@@ -57,7 +53,6 @@ class VideoShow extends React.Component {
       let j = Math.floor(Math.random() * (i + 1));
       [videos[i], videos[j]] = [videos[j], videos[i]]
     }
-    // console.log('bye')
     return videos
   }
 
@@ -78,7 +73,6 @@ class VideoShow extends React.Component {
     this.video = this.props.video
     let currLike = this.props.video.likes.find(like => like.user_id === this.props.currentUser.id)
     if (currentUser) {
-      // debugger
       if (currLike !== undefined) {
         if (currLike.liked === false) {
           this.props.updateLike({

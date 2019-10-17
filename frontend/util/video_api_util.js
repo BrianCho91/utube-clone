@@ -1,12 +1,3 @@
-// export const fetchVideos = () => {
-//   return(
-//     $.ajax({
-//       method: 'GET',
-//       url: 'api/videos'
-//     })
-//   );
-// };
-
 export const fetchVideos = query => {
   return(
     $.ajax({

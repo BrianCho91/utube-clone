@@ -11,12 +11,7 @@ const videosReducer = (state={}, action) => {
       return action.videos
     case RECEIVE_VIDEO:
       return Object.assign({}, state, { [action.video.id]: action.video })
-    // case RECEIVE_COMMENT:
-    //   // let newState = Object.assign({}, state);
-    //   newState[action.comment.video_id].comments.push(action.comment);
-    //   return newState;
     case REMOVE_VIDEO:
-      // let newState = Object.assign({}, state);
       delete newState[action.videoId];
       return newState  
     default:

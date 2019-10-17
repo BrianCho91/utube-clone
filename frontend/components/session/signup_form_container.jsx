@@ -5,7 +5,7 @@ import React from "react";
 import { Link } from 'react-router-dom';
 
 
-const mapStateToProps = ( { errors, session }, ownProps) => {
+const mapStateToProps = ({ errors, session }, ownProps) => {
   return ({
     errors: errors.session,
     formType: 'signup',

@@ -12,17 +12,17 @@ const mapStateToProps = (state, ownProps) => {
   let userId = ownProps.match.params.userId
   let videos = Object.values(state.entities.videos)
   let user = state.entities.users[userId]
-  return({
+  return ({
     userId,
     videos,
     user,
-    currentUser,    
+    currentUser,
     // searchbar
   })
 };
 
 const mapDispatchToProps = dispatch => {
-  return({
+  return ({
     fetchVideos: (query) => dispatch(fetchVideos(query)),
     fetchUser: (id) => dispatch(fetchUser(id)),
     deleteSub: subId => dispatch(deleteSub(subId)),

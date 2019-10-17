@@ -4,19 +4,16 @@ import { fetchVideos } from '../../actions/video_actions';
 
 const mapStateToProps = (state, ownProps) => {
   // debugger
-  // let searchbar = ownProps.searchbar ? true : false;
-  // let query = ownProps.searchBar ? "" : ownProps.match.params.query
   let query = ownProps.searchText
   let videos = Object.values(state.entities.videos)
-  return({
+  return ({
     query,
     videos,
-    // searchbar
   })
 };
 
 const mapDispatchToProps = dispatch => {
-  return({
+  return ({
     fetchVideos: (query) => dispatch(fetchVideos(query)),
   })
 };

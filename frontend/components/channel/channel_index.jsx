@@ -28,9 +28,9 @@ class ChannelIndex extends React.Component {
     let that = this;
     // debugger
     let currentUser = this.props.currentUser;
-    
+
     if (currentUser) {
-    let currSub = this.props.user
+      let currSub = this.props.user
       let matchingSub = this.props.currentUser.subscriptions.find(sub => sub.subscribee_id === currSub.id)
       if (!matchingSub) {
         this.props.createSub({ subscribee_id: currSub.id })
@@ -53,7 +53,7 @@ class ChannelIndex extends React.Component {
   subscriberText() {
     // debugger
     let currentUser = this.props.currentUser;
-      if (currentUser) {
+    if (currentUser) {
 
       let currSub = this.props.user
 
@@ -70,37 +70,38 @@ class ChannelIndex extends React.Component {
 
   render() {
 
-    
-    
+
+
     window.onscroll = this.stickyHeader
     let video = this.props.video
     let videos = this.props.videos
     let user = this.props.user
     if (!user) return null
-    
+
     let userVideos = this.props.videos.map(video => {
       if (video.author.id === user.id) {
-        return <VideoIndexItem video={video} key={video.id} indexPage={true} /> }
-    }) 
-// debugger
+        return <VideoIndexItem video={video} key={video.id} indexPage={true} />
+      }
+    })
+    // debugger
 
-    return(
+    return (
       <div className="channel-main">
         <div className="header-image">
-          <img className="banner-picture" src={user ? user.banner : "" } alt=""/>
+          <img className="banner-picture" src={user ? user.banner : ""} alt="" />
         </div>
         <div className="header-banner" id="banner">
           <div className="banner-body">
             <div className="banner-user-info">
               <div className="banner-icon-container">
                 <Link to={`/channel/${user ? user.id : ""}`} className="banner-icon">
-                  <img className="user-icon-channel" src={user ? user.photo : "" } alt=""/>
+                  <img className="user-icon-channel" src={user ? user.photo : ""} alt="" />
                 </Link>
               </div>
               <div className="banner-description">
-                <p className="banner-artist">{user ? user.username: ""}</p>
+                <p className="banner-artist">{user ? user.username : ""}</p>
                 <p className="banner-sub-count">
-                  {user ? user.subscribers.length : "" } {user.subscribers.length <=1 ? "subscriber" : "subscribers"}
+                  {user ? user.subscribers.length : ""} {user.subscribers.length <= 1 ? "subscriber" : "subscribers"}
                 </p>
               </div>
             </div>
@@ -121,7 +122,7 @@ class ChannelIndex extends React.Component {
           </div>
         </div>
       </div>
-      
+
 
     )
   }

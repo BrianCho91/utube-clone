@@ -13,7 +13,7 @@ const mapStateToProps = (state) => {
 }
 
 const mapDispatchToProps = dispatch => {
-  return({
+  return ({
     fetchVideos: (query) => dispatch(fetchVideos(query))
   })
 };

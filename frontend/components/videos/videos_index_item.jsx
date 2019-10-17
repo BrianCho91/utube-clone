@@ -8,14 +8,6 @@ class VideoIndexItem extends React.Component {
 
   };
 
-  // componentDidMount() {
-  //   // this.props.fetchVideos();
-  // }
-
-  // shouldComponentUpdate(nextProps, nextState) {
-  //   // if (this.props.video !== nextProps.video) return false
-  // }
-
   childOfVideosIndex() {
     if (this.props.indexPage) {
       return (
@@ -23,7 +15,6 @@ class VideoIndexItem extends React.Component {
           <Link to={`/watch/${this.props.video.id}`} >
             <img className="thumbnails" src={this.props.video.photoUrl ? this.props.video.photoUrl : `https://img.youtube.com/vi/${this.props.video.test_url}/hqdefault.jpg`} />
           </Link>
-          {/* {console.log(this.props.video.test_url)} */}
           <p className="index-video-title">
             <Link to={`/watch/${this.props.video.id}`} className="index-video-title-text">{this.props.video.title}</Link>
           </p>
@@ -31,7 +22,7 @@ class VideoIndexItem extends React.Component {
             <Link to={`/channel/${this.props.video.author.id}`} className="index-video-author-text">{this.props.video.author.username}</Link>
           </p>
           <div className="index-view-container">
-            <p className="index-video-views">{this.videoViewsFormat(this.props.video.views)} views</p> 
+            <p className="index-video-views">{this.videoViewsFormat(this.props.video.views)} views</p>
             • <span className="index-video-upload-date">{`${this.props.video.publishedAgo} ago`}</span>
           </div>
         </div>
@@ -41,13 +32,11 @@ class VideoIndexItem extends React.Component {
 
   childOfVideosShow() {
     if (!this.props.indexPage) {
-      // console.log('hi')
       return (
         <div className="show-video-item-container">
           <Link to={`/watch/${this.props.video.id}`} >
             <img className="show-thumbnails" src={this.props.video.photoUrl ? this.props.video.photoUrl : `https://img.youtube.com/vi/${this.props.video.test_url}/hqdefault.jpg`} />
           </Link>
-          {/* {console.log(this.props.video.test_url)} */}
           <div className="show-index-video-description">
             <p className="index-video-title">
               <Link to={`/watch/${this.props.video.id}`} className="index-video-title-text">{this.props.video.title}</Link>
@@ -78,7 +67,7 @@ class VideoIndexItem extends React.Component {
 
 
   render() {
-    
+
     return (
       <div>
         {this.childOfVideosIndex()}

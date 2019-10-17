@@ -17,58 +17,30 @@ class SideDrawer extends React.Component {
 
   render() {
 
-    return(
+    return (
       <div id="sideDrawer" className={this.sideDrawerClass()}>
         <div className="menu-sidebar-HTS">
           <div className="menu-sidebar-sidebar-icon-container">
-            <Link to='/'>  
+            <Link to='/'>
               <div className="menu-sidebar-icon-container-containers">
                 <FontAwesomeIcon id="faHome-icon" className="drawer-faIcons" icon={faHome} />
-                {/* <i id="menu-sidebar-home" className="large material-icons">home</i> */}
-                <span>Home</span><br/>
+                <span>Home</span><br />
               </div>
             </Link>
-            {/* <div className="menu-sidebar-icon-container-containers">
-              <FontAwesomeIcon id="faFire-icon" className="drawer-faIcons" icon={faFire} />
-
-              <span>Trending</span><br/>
-            </div>
-            <div className="menu-sidebar-icon-container-containers">
-              <FontAwesomeIcon className="drawer-faIcons" icon={faLayerGroup} />
-
-              <span>Subscriptions</span><br/>
-            </div> */}
           </div>
         </div>
-      
+
         <div className="menu-sidebar-LHWL">
           <div className="menu-sidebar-sidebar-icon-container">
             <div className="menu-sidebar-icon-container-containers">
               <FontAwesomeIcon className="drawer-faIcons" icon={faLinkedin} />
               <span>LinkedIn</span>
-            </div> 
+            </div>
 
             <div className="menu-sidebar-icon-container-containers">
               <FontAwesomeIcon className="drawer-faIcons" icon={faGithubSquare} />
               <span>GitHub</span>
-            </div> 
-
-            {/* <div className="menu-sidebar-icon-container-containers">
-              <FontAwesomeIcon className="drawer-faIcons" icon={faFolder} />
-              <span>Library</span>
             </div>
-            <div className="menu-sidebar-icon-container-containers">
-              <FontAwesomeIcon className="drawer-faIcons" icon={faHistory} />
-              <span>History</span>
-            </div>
-            <div className="menu-sidebar-icon-container-containers">
-              <FontAwesomeIcon className="drawer-faIcons" icon={faClock} />
-              <span>Watch later</span>
-            </div>
-            <div className="menu-sidebar-icon-container-containers">
-              <FontAwesomeIcon className="drawer-faIcons" icon={faThumbsUp} />
-              <span>Liked Videos</span>
-            </div> */}
           </div>
         </div>
       </div>
