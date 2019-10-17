@@ -2,10 +2,8 @@ import React from 'react';
 import { Link, withRouter } from 'react-router-dom';
 import VideoIndexItem from './videos_index_item';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faUserCircle, faThumbsUp, faThumbsDown, faSpinner , pulse } from '@fortawesome/free-solid-svg-icons'
-import CreateCommentFormContainer from '../comments/create_comment_form_container';
+import { faUserCircle, faThumbsUp, faThumbsDown, faSpinner, pulse } from '@fortawesome/free-solid-svg-icons'
 import CommentsIndexContainer from '../comments/comments_index_container';
-// import CreateCommentForm from '../comments/create_comment_form';
 
 class VideoShow extends React.Component {
   constructor(props) {
@@ -32,11 +30,7 @@ class VideoShow extends React.Component {
     // debugger
     let videoId = this.props.match.params.videoId;
     this.props.fetchVideo(videoId);
-    // this.props.fetchVideos('');
     this.props.fetchVideos('');
-    // this.props.fetchUser(this.props.video.author.id)
-    // this.setState({loaded: true})
-    // this.props.fetchUser(this.props.video.author.id)
     window.scrollTo(0, 0);
   }
 
@@ -46,41 +40,17 @@ class VideoShow extends React.Component {
     if (prevProps.video) {
       // debugger
       if (prevProps.video.id != this.props.match.params.videoId) {
-      // if (prevProps.video.id !== this.props.match.params.videoId && prevProps.video.id !== this.props.video.id) {
-// debugger
+        // debugger
         this.props.fetchVideo(this.props.match.params.videoId)
         this.shuffledVideos = this.shuffleVideos(this.props.videos)
-    window.scrollTo(0, 0);
+        window.scrollTo(0, 0);
 
         // this.setState({loaded: true})
       }
     }
     if (prevProps.currentUser !== this.props.currentUser) {
-      // this.props.fetchVideo(this.props.match.params.videoId)
     }
   }
-
-  // shouldComponentUpdate(nextProps) {
-  //   return (this.props.currentUser.likedVideos !== nextProps.currentUser.likedVideos)
-  // }
-
-  // shouldComponentUpdate(nextProps, nextState) {
-  //   // this.props.video === this.props.video
-  // }
-
-
-  // componentDidUpdate(prevProps) {
-  //   // if (this.props.currentUser) {
-  //   //   if (this.props.currentUser.likedVideos !== prevProp.currentUser.likedVideos) {
-  //   //     this.setState({ liked: this.props.currentUser.likedVideos })
-  //   //   }
-  //   // }
-  //   // this.state.liked === prevState.liked
-  //   // this.state.liked !== prevState.liked
-  //   // if(prevProps.currStateLike !== this.props.currStateLike) {
-  //   //   this.setState({liked: this.props.currStateLike});
-  //   // }
-  // }
 
   shuffleVideos(videos) {
     for (let i = videos.length - 1; i > 0; i--) {
@@ -93,16 +63,11 @@ class VideoShow extends React.Component {
 
   viewClickHandler() {
     if (!this.state.clicked) {
-      // console.log("clicked")
-      // debugger;
-      // this.props.video ? this.props.video.views += 1 : null
       this.props.updateViews({
         id: this.props.video.id,
-        // title: this.props.video.title,
-        // description: this.props.video.description,
         views: this.props.video.views + 1
       })
-      this.setState({clicked: true})
+      this.setState({ clicked: true })
     }
   };
 
@@ -111,24 +76,11 @@ class VideoShow extends React.Component {
     let that = this
     let currentUser = this.props.currentUser
     this.video = this.props.video
-    // let currLike = currentUser.likedVideos.find(video => video.likeable_id === that.video.id)
     let currLike = this.props.video.likes.find(like => like.user_id === this.props.currentUser.id)
-    // console.log(currLike)
-    // let currLike = this.props.currLike
-    
-
-    // if (currLike === true) { 
-    //   highlightedThumbsup("hightlighted")
-    // }
-  
-    // if (currentUser.likedVideos.find(video => video.likeable_id === video.id)) {
     if (currentUser) {
       // debugger
       if (currLike !== undefined) {
-      // if (currLike.length > 0) {
-        // if (currLike) {
         if (currLike.liked === false) {
-          // console.log('update')
           this.props.updateLike({
             id: currLike.id,
             liked: true,
@@ -136,18 +88,13 @@ class VideoShow extends React.Component {
             likeable_type: "Video"
           }).then(() => {
             that.props.fetchVideo(that.props.video.id);
-          }) 
-          // if (currLike === true) {
-          //   highlightedThumbsup("highlighted")
-          // }
+          })
         } else if (currLike.liked === true) {
-          // console.log('remove')
           this.props.deleteLike(currLike.id).then(() => {
             that.props.fetchVideo(that.props.video.id);
-          }) 
+          })
         }
       } else {
-        // console.log('create')
         this.props.createLike({
           id: currentUser.id,
           liked: true,
@@ -155,28 +102,20 @@ class VideoShow extends React.Component {
           likeable_type: "Video"
         }).then(() => {
           that.props.fetchVideo(that.props.video.id);
-        }) 
+        })
       }
     }
   }
-// }
 
   videoUnlikeClickHandler() {
     // debugger
     let that = this
     let currentUser = this.props.currentUser
     this.video = this.props.video
-    // let currLike = currentUser.likedVideos.find(video => video.likeable_id === that.video.id)
     let currLike = this.props.video.likes.find(like => like.user_id === this.props.currentUser.id)
-    // console.log(currLike)
-    // let currLike = this.props.currLike
-    
-
-    // if (currentUser.likedVideos.find(video => video.likeable_id === video.id)) {
     if (currentUser) {
       if (currLike !== undefined) {
         if (currLike.liked === true) {
-          // console.log('update')
           this.props.updateLike({
             id: currLike.id,
             liked: false,
@@ -186,13 +125,11 @@ class VideoShow extends React.Component {
             that.props.fetchVideo(that.props.video.id);
           })
         } else if (currLike.liked === false) {
-          // console.log('remove')
           this.props.deleteLike(currLike.id).then(() => {
             that.props.fetchVideo(that.props.video.id);
-          }) 
+          })
         }
       } else {
-        // console.log('create')
         this.props.createLike({
           id: currentUser.id,
           liked: false,
@@ -200,7 +137,7 @@ class VideoShow extends React.Component {
           likeable_type: "Video"
         }).then(() => {
           that.props.fetchVideo(that.props.video.id);
-        }) 
+        })
       }
     }
   }
@@ -214,37 +151,32 @@ class VideoShow extends React.Component {
   }
 
   highlightedThumbsup(action) {
-    let thumb = document.getElementById(likes-thumbsup)
+    let thumb = document.getElementById(likes - thumbsup)
     thumb.classList.toggle(action)
-    
-    // if (this.state.liked) {
-    //   return "highlighted"
-    // } else {
-    //   return ""
-    // }
+
   }
 
 
   subscribeHandler() {
     let that = this;
     let currentUser = this.props.currentUser;
-    
+
     let currSub = this.props.video.author
-// debugger
+    // debugger
     if (currentUser) {
       let matchingSub = this.props.currentUser.subscriptions.find(sub => sub.subscribee_id === currSub.id)
       if (!matchingSub) {
-        this.props.createSub({ subscribee_id: currSub.id})
+        this.props.createSub({ subscribee_id: currSub.id })
           .then(that.setState({ subbed: true }))
           .then(() => {
             that.props.fetchUser(that.props.currentUser.id);
-          }) 
+          })
       } else {
         this.props.deleteSub(matchingSub.id)
           .then(that.setState({ subbed: false }))
           .then(() => {
             that.props.fetchUser(that.props.currentUser.id);
-          }) 
+          })
       }
     }
   }
@@ -256,7 +188,7 @@ class VideoShow extends React.Component {
     let currSub = this.props.video.author
 
     if (currentUser) {
-      let matchingSub = this.props.currentUser.subscriptions.find(sub =>  sub.subscribee_id === currSub.id )
+      let matchingSub = this.props.currentUser.subscriptions.find(sub => sub.subscribee_id === currSub.id)
 
       if (!matchingSub) {
         return <button className="sub-btn" onClick={this.subscribeHandler} >SUBSCRIBE</button>
@@ -269,23 +201,20 @@ class VideoShow extends React.Component {
   subOrEditButton() {
     let video = this.props.video;
     let currentUser = this.props.currentUser;
-// debugger
+    // debugger
     if (this.props.currentUser) {
       return (
         <div>
-        <div className={video.author.id === currentUser.id ? "hide" : "show-video-subscribe" }>
-          {this.subscriberText()}
-          {/* </div> */}
-          {/* <div className="comment-form-submit-container"> */}
-            {/* <button className="sub-btn" onClick={this.subscribeHandler} >SUBSCRIBE</button> */}
+          <div className={video.author.id === currentUser.id ? "hide" : "show-video-subscribe"}>
+            {this.subscriberText()}
           </div>
-          <div className={video.author.id === currentUser.id ? "show-video-subscribe" : "hide" }>
-            <Link to={video ? `/upload/edit/${video.id}` : ""} video={video}> 
-            <button className="sub-btn">EDIT VIDEO</button>
+          <div className={video.author.id === currentUser.id ? "show-video-subscribe" : "hide"}>
+            <Link to={video ? `/upload/edit/${video.id}` : ""} video={video}>
+              <button className="sub-btn">EDIT VIDEO</button>
             </Link>
           </div>
-          </div>
-      ) 
+        </div>
+      )
     } else {
       return <div className="show-video-subscribe">
         <button className="sub-btn" onClick={this.subscribeHandler} >SUBSCRIBE</button>
@@ -298,56 +227,45 @@ class VideoShow extends React.Component {
     let video = this.props.video;
     if (!video) return null
     let videos = this.props.videos
-    // if (!this.state.loaded) {
-    //   videos = (this.shuffleVideos(videos))
-    // }
 
     videos = videos.map(video => {
-      return( 
-      <VideoIndexItem video={video} key={video.id} indexPage={false} fetchVideos={this.props.fetchVideos} videos={videos}/>
+      return (
+        <VideoIndexItem video={video} key={video.id} indexPage={false} fetchVideos={this.props.fetchVideos} videos={videos} />
       )
     });
     let shuffledVideos;
-    // let shuffledVids = this.shuffleVideos(videos).map(video => {
+
     if (this.shuffledVideos) {
-      shuffledVideos = this.shuffledVideos.map(video=> {
+      shuffledVideos = this.shuffledVideos.map(video => {
         return (
-          <VideoIndexItem video={video} key={video.id} indexPage={false} fetchVideos={this.props.fetchVideos} videos={videos}/>
+          <VideoIndexItem video={video} key={video.id} indexPage={false} fetchVideos={this.props.fetchVideos} videos={videos} />
         )
       })
     }
-// debugger
-// debugger
-let currLike;
-let currDislike;
-if (this.props.currentUser) {
-  currLike = this.props.video.likes.find(like => like.user_id === this.props.currentUser.id && like.liked === true)
-  currDislike = this.props.video.likes.find(like => like.user_id === this.props.currentUser.id && like.liked === false)
-}
+
+    // debugger
+    let currLike;
+    let currDislike;
+    if (this.props.currentUser) {
+      currLike = this.props.video.likes.find(like => like.user_id === this.props.currentUser.id && like.liked === true)
+      currDislike = this.props.video.likes.find(like => like.user_id === this.props.currentUser.id && like.liked === false)
+    }
 
     let currentUser = this.props.currentUser;
-    // debugger
+
     return (
       <div className="video-show-index">
         <div className="video-container">
           <div className="video-clip-container" onClick={this.viewClickHandler}>
-            {video.videoUrl ? 
+            {video.videoUrl ?
               <video key={video.videoUrl} className="video-clip" width="100%" height="auto" controls>
                 <source
                   src={video.videoUrl}
                   type="video/mp4" />
-              </video> : "" }
-              
-            {/* //   <iframe width="100%" height="100%" */}
-            {/* //     src={`https://www.youtube.com/embed/${video.test_url}`} 
-            //     frameBorder="0" allow="accelerometer; 
-            //     autoplay; encrypted-media; gyroscope; picture-in-picture
-            //     allowFullScreen" >
-            //   </iframe> 
-            // : ""} */}
+              </video> : ""}
           </div>
           <div className="video-description-container">
-            <p className="show-video-clip-title">{video ? video.title : "" }</p>
+            <p className="show-video-clip-title">{video ? video.title : ""}</p>
             <div className="sub-title-descriptions-container">
               <div className="show-views-published-container">
                 <p className="shows-view-counter">{video ? video.views.toLocaleString() + " views" : ""}</p>
@@ -357,7 +275,7 @@ if (this.props.currentUser) {
                 <div className="likes-view-counter">
                   <FontAwesomeIcon className={currLike ? `likes-view-faIcons glow` : 'likes-view-faIcons'} id="likes-thumbsup" icon={faThumbsUp} onClick={this.videoLikeClickHandler} />
                   <p className="video-likes-counter">{video ? this.likedCounter() : ""}</p>
-                  <FontAwesomeIcon className={currDislike ? "likes-view-faIcons glow" : "likes-view-faIcons"} id="likes-thumbsdown" icon={faThumbsDown} onClick={this.videoUnlikeClickHandler}/>
+                  <FontAwesomeIcon className={currDislike ? "likes-view-faIcons glow" : "likes-view-faIcons"} id="likes-thumbsdown" icon={faThumbsDown} onClick={this.videoUnlikeClickHandler} />
                   <p className="video-likes-counter">{video ? this.UnlikedCounter() : ""}</p>
                 </div>
               </div>
@@ -365,8 +283,7 @@ if (this.props.currentUser) {
             <div className="sub-views-description-container">
               <div className="show-video-icon-container">
                 <Link to={`/channel/${video.author ? video.author.id : ""}`} className="index-video-author-text">
-                  {/* <FontAwesomeIcon className="video-show-faIcons" icon={faUserCircle} /> */}
-                  <img className="user-icon-video-show" src={this.props.video.author ? this.props.video.author.photo : "" } alt=""/>
+                  <img className="user-icon-video-show" src={this.props.video.author ? this.props.video.author.photo : ""} alt="" />
                 </Link>
               </div>
               <div className="show-video-author-description-container">
@@ -379,12 +296,6 @@ if (this.props.currentUser) {
                     </p>
                   </div>
                   {this.subOrEditButton()}
-                  {/* <div className={(video.author.id === currentUser.id ? "hide" : "show-video-subscribe" ) : "hide"}>SUBSCRIBE BUTTON</div>
-                  <div className={(video.author.id === currentUser.id ? "show-video-subscribe" : "hide" ) : "hide"}>
-                    <Link to={video ? `/upload/edit/${video.id}` : ""} video={video}> 
-                      Edit video
-                    </Link>
-                  </div> */}
                 </div>
                 <div className="show-video-description">
                   {video ? video.description : ""}
@@ -392,71 +303,16 @@ if (this.props.currentUser) {
               </div>
             </div>
           </div>
-{/*  */}
-      
+
           {video ?
             <div className="comments-container">
-              {/* <CommentsIndexContainer video={video} /> */}
-              {/* <div className="comment-form-container">
-                <div className="comment-count-container">
-                  <p className="comment-counter">{video.comments.length} {video.comments.length > 1 ? "comments" : "comment"}</p>
-                  <div className="comment-sort-container"></div>
-                </div>
-                {/* <div className="comment-form-container-items-container">
-                  <div className="comment-form-icon-container">
-                    <Link to={`/channel/""}`} className="comment-author-icon">
-                      <FontAwesomeIcon className="comment-author-faIcons" icon={faUserCircle} />
-                    </Link>
-                  </div> */}
-
-
-
-
-
-
-
-              {/* <CreateCommentFormContainer video={video} />  */}
-                  {/* <CommentsIndexContainer video={video} /> */}
-
-                {/* </div> */}
-              {/* </div> */}
               <CommentsIndexContainer video={video} />
             </div>
-          : ""}
-      
-            {/* <div className="comment-form-container">
-              <div className="comment-count-container">
-                <p className="comment-counter">comment counter</p>
-                <div className="comment-sort-container"></div>
-              </div>
-              <div className="comment-form-icon-container">
-                <Link to={`/channel/""}`} className="comment-author-icon">
-                  <FontAwesomeIcon className="comment-author-faIcons" icon={faUserCircle} />
-                </Link>
-              </div>
-            </div> */}
-            {/* <div className="comments-index-container">
-              <div className="comments-index-item-container">
-                <div className="comments-index-item-icon-container">
-                  <Link to={`/channel/""}`} className="comment-author-icon">
-                    <FontAwesomeIcon className="comment-author-faIcons" icon={faUserCircle} />
-                  </Link>
-                </div>
-                <div className="comments-index-item-body-container">
-                  <div className="comments-item-name-container">
-                    <p className="comments-item-name">name</p>
-                    <p className="comments-item-time">hours ago</p>
-                  </div>
-                  <p className="comments-item-body">bodybodybody</p>
-                  <div className="comments-item-likes"></div>
-                  <div className="comments-item-replies"></div>
-                </div>
-              </div>  
-          </div> */}
+            : ""}
         </div>
         <div className="next-video-index-container">
           <div className="next-video-container">
-            <p>Recommended</p><br/>
+            <p>Recommended</p><br />
             {/* {shuffledVids} */}
             {shuffledVideos ? shuffledVideos : videos}
             <div className="next-video-thumbnail">
@@ -472,7 +328,7 @@ if (this.props.currentUser) {
       </div>
     )
   }
-  
+
 }
 
 export default (VideoShow);
