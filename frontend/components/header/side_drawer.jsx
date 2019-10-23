@@ -21,8 +21,8 @@ class SideDrawer extends React.Component {
       <div id="sideDrawer" className={this.sideDrawerClass()}>
         <div className="menu-sidebar-HTS">
           <div className="menu-sidebar-sidebar-icon-container">
-            <Link to='/'>
-              <div className="menu-sidebar-icon-container-containers">
+            <Link to='/' id="home-drawer">
+              <div className="menu-sidebar-icon-container-containers" id="home-drawer">
                 <FontAwesomeIcon id="faHome-icon" className="drawer-faIcons" icon={faHome} />
                 <span>Home</span><br />
               </div>

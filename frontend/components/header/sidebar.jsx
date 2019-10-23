@@ -15,8 +15,8 @@ class Sidebar extends React.Component {
       <div className="sidebar-main">
         <div className="sidebar">
           <div className="sidebar-icon-container" >
-            <Link to='/' className="sidebar-container-icon">
-              <FontAwesomeIcon className="faIcons" icon={faHome} />
+            <Link to='/' id="home-icon" className="sidebar-container-icon">
+              <FontAwesomeIcon className="faIcons" id="home-icon" icon={faHome} />
               <p>Home</p>
             </Link>
 
