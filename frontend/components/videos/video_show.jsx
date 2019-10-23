@@ -221,19 +221,24 @@ class VideoShow extends React.Component {
     let video = this.props.video;
     if (!video) return null
     let videos = this.props.videos
+    let videoId = this.props.match.params.videoId
 
     videos = videos.map(video => {
-      return (
-        <VideoIndexItem video={video} key={video.id} indexPage={false} fetchVideos={this.props.fetchVideos} videos={videos} />
-      )
+      if (video.id != videoId) {
+        return (
+          <VideoIndexItem video={video} key={video.id} indexPage={false} fetchVideos={this.props.fetchVideos} videos={videos} />
+        )
+      }
     });
     let shuffledVideos;
 
     if (this.shuffledVideos) {
       shuffledVideos = this.shuffledVideos.map(video => {
-        return (
-          <VideoIndexItem video={video} key={video.id} indexPage={false} fetchVideos={this.props.fetchVideos} videos={videos} />
-        )
+        if (video.id != videoId) {
+          return (
+            <VideoIndexItem video={video} key={video.id} indexPage={false} fetchVideos={this.props.fetchVideos} videos={videos} />
+          )
+        }
       })
     }
 

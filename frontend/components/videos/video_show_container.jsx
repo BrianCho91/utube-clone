@@ -16,11 +16,18 @@ const mapStateToProps = (state, ownProps) => {
   let videos = Object.values(state.entities.videos);
   let currStateLike = state.entities.likes[1]
 
+  let dupeVids = videos.slice()
+  for (let i = dupeVids.length - 1; i > 0; i--) {
+    let j = Math.floor(Math.random() * (i + 1));
+    [dupeVids[i], dupeVids[j]] = [dupeVids[j], dupeVids[i]]
+  }
+
   return ({
     video,
     videos,
     currentUser: state.entities.users[currentUserId],
     currStateLike,
+    dupeVids
   })
 }
 

@@ -12,7 +12,7 @@ class SearchVideoIndexItem extends React.Component {
   };
 
   isSearchPage() {
-    if (!this.props.isSearchBar) {
+    // if (!this.props.isSearchBar) {
       return (
         <div className="search-index-item-container">
           <Link to={`/watch/${this.props.video.id}`} >
@@ -31,7 +31,7 @@ class SearchVideoIndexItem extends React.Component {
           </div>
         </div>
       )
-    }
+    // }
   }
 
 
@@ -45,7 +45,7 @@ class SearchVideoIndexItem extends React.Component {
     return (
       <div>
         {this.isSearchPage()}
-        {this.isSearchBar()}
+        {/* {this.isSearchBar()} */}
       </div>
 
     )

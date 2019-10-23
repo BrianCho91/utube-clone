@@ -25,11 +25,12 @@ class VideoIndex extends React.Component {
 
   shuffleVideos(videos) {
     // debugger;
-    for (let i = videos.length - 1; i > 0; i--) {
+    let dupeVids = videos.slice()
+    for (let i = dupeVids.length - 1; i > 0; i--) {
       let j = Math.floor(Math.random() * (i + 1));
-      [videos[i], videos[j]] = [videos[j], videos[i]]
+      [dupeVids[i], dupeVids[j]] = [dupeVids[j], dupeVids[i]]
     }
-    return videos
+    return dupeVids
   }
 
   renderShuffledOnClick() {
@@ -59,21 +60,28 @@ class VideoIndex extends React.Component {
 
 
   render() {
-    let videos = this.props.videos;
+    // let videos = this.props.videos;
 
-    const homeButtons = document.getElementById('home-buttons');
-    if (homeButtons) {
-      homeButtons.addEventListener('click', () => {
-        let shuffledVideos = this.shuffleVideos(videos).slice(0, 10)
-        shuffledVideos = shuffledVideos.map(video => {
-          return (
-            <VideoIndexItem video={video} key={video.id} indexPage={true} />
-          )
-        })
+    // const homeButtons = document.getElementById('home-buttons');
+    // if (homeButtons) {
+    //   homeButtons.addEventListener('click', () => {
+    //     let shuffledVideos = this.shuffleVideos(videos).slice(0, 10)
+    //     shuffledVideos = shuffledVideos.map(video => {
+    //       return (
+    //         <VideoIndexItem video={video} key={video.id} indexPage={true} />
+    //       )
+    //     })
 
-      });
-    }
-    let shuffledVideos = this.shuffleVideos(videos).slice(0, 10)
+    //   });
+    // }
+    // let shuffledVideos = this.shuffleVideos(videos).slice(0, 10)
+    // shuffledVideos = shuffledVideos.map(video => {
+    //   return (
+    //     <VideoIndexItem video={video} key={video.id} indexPage={true} />
+    //   )
+    // })
+
+    let shuffledVideos = this.props.dupeVids.slice(0, 10)
     shuffledVideos = shuffledVideos.map(video => {
       return (
         <VideoIndexItem video={video} key={video.id} indexPage={true} />
@@ -88,7 +96,6 @@ class VideoIndex extends React.Component {
               <p>Recommended</p>
             </div>
             {shuffledVideos}
-
           </div>
         </div>
       </div>
