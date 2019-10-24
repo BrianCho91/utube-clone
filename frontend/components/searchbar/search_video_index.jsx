@@ -17,7 +17,7 @@ class SearchVideoIndex extends React.Component {
 
   componentDidMount() {
     let query = this.props.match.params.query;
-    this.props.fetchVideos(query)
+      this.props.fetchVideos(query)
   }
 
   componentDidUpdate(prevProps) {

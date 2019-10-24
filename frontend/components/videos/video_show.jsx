@@ -30,7 +30,7 @@ class VideoShow extends React.Component {
     // debugger
     let videoId = this.props.match.params.videoId;
     this.props.fetchVideo(videoId);
-    this.props.fetchVideos('');
+    this.props.fetchVideos('')
     window.scrollTo(0, 0);
   }
 
@@ -43,8 +43,6 @@ class VideoShow extends React.Component {
         this.shuffledVideos = this.shuffleVideos(this.props.videos)
         window.scrollTo(0, 0);
       }
-    }
-    if (prevProps.currentUser !== this.props.currentUser) {
     }
   }
 
@@ -221,6 +219,7 @@ class VideoShow extends React.Component {
     let video = this.props.video;
     if (!video) return null
     let videos = this.props.videos
+    // let videos = this.props.dupeVids
     let videoId = this.props.match.params.videoId
 
     videos = videos.map(video => {
@@ -242,6 +241,8 @@ class VideoShow extends React.Component {
       })
     }
 
+
+
     // debugger
     let currLike;
     let currDislike;
@@ -251,6 +252,7 @@ class VideoShow extends React.Component {
     }
 
     let currentUser = this.props.currentUser;
+
 
     return (
       <div className="video-show-index">
@@ -327,7 +329,6 @@ class VideoShow extends React.Component {
       </div>
     )
   }
-
 }
 
 export default (VideoShow);

@@ -14,7 +14,9 @@ class VideoIndex extends React.Component {
 
   componentDidMount() {
     this.menuClickHandler()
-    this.props.fetchVideos('')
+    if (this.props.videos.length === 0) {
+      this.props.fetchVideos('')
+    }
   }
 
   menuClickHandler() {
@@ -58,7 +60,19 @@ class VideoIndex extends React.Component {
   }
 
   homeButtonHandler() {
+
+  }
+
+
+  render() {
+    let videos = this.props.videos;
+
     let shuffledVideos = this.props.dupeVids.slice(0, 10)
+    shuffledVideos = shuffledVideos.map(video => {
+      return (
+        <VideoIndexItem video={video} key={video.id} indexPage={true} />
+      )
+    })
 
     const homeButtons = document.getElementById('home-buttons');
     if (homeButtons) {
@@ -95,20 +109,6 @@ class VideoIndex extends React.Component {
         })
       });
     }
-  }
-
-
-  render() {
-    let videos = this.props.videos;
-
-    let shuffledVideos = this.props.dupeVids.slice(0, 10)
-    shuffledVideos = shuffledVideos.map(video => {
-      return (
-        <VideoIndexItem video={video} key={video.id} indexPage={true} />
-      )
-    })
-
-    this.homeButtonHandler();
 
     // let shuffledVideos = this.shuffleVideos(videos).slice(0, 10)
     // shuffledVideos = shuffledVideos.map(video => {
