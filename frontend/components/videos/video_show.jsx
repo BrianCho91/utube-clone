@@ -23,7 +23,8 @@ class VideoShow extends React.Component {
     this.highlightedThumbsup = this.highlightedThumbsup.bind(this);
     this.subscribeHandler = this.subscribeHandler.bind(this);
     this.subOrEditButton = this.subOrEditButton.bind(this)
-    this.subscriberText = this.subscriberText.bind(this)
+    this.subscriberText = this.subscriberText.bind(this);
+    this.deleteVideoHandler = this.deleteVideoHandler.bind(this)
   };
 
   componentDidMount() {
@@ -148,6 +149,13 @@ class VideoShow extends React.Component {
 
   }
 
+  deleteVideoHandler() {
+    let that = this
+    this.props.deleteVideo(this.props.match.params.videoId).then(() => {
+      that.props.history.replace('/')
+    })
+  }
+
 
   subscribeHandler() {
     let that = this;
@@ -204,6 +212,9 @@ class VideoShow extends React.Component {
             <Link to={video ? `/upload/edit/${video.id}` : ""} video={video}>
               <button className="sub-btn">EDIT VIDEO</button>
             </Link>
+          </div>
+          <div className={video.author.id === currentUser.id ? "show-video-subscribe" : "hide"}>
+              <button className="sub-delete-btn" onClick={this.deleteVideoHandler} >DELETE</button>
           </div>
         </div>
       )
