@@ -10,20 +10,24 @@ class SearchVideoIndex extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      searchbar: this.props.searchbar
-
+      searchbar: this.props.searchbar,
+      searched: false
     };
   };
 
   componentDidMount() {
-    let query = this.props.match.params.query;
-      this.props.fetchVideos(query)
+    // debugger
+    let query = this.props.match.params.query
+
+    this.props.fetchVideos(query).then(() =>   
+      this.setState({ searched: true })
+    )
   }
 
   componentDidUpdate(prevProps) {
     let query = this.props.match.params.query;
 
-    if (query !== prevProps.query) {
+    if (query !== prevProps.query ) {
       this.props.fetchVideos(query)
     }
   }
@@ -37,7 +41,7 @@ class SearchVideoIndex extends React.Component {
 
   render() {
     // debugger
-
+    if (!this.state.searched) return null
     if (!this.props.videos) return null
     let videos;
 
