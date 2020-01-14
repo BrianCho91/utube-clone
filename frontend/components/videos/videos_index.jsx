@@ -65,6 +65,9 @@ class VideoIndex extends React.Component {
 
 
   render() {
+
+    if (this.props.videos.length < 10) return null;
+
     let videos = this.props.videos;
 
     let shuffledVideos = this.props.dupeVids.slice(0, 10)
