@@ -14,7 +14,7 @@ class VideoIndex extends React.Component {
 
   componentDidMount() {
     this.menuClickHandler()
-    if (this.props.videos.length === 0) {
+    if (this.props.videos.length < 10) {
       this.props.fetchVideos('')
     }
   }
